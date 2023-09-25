@@ -1,0 +1,39 @@
+body{
+    margin: 0px;
+}
+
+.sidebar {
+    display: block;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 1;
+    background-color: aqua;
+    width: 160px;
+    height: 100%;
+    overflow-x: hidden;
+}
+.main {
+    background-color:yellow ;
+    margin-left: 160px;
+    top: 0px;
+    display: block;
+    position: fixed;
+    width: 100%;
+}
+
+.navbar {
+    color: blue;
+    background-color: burlywood;
+    text-align: center;
+    height: 30px;
+    top: 0px;
+}
+
+.content {
+    background-color: brown;
+    text-align: center;
+}
+
+
