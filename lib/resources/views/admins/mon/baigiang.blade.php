@@ -4,37 +4,31 @@
 
 <div class="bg0 p-t-100 p-b-140" style="background-color: #F8F0E5;">
     <div class="container">
-        @include('errors.note')
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel ">
                     <div class="panel-heading">
-                        <b>Sửa môn</b>
+                        <b>Danh sách bài giảng môn: {{}}</b>
                     </div>
                     <div class="panel-body">
                         <form method="post" enctype="multipart/form-data" autocomplete="off">
                             <div class="form-group">
-                                <label>Mã môn</label>
-                                <input required type="text" name="ma" class="form-control" value="{{$mon->m_mamon}}">
+                                <label>Tên bài giảng</label>
+                                <input required type="text" name="tenbai" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label>Tên môn</label>
-                                <input required type="text" name="name" class="form-control" value="{{$mon->m_tenmon}}">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Thuộc khoa</label>
-                                <select required name="thuockhoa" class="form-control">
-                                    @foreach($khoalist as $khoa)
-                                    <option value="{{$khoa->k_makhoa}}" @if($mon->m_khoa == $khoa->k_makhoa) selected @endif >{{$khoa->k_tenkhoa}}</option>
-                                    @endforeach
-                                </select>
+                                <label>Tiết</label>
+                                <input required type="number" name="tiet" class="form-control" value="">
                             </div>
                             <div class="form-group">
-                                <input type="submit" name="submit" value="Sửa lớp" class="form-control btn-new">
+                                <label>Tổng số tiết</label>
+                                <input required type="number" name="tongtiet" class="form-control" value="">
                             </div>
                             <div class="form-group">
-                                <a href="{{asset('bandaotao/mon')}}" class="form-control btn btn-default">Hủy Bỏ</a>
+                                <input type="submit" name="submit" value="Cập nhật" class="form-control btn-new">
+                            </div>
+                            <div class="form-group">
+                                <a href="{{asset('admin/mon')}}" class="form-control btn btn-default">Hủy Bỏ</a>
                             </div>
                             {{csrf_field()}}
                         </form>

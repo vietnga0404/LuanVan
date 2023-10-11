@@ -2,40 +2,91 @@
 <html lang="en">
 
 <head>
+    <base href="{{ asset('public/layout/')}}/">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Đăng Nhập</title>
-
-    <base href="{{ asset('public/layout/')}}/">
-
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/admin.css">
-
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title> Đăng nhập</title>
+    <link rel="icon" type="image/png" href="{{asset('public/layout/img/logo1.png')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/layout/css/main.css')}}">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/datepicker3.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="js/lumino.glyphs.js"></script>
 </head>
 
-<body>
-    <header>
-        <div  class="header-top">
-            header
+<body style="background-image: url('img/bg_hoasen.gif');">
+    <!-- <header>
+        <div class="container-menu-desktop">
+            <div class="bg-header col-xs-12">
+                <div class="col-xs-3 ">
+                    <a href="">
+                        <img src="img/lg1.png" alt="" width="300px">
+                    </a>
+                </div>
+                <div class="col-xs-6 ul-header">
+                    <li>
+                        <p><b>HỆ THỐNG QUẢN LÝ ĐÀO TẠO</b></p>
+                    </li>
+                    <li>
+                        <b>Phân hệ: Phân công giảng dạy</b>
+                    </li>
+                </div>
+                <div class="col-xs-3 header-right">
+                    <a href="">
+                        <img src="img/co.png" alt="" width="280px">
+                    </a>
+                </div>
+            </div>
         </div>
-    </header>
+    </header> -->
 
-    <div>
-        <span>
-            sjbfegviuergvuebv
-        </span>
+    <div class="bg0 p-t-100 p-b-140" style="background-image: url('img/bg_hoasen.gif');">
+        <div class="container">
+            <div class="row">
+                <div class="log">
+                    <div class="card col-lg-6">
+                        <a class="login">Log in</a>
+                        <div class="inputBox">
+                            <input type="text" required="required">
+                            <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</span>
+                        </div>
+
+                        <div class="inputBox">
+                            <input type="password" required="required">
+                            <span><i class="fa fa-key" aria-hidden="true"></i> Password</span>
+                        </div>
+
+                        <button class="enter"><b>Login</b></button>
+                        <div class="inputBox more">
+                            <a href="">Đăng ký |</a>
+                            <a href="">Quên mật khẩu?</a>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="img/logo-011.png" alt="" style="height: 400px;width: 570px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
     </div>
 
-    <footer>
-        <h4> footer </h4>
-    </footer>
+
+    <!-- Footer -->
+    <!-- <div class="bg-footer">
+        <ul class="ul-footer">
+            <li class="tieude">
+                <p>HỌC VIỆN CHÍNH TRỊ KHU&nbsp;VỰC IV</p>
+            </li>
+            <li>Bản quyền: Học viện Chính trị&nbsp;khu vực IV&nbsp;</li>
+            <li>Số 6 Nguyễn Văn Cừ (nối dài), phường An Bình, quận Ninh Kiều, thành phố Cần Thơ</li>
+
+        </ul>
+    </div> -->
+
 </body>
 
 </html>

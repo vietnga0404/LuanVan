@@ -8,12 +8,12 @@ use App\Http\Requests\Admins\EditLopRequest;
 use App\Models\Lop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
+ 
 class LopController extends Controller
 {
     //
     public function getLop () {
-        $data['listlop'] = Lop::all();
+        $data['listlop'] = '\App\Models\Lop'::all();
         return view('admins.lop.addlop', $data);
     }
 
@@ -30,12 +30,12 @@ class LopController extends Controller
     }
 
     public function getEditLop ($id) {
-        $data['lop'] = Lop::find($id);
+        $data['lop'] = '\App\Models\Lop'::find($id);
         return view('admins.lop.editlop', $data);
     }
 
     public function postEditLop (EditLopRequest $request, $id) {
-        $lop = Lop::find($id);
+        $lop = '\App\Models\Lop'::find($id);
         $lop->l_khoahoc = $request->khoa;
         $lop->l_hinhthuc = $request->hinhthuc;
         $lop->l_malop = $request->ma;
@@ -43,11 +43,11 @@ class LopController extends Controller
         $lop->l_slug = Str::slug($request->name);
         $lop->save();
 
-        return redirect()->intended('admin/lop');
+        return redirect()->intended('bandaotao/lop');
     }
 
     public function getDeleteLop ($id) {
-        Lop::destroy($id);
+        '\App\Models\Lop'::destroy($id);
         return back();
     }
 }

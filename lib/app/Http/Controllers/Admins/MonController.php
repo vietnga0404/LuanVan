@@ -10,10 +10,10 @@ use App\Models\Mon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-
+ 
 class MonController extends Controller
 {
-    //
+    // 
     public function getMon()
     {
         $data['listkhoa'] = Khoa::all();
@@ -47,7 +47,7 @@ class MonController extends Controller
         $mon->m_slug = Str::slug($request->name);
         $mon->save();
 
-        return redirect()->intended('admin/mon');
+        return redirect()->intended('bandaotao/mon');
     }
 
     public function getDeleteMon($id) {

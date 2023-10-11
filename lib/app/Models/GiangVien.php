@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Khoa extends Model 
+class GiangVien extends Model
 {
     use HasFactory;
-
-    protected $table = 'khoa';
-    protected $primaryKey = 'k_makhoa';
+    protected $table = 'giangvien';
+    protected $primaryKey = 'gv_ma';
     protected $keyType = 'string';
     protected $guarded = [];
 }
- 

@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admins;
+namespace App\Http\Requests\Departments;
 
-use App\Models\Khoa;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class EditKhoaRequest extends FormRequest
+class EditLecturerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,19 +31,18 @@ class EditKhoaRequest extends FormRequest
         $rule = [];
 
         if ($id) {
-            $khoa = '\App\Models\Khoa'::where('k_makhoa', $id)->first();
+            $giangvien = '\App\Models\GiangVien'::where('gv_ma', $id)->first();
             $rule['id'] = [
                 'requied',
-                Rule::unique('khoa', 'ma')->ignore($khoa->id),
+                Rule::unique('giangvien', 'ma')->ignore($giangvien->id),
             ];
         }
         return $rule;
     }
-    public function messages()
-    {
+    public function messages(){
         return [
-            'ma.unique' => 'Mã khoa đã bị trùng!',
-            'name.unique' => 'Tên khoa đã bị trùng!'
+            'ma.unique'=>'Mã giảng viên đã bị trùng!',
+            'name.unique'=>'Tên giảng viên đã bị trùng!'
         ];
     }
 }
