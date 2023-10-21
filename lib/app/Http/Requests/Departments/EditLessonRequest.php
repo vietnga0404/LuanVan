@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Admins;
+namespace App\Http\Requests\Departments;
 
+use App\Models\BaiGiang;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class EditMonRequest extends FormRequest
+class EditLessonRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,7 +18,7 @@ class EditMonRequest extends FormRequest
         return true;
     }
 
-    /** 
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, mixed>
@@ -30,24 +31,24 @@ class EditMonRequest extends FormRequest
         $id = $this->route('id');
         $rule = [];
 
+     
         if ($id) {
-            $mon = '\App\Models\Mon'::where('m_mamon', $id)->first();
+            $baigiang = BaiGiang::where('b_mabai', $id)->first();
             $rule['ma'] = [
                 'required',
-                Rule::unique('mon', 'm_mamon')->ignore($mon->m_mamon, 'm_mamon'),
+                Rule::unique('baigiang', 'b_mabai')->ignore($baigiang->b_mabai, 'b_mabai'),
             ];
             $rule['name'] = [
                 'required',
-                Rule::unique('mon', 'm_tenmon')->ignore($mon->m_tenmon, 'm_tenmon'),
+                Rule::unique('baigiang', 'b_tenbai')->ignore($baigiang->b_tenbai, 'b_tenbai'),
             ];
         }
         return $rule;
     }
-
     public function messages(){
         return [
-            'ma.unique'=>'Mã môn đã bị trùng!',
-            'name.unique'=>'Tên môn đã bị trùng!'
+            'ma.unique'=>'Mã bài giảng đã bị trùng!',
+            'name.unique'=>'Tên bài giảng đã bị trùng!'
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Khoa extends Model 
 {
@@ -13,5 +14,12 @@ class Khoa extends Model
     protected $primaryKey = 'k_makhoa';
     protected $keyType = 'string';
     protected $guarded = [];
+
+    public function getAll(){
+        $khoa = DB::table($this->table)
+        ->orderBy('k_makhoa', 'asc')->get();
+
+        return $khoa;
+    }
 }
  

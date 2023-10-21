@@ -32,10 +32,14 @@ class EditKhoaRequest extends FormRequest
         $rule = [];
 
         if ($id) {
-            $khoa = '\App\Models\Khoa'::where('k_makhoa', $id)->first();
-            $rule['id'] = [
-                'requied',
-                Rule::unique('khoa', 'ma')->ignore($khoa->id),
+            $khoa = Khoa::where('k_makhoa', $id)->first();
+            $rule['ma'] = [
+                'required',
+                Rule::unique('khoa', 'k_makhoa')->ignore($khoa->k_makhoa, 'k_makhoa'),
+            ];
+            $rule['name'] = [
+                'required',
+                Rule::unique('khoa', 'k_tenkhoa')->ignore($khoa->k_tenkhoa, 'k_tenkhoa'),
             ];
         }
         return $rule;

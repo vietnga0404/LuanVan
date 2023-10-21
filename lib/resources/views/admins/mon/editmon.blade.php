@@ -2,7 +2,7 @@
 @section('title', 'Quản lý Môn' )
 @section('main')
 
-<div class="bg0 p-t-100 p-b-140" style="background-color: #F8F0E5;">
+<div class="p-t-100 p-b-140">
     <div class="container">
         @include('errors.note')
         <div class="row">

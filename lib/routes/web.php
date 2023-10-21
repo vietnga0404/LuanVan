@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', '\App\Http\Controllers\LoginController@getIndex');
 
-Route::get('/', '\App\Http\Controllers\LoginController@getLogin');
+Route::get('/login', '\App\Http\Controllers\LoginController@getLogin');
 
-
+////* Ban Đào Tạo *//// 
 Route::group(['prefix' => 'bandaotao'], function () {
     // Thong tin ca nhan
     Route::group(['prefix' => 'home'], function () {
@@ -44,6 +45,7 @@ Route::group(['prefix' => 'bandaotao'], function () {
         Route::get('edit/{id}', '\App\Http\Controllers\Admins\MonController@getEditMon');
         Route::post('edit/{id}', '\App\Http\Controllers\Admins\MonController@postEditMon');
         Route::get('delete/{id}', '\App\Http\Controllers\Admins\MonController@getDeleteMon');
+        Route::get('danhsach/{id}', '\App\Http\Controllers\Admins\MonController@getListLesson');
     });
     // Phân công
     Route::group(['prefix' => 'phancong'], function () {
@@ -54,6 +56,7 @@ Route::group(['prefix' => 'bandaotao'], function () {
     });
 });
 
+////* Lãnh Đạo Khoa *//// 
 Route::group(['prefix' => 'lanhdaokhoa'], function () {
     // Thông tin cá nhân
     Route::get('home', function () {
@@ -70,18 +73,29 @@ Route::group(['prefix' => 'lanhdaokhoa'], function () {
     //Bài giảng
     Route::group(['prefix' => 'baigiang'], function () {
         Route::get('/', '\App\Http\Controllers\Departments\LessonController@getLesson');
+        Route::get('danhsach/{ma}', '\App\Http\Controllers\Departments\LessonController@getList');
+        Route::post('danhsach/{ma}', '\App\Http\Controllers\Departments\LessonController@postLesson');
+        Route::get('danhsach/{ma}/edit/{id}', '\App\Http\Controllers\Departments\LessonController@getEditLesson');
+        Route::post('danhsach/{ma}/edit/{id}', '\App\Http\Controllers\Departments\LessonController@postEditLesson');
+        Route::get('danhsach/{ma}/delete/{id}', '\App\Http\Controllers\Departments\LessonController@getDeleteLesson');
         
     });
     //Phân công
+    Route::group(['prefix' => 'phancong'], function () {
+        Route::get('/', '\App\Http\Controllers\Departments\AssignController@getList');
+
+    });
 });
 
-Route::group(['prefix' => 'lecturer'], function () {
+////* Giảng Viên *//// 
+Route::group(['prefix' => 'giangvien'], function () {
     Route::get('home', function () {
         return view('lecturers/home');
     });
 });
 
-Route::group(['prefix' => 'student'], function () {
+////* Học Viên *//// 
+Route::group(['prefix' => 'hocvien'], function () {
     Route::get('home', function () {
         return view('students/home');
     });

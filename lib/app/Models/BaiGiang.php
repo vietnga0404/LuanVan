@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Lop extends Model
+class BaiGiang extends Model
 {
     use HasFactory;
-    protected $table = 'lop';
-    protected $primaryKey = 'l_malop';
+    protected $table = 'baigiang';
+    protected $primaryKey = 'b_mabai';
     protected $keyType = 'string';
     protected $guarded = [];
-
-    
 }

@@ -4,6 +4,7 @@ namespace App\Http\Requests\Departments;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\Models\GiangVien;
 
 class EditLecturerRequest extends FormRequest
 {
@@ -30,11 +31,16 @@ class EditLecturerRequest extends FormRequest
         $id = $this->route('id');
         $rule = [];
 
+     
         if ($id) {
-            $giangvien = '\App\Models\GiangVien'::where('gv_ma', $id)->first();
-            $rule['id'] = [
-                'requied',
-                Rule::unique('giangvien', 'ma')->ignore($giangvien->id),
+            $giangvien = GiangVien::where('gv_ma', $id)->first();
+            $rule['ma'] = [
+                'required',
+                Rule::unique('giangvien', 'gv_ma')->ignore($giangvien->gv_ma, 'gv_ma'),
+            ];
+            $rule['name'] = [
+                'required',
+                Rule::unique('giangvien', 'gv_ten')->ignore($giangvien->gv_ten, 'gv_ten'),
             ];
         }
         return $rule;
@@ -46,3 +52,4 @@ class EditLecturerRequest extends FormRequest
         ];
     }
 }
+ 

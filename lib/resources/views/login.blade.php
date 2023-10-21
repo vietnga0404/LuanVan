@@ -16,31 +16,6 @@
 </head>
 
 <body style="background-image: url('img/bg_hoasen.gif');">
-    <!-- <header>
-        <div class="container-menu-desktop">
-            <div class="bg-header col-xs-12">
-                <div class="col-xs-3 ">
-                    <a href="">
-                        <img src="img/lg1.png" alt="" width="300px">
-                    </a>
-                </div>
-                <div class="col-xs-6 ul-header">
-                    <li>
-                        <p><b>HỆ THỐNG QUẢN LÝ ĐÀO TẠO</b></p>
-                    </li>
-                    <li>
-                        <b>Phân hệ: Phân công giảng dạy</b>
-                    </li>
-                </div>
-                <div class="col-xs-3 header-right">
-                    <a href="">
-                        <img src="img/co.png" alt="" width="280px">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header> -->
-
     <div class="bg0 p-t-100 p-b-140" style="background-image: url('img/bg_hoasen.gif');">
         <div class="container">
             <div class="row">

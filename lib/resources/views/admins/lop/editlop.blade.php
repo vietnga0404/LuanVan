@@ -9,7 +9,7 @@
             <div class="col-lg-12">
                 <div class="panel ">
                     <div class="panel-heading">
-                        <b>Sửa lớp</b>
+                        <b>Sửa lớp </b>
                     </div>
                     <div class="panel-body">
                         <form method="post" enctype="multipart/form-data" autocomplete="off">

@@ -32,9 +32,13 @@ class EditLopRequest extends FormRequest
 
         if ($id) {
             $lop = '\App\Models\Lop'::where('l_malop', $id)->first();
-            $rule['id'] = [
-                'requied',
-                Rule::unique('lop', 'ma')->ignore($lop->id),
+            $rule['ma'] = [
+                'required',
+                Rule::unique('lop', 'l_malop')->ignore($lop->l_malop, 'l_malop'),
+            ];
+            $rule['name'] = [
+                'required',
+                Rule::unique('lop', 'l_tenlop')->ignore($lop->l_tenlop, 'l_tenlop'),
             ];
         }
         return $rule;

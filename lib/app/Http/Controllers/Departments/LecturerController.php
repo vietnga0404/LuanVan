@@ -13,20 +13,33 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class LecturerController extends Controller
-{
+{ 
     //
-    public function getLecturer()
+    public function getLecturer(Request $request,  $filters = []) 
     {
-        $data['listkhoa'] = Khoa::all();
-        $data['listgv'] = DB::table('giangvien')
-            ->join('khoa', 'giangvien.gv_khoa', '=', 'khoa.k_makhoa')
-            ->orderBy('gv_ma', 'asc')->get();
-
+        $data['listkhoa'] = '\App\Models\Khoa'::all();
         $data['listchucvu'] = ChucVu::all();
-        $data['listgv'] = DB::table('giangvien')
-            ->join('chucvu', 'giangvien.gv_chucvu', '=', 'chucvu.cv_id')
-            ->orderBy('gv_ma', 'asc')->get();
+        $data['listgv'] = null;
+        $query = DB::table('giangvien')
+            ->join('khoa', 'giangvien.gv_khoa', '=', 'khoa.k_makhoa')
+            ->join('chucvu', 'giangvien.gv_chucvu', '=', 'chucvu.cv_id');
 
+        $filters = [];
+        $key = null;
+
+        if(!empty($request->get('chucvu'))) {
+            $query = $query->where('gv_chucvu', '=', $request->get('chucvu'));
+        }
+
+        if(!empty($request->get('thuockhoa'))) {
+            $query = $query->where('gv_khoa', '=', $request->get('thuockhoa'));
+        }
+
+        if(!empty($request->get('key'))) {
+            $query->where('gv_ten', 'like', '%' .$request->get('key'). '%');
+        }
+        $data['listgv'] = $query->orderBy('gv_ma', 'asc')->get();
+ 
         return view('departments.giangvien.addgiangvien', $data);
     }
     public function postLecturer(AddLecturerRequest $request)
@@ -42,10 +55,10 @@ class LecturerController extends Controller
         $giangvien->save();
 
         return back();
-    }
+    } 
     public function getEditLecturer($id)
     {
-        $data['khoalist'] = Khoa::all();
+        $data['khoalist'] = '\App\Models\Khoa'::all();
         $data['chucvulist'] = ChucVu::all();
         $data['giangvien'] = GiangVien::find($id);
         return view ('departments.giangvien.editgiangvien', $data);
@@ -70,3 +83,4 @@ class LecturerController extends Controller
         return back();
     }
 }
+ 

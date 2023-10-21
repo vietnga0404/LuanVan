@@ -1,7 +1,7 @@
 @extends('layout.department')
 @section('title', 'Quản lý Giảng viên' )
 @section('main')
-
+ 
 
 <div class="bg0 p-t-100 p-b-140" style="background-color: #F8F0E5;">
     <div class="container">
@@ -9,8 +9,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel ">
+                    
                     <div class="panel-heading">
-                        <b>Sửa thông tin giảng viên</b>
+                        <b>Sửa thông tin giảng viên </b>
                     </div>
                     <div class="panel-body">
                         <form method="post" enctype="multipart/form-data" autocomplete="off">

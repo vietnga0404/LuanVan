@@ -12,14 +12,28 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
  
 class MonController extends Controller
-{
-    // 
-    public function getMon()
+{ 
+    //  
+    public function getMon(Request $request, $filters = [])
     {
-        $data['listkhoa'] = Khoa::all();
-        $data['listmon'] = DB::table('mon')
-            ->join('khoa', 'mon.m_khoa', '=', 'khoa.k_makhoa')
-            ->orderBy('m_mamon', 'asc')->get();
+        $data['listkhoa'] = '\App\Models\Khoa'::all();
+        $data['listmon'] = null;
+        $query = DB::table('mon')
+            ->join('khoa', 'mon.m_khoa', '=', 'khoa.k_makhoa');
+
+        $filters = [];
+        $key = null;
+
+        if(!empty($request->get('thuockhoa'))){
+            $query = $query->where('m_khoa', '=', $request->get('thuockhoa'));
+        }
+
+        if(!empty($request->get('key'))){
+            $query->where('m_tenmon', 'like', '%'.$request->get('key').'%');
+        }
+
+        $data['listmon'] = $query->orderBy('m_mamon', 'asc')->get();
+
         return view('admins.mon.addmon', $data);
     }
     public function postMon(AddMonRequest $request)
@@ -34,7 +48,7 @@ class MonController extends Controller
         return back();
     }
     public function getEditMon($id){
-        $data['khoalist'] = Khoa::all();
+        $data['khoalist'] = '\App\Models\Khoa'::all();
         $data['mon'] = Mon::find($id);
         return view('admins.mon.editmon', $data);
     }
@@ -50,8 +64,19 @@ class MonController extends Controller
         return redirect()->intended('bandaotao/mon');
     }
 
-    public function getDeleteMon($id) {
+    public function getDeleteMon($id) { 
         Mon::destroy($id);
         return back();
+    }
+
+    public function getListLesson($id){
+        
+        $data['mon'] = Mon::find($id);
+        $data['listmon'] = Mon::all();
+        $data['listbai'] = DB::table('baigiang')
+            ->join('mon', 'baigiang.b_mon', '=', 'mon.m_mamon')->where('baigiang.b_mon' , '=', $id)
+            ->orderBy('b_mabai', 'asc')->get();
+
+        return view('admins.mon.baigiang', $data);
     }
 }

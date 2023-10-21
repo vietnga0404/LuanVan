@@ -6,7 +6,7 @@
     <base href="{{ asset('public/layout/')}}/">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> @yield('title') | Ban đào tạo</title>
+    <title> Giảng viên | @yield('title')</title>
     <link rel="icon" type="image/png" href="{{asset('public/layout/img/logo1.png')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/layout/css/main.css')}}">
@@ -16,7 +16,7 @@
     <script src="js/lumino.glyphs.js"></script>
 </head>
 
-<body >
+<body style="background-color: #F8F0E5;">
     <header>
         <!-- Header desktop -->
         <div class="container-menu-desktop">
@@ -44,19 +44,19 @@
                 <div class="container">
                     <ul class="main-menu">
                         <li>
-                            <a href="{{asset('admin/home')}}">
-                                <span class="col-xs-3"><i class="glyph fa fa-user" aria-hidden="true"></i></span>
+                            <a href="{{asset('giangvien/home')}}">
+                                <span class="col-xs-3"><i class="glyph fa fa-home" aria-hidden="true"></i></span>
                                 <span class="col-xs-9">Trang chủ</span>
                             </a>
                         </li> |
                         <li>
-                            <a href="{{asset('admin/')}}">
-                                <span class="col-xs-3"><i class="glyph fa fa-tasks" aria-hidden="true"></i></span>
+                            <a href="{{asset('giangvien/')}}">
+                                <span class="col-xs-3"><i class="glyph fa fa-list-alt" aria-hidden="true"></i></span>
                                 <span class="col-xs-9">Lịch giảng dạy</span>
                             </a>
                         </li> |
                         <li>
-                            <a href="{{asset('admin/')}}">
+                            <a href="{{asset('giangvien/')}}">
                                 <span class="col-xs-3"><i class="glyph fa fa-university" aria-hidden="true"></i></span>
                                 <span class="col-xs-9">Lớp học</span>
                             </a>
@@ -67,25 +67,25 @@
         </div>
     </header>
 
-    <div class="bg0 p-t-100 p-b-140" style="background-color:#F8F0E5;">
+    <div class="p-t-100 p-b-140">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                <div class="page-header page-menu">
-                    <div class="col-lg-4 page-title ">
-                        <b>Giảng viên</b>
+                    <div class="page-header page-menu">
+                        <div class="col-lg-4 page-title ">
+                            <b>Giảng viên</b>
+                        </div>
+                        <div class="col-lg-8">
+                            <ul class="user-menu">
+                                <a href="#" class="user" data-toggle="dropdown">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> Adminvebfsb
+                                </a> &nbsp;
+                                <a href="" class="user">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i> Thoát
+                                </a>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="col-lg-8">
-                        <ul class="user-menu">
-                            <a href="#" class="user" data-toggle="dropdown">
-                                <i class="fa fa-user-circle-o" aria-hidden="true"></i> Adminvebfsb
-                            </a> &nbsp;
-                            <a href="" class="user">
-                                <i class="fa fa-sign-out" aria-hidden="true"></i> Thoát
-                            </a>
-                        </ul>
-                    </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -153,6 +153,60 @@
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         }
+    </script>
+
+    <!-- lịch -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/chart.min.js"></script>
+    <script src="js/chart-data.js"></script>
+    <script src="js/easypiechart.js"></script>
+    <script src="js/easypiechart-data.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+
+    <script>
+        $('#calendar').datepicker({});
+
+        ! function($) {
+            $(document).on("click", "ul.nav li.parent > a > span.icon", function() {
+                $(this).find('em:first').toggleClass("glyphicon-minus");
+            });
+            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+        }(window.jQuery);
+
+        $(window).on('resize', function() {
+            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+        })
+        $(window).on('resize', function() {
+            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+        })
+    </script>
+
+    <!-- lịch -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/chart.min.js"></script>
+    <script src="js/chart-data.js"></script>
+    <script src="js/easypiechart.js"></script>
+    <script src="js/easypiechart-data.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+
+    <script>
+        $('#calendar2').datepicker({});
+
+        ! function($) {
+            $(document).on("click", "ul.nav li.parent > a > span.icon", function() {
+                $(this).find('em:first').toggleClass("glyphicon-minus");
+            });
+            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+        }(window.jQuery);
+
+        $(window).on('resize', function() {
+            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+        })
+        $(window).on('resize', function() {
+            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+        })
     </script>
 </body>
 

@@ -11,7 +11,7 @@
                     <div class="panel-heading"><b>Danh sách khoa</b></div>
                     <div class="panel-body">
                         <div class="bootstrap-table">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" style="text-align:center">
                                 <thead>
                                     <tr class="bg-primary">
                                         <th style="width:20%">Mã khoa</th>
@@ -47,7 +47,6 @@
                     <div class="popup">
                         <div class="popup-content">
                             <span class="close-btn">&times;</span>
-
                             <form method="post" autocomplete="off">
                                 <div class="row" style="padding: 25px;">
                                     <div class="panel ">
@@ -74,8 +73,5 @@
         </div>
     </div>
 </div>
-
-
-
 
 @stop

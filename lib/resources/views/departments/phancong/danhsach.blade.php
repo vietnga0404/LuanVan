@@ -1,5 +1,5 @@
-@extends('layout.admin')
-@section('title', 'Phân công giảng dạy')
+@extends('layout.department')
+@section('title', 'Phân công giảng dạy' )
 @section('main')
 
 <div class="p-t-100 p-b-140" >
@@ -61,4 +61,4 @@
     </div>
 </div>
 
-@stop
+@stop 

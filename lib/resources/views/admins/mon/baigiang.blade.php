@@ -2,39 +2,46 @@
 @section('title', 'Quản lý Môn' )
 @section('main')
 
-<div class="bg0 p-t-100 p-b-140" style="background-color: #F8F0E5;">
+<div class="p-t-100 p-b-140">
     <div class="container">
+        @include('errors.note')
         <div class="row">
-            <div class="col-lg-12">
-                <div class="panel ">
-                    <div class="panel-heading">
-                        <b>Danh sách bài giảng môn: {{}}</b>
-                    </div>
+            <div class="col-lg-12 col-md-12 col-lg-12">
+                <div class="panel">
+                    <div class="panel-heading"><b>Danh sách bài giảng môn: "{{$mon->m_tenmon}}"</b></div>
                     <div class="panel-body">
-                        <form method="post" enctype="multipart/form-data" autocomplete="off">
-                            <div class="form-group">
-                                <label>Tên bài giảng</label>
-                                <input required type="text" name="tenbai" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Tiết</label>
-                                <input required type="number" name="tiet" class="form-control" value="">
-                            </div>
-                            <div class="form-group">
-                                <label>Tổng số tiết</label>
-                                <input required type="number" name="tongtiet" class="form-control" value="">
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" name="submit" value="Cập nhật" class="form-control btn-new">
-                            </div>
-                            <div class="form-group">
-                                <a href="{{asset('admin/mon')}}" class="form-control btn btn-default">Hủy Bỏ</a>
-                            </div>
-                            {{csrf_field()}}
-                        </form>
+                        <div class="bootstrap-table">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="bg-primary">
+                                        <th>Mã bài</th>
+                                        <th>Tên bài</th>
+                                        <th>Số tiết</th>
+                                        <th>Thuộc môn</th>
+                                        <!-- <th>Tùy chọn</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($listbai as $bai)
+                                    <tr>
+                                        <td>{{$bai->b_mabai}}</td>
+                                        <td>{{$bai->b_tenbai}}</td>
+                                        <td>{{$bai->b_sotiet}}</td>
+                                        <td>{{$bai->m_tenmon}}</td>
+                                        <!-- <td style="text-align: center;">
+                                            <a href="{{asset('lanhdaokhoa/baigiang/danhsach/'.$mon->m_mamon.'/edit/'.$bai->b_mabai)}}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> </a>
+                                            <a href="{{asset('lanhdaokhoa/baigiang/danhsach/'.$mon->m_mamon.'/delete/'.$bai->b_mabai)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
+                                        </td> -->
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
             </div>
+            <a href="{{asset('bandaotao/mon')}}" class="btn-new"><i class="fa fa-undo" aria-hidden="true"></i> Quay lại</a>
         </div>
     </div><!--/.row-->
 </div> <!--/.main-->

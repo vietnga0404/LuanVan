@@ -57,7 +57,7 @@ tr {
 
 td {
 	padding: 10px;
-	text-align: center;
+	/* text-align: center; */
 }
 
 th {
@@ -605,6 +605,45 @@ a.bg-danger:hover {
 	padding: 15px;
 }
 
+/* search */
+.inputbox {
+	position: relative;
+	width: 196px;
+  }
+  
+  .inputbox input {
+	position: relative;
+	width: 100%;
+	padding: 20px 10px 10px;
+	background: transparent;
+	outline: none;
+	box-shadow: none;
+	border: none;
+	color: white;
+	font-size: 1em;
+	letter-spacing: 0.05em;
+	transition: 0.5s;
+	z-index: 10;
+  }
+  
+  .inputbox i {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 2px;
+	background: #881A1A;
+	border-radius: 4px;
+	transition: 0.5s;
+	pointer-events: none;
+	z-index: 9;
+  }
+  
+  .inputbox input:valid ~i,
+  .inputbox input:focus ~i {
+	height: 44px;
+  }
+
 /* Back to top */
 #myBtn {
 	display: none;
@@ -627,7 +666,7 @@ a.bg-danger:hover {
 }
 
 .btn-new {
-	/* margin-left: 20px; */
+	margin-left: 20px;
 	background-color: #881A1A;
 	padding: 10px;
 	border: none;
@@ -854,8 +893,8 @@ a.bg-danger:hover {
 	background-color: white;
 	height: 50px;
 	border-radius: 5px;
-	margin-left: 15px;
-	margin-right: 15px;
+	/* margin-left: 15px; */
+	/* margin-right: 15px; */
 }
 
 .page-title {

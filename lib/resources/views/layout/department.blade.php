@@ -16,7 +16,7 @@
     <script src="js/lumino.glyphs.js"></script>
 </head>
 
-<body>
+<body style="background-color: #F8F0E5;">
     <header>
         <!-- Header desktop -->
         <div class="container-menu-desktop">
@@ -45,19 +45,19 @@
                     <ul class="main-menu">
                         <li>
                             <a href="{{asset('lanhdaokhoa/home')}}">
-                                <span class="col-xs-3"><i class="glyph fa fa-user" aria-hidden="true"></i></span>
+                                <span class="col-xs-3"><i class="glyph fa fa-home" aria-hidden="true"></i></span>
                                 <span class="col-xs-9">Trang chủ</span>
                             </a>
                         </li> |
                         <li>
                             <a href="{{asset('lanhdaokhoa/giangvien')}}">
-                                <span class="col-xs-3"><i class="glyph fa fa-tasks" aria-hidden="true"></i></span>
+                                <span class="col-xs-3"><i class="glyph fa fa-graduation-cap" aria-hidden="true"></i></span>
                                 <span class="col-xs-9">Giảng viên</span>
                             </a>
                         </li> |
                         <li>
                             <a href="{{asset('lanhdaokhoa/baigiang')}}">
-                                <span class="col-xs-3"><i class="glyph fa fa-tasks" aria-hidden="true"></i></span>
+                                <span class="col-xs-3"><i class="glyph fa fa-file-text" aria-hidden="true"></i></span>
                                 <span class="col-xs-9">Bài giảng</span>
                             </a>
                         </li> |
@@ -73,22 +73,24 @@
         </div>
     </header>
 
-    <div class="bg0 p-t-100 p-b-140" style="background-color:#F8F0E5;">
+    <div class="p-t-100 p-b-140">
         <div class="container">
             <div class="row">
-            <div class="page-header page-menu">
-                    <div class="col-lg-4 page-title ">
-                        <b>Lãnh Đạo Khoa</b>
-                    </div>
-                    <div class="col-lg-8">
-                        <ul class="user-menu">
-                            <a href="#" class="user" data-toggle="dropdown">
-                                <i class="fa fa-user-circle-o" aria-hidden="true"></i> Adminvebfsb
-                            </a> &nbsp;
-                            <a href="" class="user">
-                                <i class="fa fa-sign-out" aria-hidden="true"></i> Thoát
-                            </a>
-                        </ul>
+                <div class="col-lg-12">
+                    <div class="page-header page-menu">
+                        <div class="col-lg-4 page-title ">
+                            <b>Lãnh Đạo Khoa</b>
+                        </div>
+                        <div class="col-lg-8">
+                            <ul class="user-menu">
+                                <a href="#" class="user" data-toggle="dropdown">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> Adminvebfsb
+                                </a> &nbsp;
+                                <a href="" class="user">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i> Thoát
+                                </a>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -134,6 +136,16 @@
             }
         }
     </script>
+    <!-- Button popup   -->
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
 
     <script>
         // Get the button
@@ -157,6 +169,33 @@
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         }
+    </script>
+
+    <!-- lịch -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/chart.min.js"></script>
+    <script src="js/chart-data.js"></script>
+    <script src="js/easypiechart.js"></script>
+    <script src="js/easypiechart-data.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+
+    <script>
+        $('#calendar').datepicker({});
+
+        ! function($) {
+            $(document).on("click", "ul.nav li.parent > a > span.icon", function() {
+                $(this).find('em:first').toggleClass("glyphicon-minus");
+            });
+            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+        }(window.jQuery);
+
+        $(window).on('resize', function() {
+            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+        })
+        $(window).on('resize', function() {
+            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+        })
     </script>
 </body>
 

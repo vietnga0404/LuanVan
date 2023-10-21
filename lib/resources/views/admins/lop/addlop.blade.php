@@ -2,6 +2,30 @@
 @section('title', 'Quản lý Lớp ' )
 @section('main')
 
+<div class="p-t-100 p-b-140"> 
+    <div class="container">
+        <div class="row">
+            <form action="" method="get" style="margin-bottom: 20px;margin-left:17px" autocomplete="off">
+                <div class="row">
+                    <div class="col-md-4">
+                        <select required name="hinhthuc" class="form-control">
+                            <option value="0">Hình thức</option>
+                            <option value="Tập trung" {{request()->hinhthuc=='Tập trung'?'selected':false}}>Tập trung</option>
+                            <option value="Không tập trung" {{request()->hinhthuc=='Không tập trung'?'selected':false}}>Không tập trung</option>
+                        </select>
+                    </div> 
+                    <div class="col-md-6">
+                        <input type="text" name="key" class="form-control" placeholder="Từ khóa tìm kiếm..." value="{{request()->key}}">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn-new">Tìm kiếm</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="bg0 p-t-100 p-b-140" style="background-color: #F8F0E5;">
     <div class="container">
         @include('errors.note')
@@ -11,7 +35,7 @@
                     <div class="panel-heading"><b>Danh sách lớp</b></div>
                     <div class="panel-body">
                         <div class="bootstrap-table">
-                            <table class="table table-bordered" style="margin-top:20px;">
+                            <table class="table table-bordered" style="margin-top:20px;text-align:center">
                                 <thead>
                                     <tr class="bg-primary">
                                         <th>Khóa học</th>
@@ -36,7 +60,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
+                        </div> 
                     </div>
                     <div class="clearfix"></div>
                 </div>

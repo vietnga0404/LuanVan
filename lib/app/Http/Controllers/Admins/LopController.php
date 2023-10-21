@@ -8,16 +8,32 @@ use App\Http\Requests\Admins\EditLopRequest;
 use App\Models\Lop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
- 
+
 class LopController extends Controller
 {
     //
-    public function getLop () {
-        $data['listlop'] = '\App\Models\Lop'::all();
-        return view('admins.lop.addlop', $data);
+    public function getLop(Request $request,  $filters = [])
+    {
+        $listlop = '\App\Models\Lop'::query();
+
+        $filters = [];
+        $key = null;
+
+        if (!empty($request->get('hinhthuc'))) {
+            $listlop = $listlop->where('l_hinhthuc', '=', $request->get('hinhthuc'));
+        }
+
+        if (!empty($request->get('key'))) {
+            $listlop->where('l_tenlop','like', '%' .$request->get('key').'%');
+        }
+
+        $listlop = $listlop->get();
+
+        return view('admins.lop.addlop', compact('filters', 'listlop'));
     }
 
-    public function postLop (AddLopRequest $request) {
+    public function postLop(AddLopRequest $request)
+    {
         $lop = new Lop;
         $lop->l_khoahoc = $request->khoa;
         $lop->l_hinhthuc = $request->hinhthuc;
@@ -29,12 +45,14 @@ class LopController extends Controller
         return back();
     }
 
-    public function getEditLop ($id) {
+    public function getEditLop($id)
+    {
         $data['lop'] = '\App\Models\Lop'::find($id);
         return view('admins.lop.editlop', $data);
     }
 
-    public function postEditLop (EditLopRequest $request, $id) {
+    public function postEditLop(EditLopRequest $request, $id)
+    {
         $lop = '\App\Models\Lop'::find($id);
         $lop->l_khoahoc = $request->khoa;
         $lop->l_hinhthuc = $request->hinhthuc;
@@ -46,7 +64,8 @@ class LopController extends Controller
         return redirect()->intended('bandaotao/lop');
     }
 
-    public function getDeleteLop ($id) {
+    public function getDeleteLop($id)
+    {
         '\App\Models\Lop'::destroy($id);
         return back();
     }

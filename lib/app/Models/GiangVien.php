@@ -13,3 +13,4 @@ class GiangVien extends Model
     protected $keyType = 'string';
     protected $guarded = [];
 }
+ 
