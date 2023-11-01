@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
     <base href="{{ asset('public/layout/')}}/">
     <meta charset="utf-8">
@@ -90,22 +89,22 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="page-header page-menu">
-                        <div class="col-lg-4 page-title ">
+                        <div class="col-md-6 page-title ">
                             <b>Ban Đào Tạo</b>
                         </div>
-                        <div class="col-lg-8">
+                        <div class="col-md-6">
                             <ul class="user-menu">
                                 <a href="#" class="user" data-toggle="dropdown">
-                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> Adminvebfsb
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> {{Auth::user()->email}}
                                 </a> &nbsp;
-                                <a href="" class="user">
+                                <a href="{{asset('logout')}}" class="user">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i> Thoát
                                 </a>
                             </ul>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
 
@@ -189,6 +188,7 @@
             if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
         })
     </script>
+
 
     <!-- Back to top -->
     <script>

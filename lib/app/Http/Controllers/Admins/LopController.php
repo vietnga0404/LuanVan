@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admins;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admins\AddLopRequest;
 use App\Http\Requests\Admins\EditLopRequest;
-use App\Models\Lop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use  App\Models\Lop;
 
 class LopController extends Controller
 {
@@ -19,12 +19,16 @@ class LopController extends Controller
         $filters = [];
         $key = null;
 
+
         if (!empty($request->get('hinhthuc'))) {
             $listlop = $listlop->where('l_hinhthuc', '=', $request->get('hinhthuc'));
         }
+        if (!empty($request->get('khoa'))) {
+            $listlop->where('l_khoahoc', 'like', '%' . $request->get('khoa') . '%');
+        }
 
         if (!empty($request->get('key'))) {
-            $listlop->where('l_tenlop','like', '%' .$request->get('key').'%');
+            $listlop->where('l_tenlop', 'like', '%' . $request->get('key') . '%');
         }
 
         $listlop = $listlop->get();

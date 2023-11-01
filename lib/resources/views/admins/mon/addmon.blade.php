@@ -71,47 +71,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- thêm mới -->
-        <div class="row">
-            <button class="btn-new" id="popup-btn"><i class="fa fa-plus" aria-hidden="true"></i> Thêm môn mới </button>
-            <div class="col-lg-12">
-                <div class="panel ">
-                    <div class="popup">
-                        <div class="popup-content">
-                            <span class="close-btn">&times;</span>
-                            <form method="post" enctype="multipart/form-data" autocomplete="off">
-                                <div class="row" style="padding: 25px;">
-                                    <div class="panel">
-                                        <div class="panel-heading"><b>Thêm môn mới</b></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Mã môn</label>
-                                        <input required type="text" name="ma" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Tên môn</label>
-                                        <input required type="text" name="name" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Thuộc khoa</label>
-                                        <select required name="thuockhoa" class="form-control">
-                                            @foreach ($listkhoa as $khoa)
-                                            <option value="{{$khoa->k_makhoa}}">{{$khoa->k_tenkhoa}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="submit" name="submit" value="Thêm" class="form-control btn-new">
-                                    </div>
-                                </div>
-                                {{csrf_field()}}
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 

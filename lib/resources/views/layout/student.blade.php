@@ -50,17 +50,18 @@
                             </a>
                         </li> |
                         <li>
-                            <a href="{{asset('hocvien/')}}">
-                                <span class="col-xs-3"><i class="glyph fa fa-tasks" aria-hidden="true"></i></span>
-                                <span class="col-xs-9">Thư viện</span>
-                            </a>
-                        </li> |
-                        <li>
-                            <a href="{{asset('hocvien/')}}">
+                            <a href="{{asset('hocvien/thoikhoabieu')}}">
                                 <span class="col-xs-3"><i class="glyph fa fa-list-alt" aria-hidden="true"></i></span>
                                 <span class="col-xs-9">Thời khóa biểu</span>
                             </a>
+                        </li> |
+                        <li>
+                            <a href="{{asset('hocvien/thuvien')}}">
+                                <span class="col-xs-3"><i class="glyph fa fa-tasks" aria-hidden="true"></i></span>
+                                <span class="col-xs-9">Thư viện</span>
+                            </a>
                         </li>
+                         
                     </ul>
                 </div>
             </div>
@@ -78,9 +79,9 @@
                         <div class="col-lg-8">
                             <ul class="user-menu">
                                 <a href="#" class="user" data-toggle="dropdown">
-                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> Adminvebfsb
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> {{Auth::user()->email}}
                                 </a> &nbsp;
-                                <a href="" class="user">
+                                <a href="{{asset('logout')}}" class="user">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i> Thoát
                                 </a>
                             </ul>

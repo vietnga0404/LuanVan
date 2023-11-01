@@ -14,10 +14,15 @@ use Illuminate\Support\Str;
 
 class LessonController extends Controller
 {
-    //
+    // 
     public function getLesson()
     {
         $data['listmon'] = Mon::all();
+
+        $data['listbai'] = DB::table('baigiang')
+            ->join('mon', 'baigiang.b_mon', '=', 'mon.m_mamon')
+            ->orderBy('b_mabai', 'asc')->get();
+ 
         return view('departments.baigiang.addlesson', $data);
     }
 
@@ -25,9 +30,10 @@ class LessonController extends Controller
     {
         $data['mon'] = Mon::find($ma);
 
-        $data['listmon'] = Mon::all();
+        // $data['listmon'] = Mon::all();
         $data['listbai'] = DB::table('baigiang')
-            ->join('mon', 'baigiang.b_mon', '=', 'mon.m_mamon')->where('baigiang.b_mon' , '=', $ma)
+            ->join('mon', 'baigiang.b_mon', '=', 'mon.m_mamon')
+            ->where('baigiang.b_mon' , '=', $ma)
             ->orderBy('b_mabai', 'asc')->get();
 
         return view('departments.baigiang.listlesson', $data);

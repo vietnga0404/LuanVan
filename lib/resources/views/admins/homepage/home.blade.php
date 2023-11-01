@@ -69,7 +69,6 @@
             </div>
         </div>
         
-
         <div class="row">
             <div class="col-md-12">
                 <div class="panel ">
@@ -80,8 +79,8 @@
                         <div id="calendar"></div>
                     </div>
                 </div>
-            </div><!--/.col-->
-        </div><!--/.row-->
+            </div>
+        </div>
     </div>
 </div>
 @stop

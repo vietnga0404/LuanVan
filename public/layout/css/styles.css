@@ -20,7 +20,9 @@ a,
 a:hover,
 a:focus {
 	color: #337ab7;
+	text-decoration: none;
 }
+
 
 h1,
 h2,
@@ -51,12 +53,12 @@ table {
 	width: 100%;
 }
 
-tr {
-	/* border-bottom: 1px solid #ddd; */
-}
+/* tr {
+	border-bottom: 1px solid #ddd;
+} */
 
 td {
-	padding: 10px;
+	padding: 10px 0px 10px 0px;
 	/* text-align: center; */
 }
 
@@ -143,6 +145,7 @@ th {
 .navbar-header .navbar-brand span {
 	color: #337ab7;
 }
+
 
 /*Buttons*/
 .btn-sub {
@@ -384,11 +387,24 @@ a.bg-danger:hover {
 	font-weight: 300;
 	letter-spacing: 0.025em;
 	height: 50px;
-	line-height: 35px;
+	line-height: 30px;
 	text-align: center;
 	background-color: #F8DF9F;
 	color: #881A1A;
 }
+
+.panel-heading-home {
+	font-size: 18px;
+	font-weight: 300;
+	letter-spacing: 0.025em;
+	height: 50px;
+	line-height: 50px;
+	text-align: left;
+	background-color: #F8DF9F;
+	color: #881A1A;
+	padding-left: 10px;
+}
+
 
 .panel-default .panel-heading {
 	background: #fff;
@@ -666,7 +682,7 @@ a.bg-danger:hover {
 }
 
 .btn-new {
-	margin-left: 20px;
+	/* margin-left: 20px; */
 	background-color: #881A1A;
 	padding: 10px;
 	border: none;

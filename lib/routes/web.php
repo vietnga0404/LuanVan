@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,13 +13,24 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', '\App\Http\Controllers\LoginController@getIndex');
 
-Route::get('/login', '\App\Http\Controllers\LoginController@getLogin');
+Route::get('/', '\App\Http\Controllers\HomeController@getHome');
+Route::get('/search','\App\Http\Controllers\HomeController@search');
+
+// Route::group(['prefix' => 'login'], function () {
+    Route::get('/login', '\App\Http\Controllers\LoginController@getLogin');
+    Route::post('/login', '\App\Http\Controllers\LoginController@postLogin');
+// });
+Route::group(['prefix' => 'register'], function () {
+    Route::get('/', '\App\Http\Controllers\LoginController@registerForm')->name('register.form');
+    Route::post('/', '\App\Http\Controllers\LoginController@handleRegister')->name('register.handle');
+});
+Route::get('logout', '\App\Http\Controllers\LoginController@getLogout');
+
 
 ////* Ban Đào Tạo *//// 
-Route::group(['prefix' => 'bandaotao'], function () {
-    // Thong tin ca nhan
+Route::group(['prefix' => 'bandaotao', 'middleware'=> ['custom_auth']], function () {
+    // Home
     Route::group(['prefix' => 'home'], function () {
         Route::get('/', '\App\Http\Controllers\Admins\HomeController@getHome');
     });
@@ -49,16 +61,19 @@ Route::group(['prefix' => 'bandaotao'], function () {
     });
     // Phân công
     Route::group(['prefix' => 'phancong'], function () {
-        Route::get('/', '\App\Http\Controllers\Admins\AssignController@getList');
-
-        Route::get('add', function  () {return view('admins/phancong/adddanhsach');});
+      Route::get('/', '\App\Http\Controllers\Admins\AssignController@getAssign');
+      Route::get('mon', '\App\Http\Controllers\Admins\AssignController@getMon');
+      Route::get('{ma}/lop', '\App\Http\Controllers\Admins\AssignController@getAddLop');
+      Route::post('{ma}/lop', '\App\Http\Controllers\Admins\AssignController@postAddLop');
+      Route::get('lop', '\App\Http\Controllers\Admins\AssignController@getLop');
+      Route::get('{ma}/lop/{id}', '\App\Http\Controllers\Admins\AssignController@getDetail');
 
     });
 });
 
 ////* Lãnh Đạo Khoa *//// 
-Route::group(['prefix' => 'lanhdaokhoa'], function () {
-    // Thông tin cá nhân
+Route::group(['prefix' => 'lanhdaokhoa', 'middleware'=> ['custom_auth']], function () {
+    // Home
     Route::get('home', function () {
         return view('departments/home');
     });
@@ -78,25 +93,44 @@ Route::group(['prefix' => 'lanhdaokhoa'], function () {
         Route::get('danhsach/{ma}/edit/{id}', '\App\Http\Controllers\Departments\LessonController@getEditLesson');
         Route::post('danhsach/{ma}/edit/{id}', '\App\Http\Controllers\Departments\LessonController@postEditLesson');
         Route::get('danhsach/{ma}/delete/{id}', '\App\Http\Controllers\Departments\LessonController@getDeleteLesson');
-        
     });
     //Phân công
     Route::group(['prefix' => 'phancong'], function () {
         Route::get('/', '\App\Http\Controllers\Departments\AssignController@getList');
-
+        Route::get('giangvien/{id}', '\App\Http\Controllers\Departments\AssignController@getGV');
     });
 });
 
 ////* Giảng Viên *//// 
-Route::group(['prefix' => 'giangvien'], function () {
+Route::group(['prefix' => 'giangvien', 'middleware'=> ['custom_auth']], function () {
+    //Home
     Route::get('home', function () {
         return view('lecturers/home');
     });
+    //Lớp
+    Route::get('lop', '\App\Http\Controllers\Lecturers\LecturerController@getLop');
+    //Môn
+    Route::group(['prefix' => 'mon'], function () {
+        Route::get('/', '\App\Http\Controllers\Lecturers\LecturerController@getMon');
+        Route::get('danhsach/{id}', '\App\Http\Controllers\Lecturers\LecturerController@getListBai');
+    });
+    //Lịch dạy
+    Route::get('lichday', '\App\Http\Controllers\Lecturers\LecturerController@getLich');
+
 });
 
 ////* Học Viên *//// 
-Route::group(['prefix' => 'hocvien'], function () {
+Route::group(['prefix' => 'hocvien', 'middleware'=> ['custom_auth']], function () {
+    //Home
     Route::get('home', function () {
         return view('students/home');
+    });
+    //Thời khóa biểu
+    Route::group(['prefix' => 'thoikhoabieu'], function () {
+        Route::get('/', '\App\Http\Controllers\Students\StudentController@getSchedule');
+    });
+    //Thư viện
+    Route::group(['prefix'=> 'thuvien'], function () {
+        Route::get('/','\App\Http\Controllers\Students\LibraryController@index');
     });
 });

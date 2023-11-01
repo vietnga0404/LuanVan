@@ -112,10 +112,6 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   outline: none !important;
 }
 
-
-
-
-
 /*//////////////////////////////////////////////////////////////////
 [ LOADDING ]*/
 .animsition-loading-1 {
@@ -156,16 +152,111 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   }
 }
 
+/* //Home// */
+.scroll {
+  height: 260px;
+  width: 256px;
+  overflow-y: scroll;
+  font-size: 14px;
+}
+
+.home-scroll {
+  list-style: none;
+  padding: 19px 12px 0px 12px;
+}
+
+.home-scroll>li {
+  border-bottom: 2px dotted #ddd;
+  padding-bottom: 10px;
+}
+
+.home-scroll>li>a {
+  text-decoration: none;
+  color: #000;
+}
+
+.home-scroll>li>a:hover {
+  color: #881A1A;
+}
+
+/*  */
+.hoatdong {
+  /* border-bottom: 1px solid #ddd; */
+  background-color: #e5cccc;
+  padding-bottom: 10px;
+  padding-top: 10px;
+
+}
+
+.hoatdong>img {
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
+
+.hoatdong>a {
+  color: #881A1A;
+}
+
+.noibat {
+  padding-top: 10px;
+}
+
+.hot-img {
+  width: 180px;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.hot-a {
+  color: #000;
+  font-size: 14px;
+}
+
+.hot-a:hover {
+  color: #881A1A;
+}
+
+.hot-p {
+  margin-top: 20px;
+  font-style: italic;
+}
+
+.info-img {
+  width: 400px;
+  margin-bottom: 10px;
+}
+
+.info-a {
+  color: #000;
+}
+
+.info-a:hover {
+  color: #881A1A;
+}
+
+.info-li {
+  border-bottom: 2px dotted #ddd;
+}
+
+.info-li>a {
+  color: #000;
+}
+
+.info-li>a:hover {
+  color: #881A1A;
+}
+
 /* //LOGIN// */
 .log {
-  background-color: white;
+  background-image: url(../img/bg_login.PNG);
   height: 400px;
   margin-top: 150px;
   margin-bottom: 100px;
   box-shadow: 16px 16px 32px #c8c8c8,
-     -16px -16px 32px #fefefe; 
+    -16px -16px 32px #fefefe;
 
 }
+
 .login {
   color: #881A1A;
   text-transform: uppercase;
@@ -188,7 +279,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   /* border-radius: 8px; */
   /* margin-top: 200px; */
   /* margin-left: 350px; */
-   /* min-height: 450px; */
+  /* min-height: 450px; */
   /* width: 400px; */
 
 }
@@ -257,6 +348,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   font-size: 15px;
   letter-spacing: 2px;
   margin-bottom: 1em;
+  color: white;
 }
 
 .enter:hover {
@@ -346,6 +438,23 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   /* height: 20px; */
   background-color: #881A1A;
   color: white;
+}
+
+/* link phan cong */
+.link-ul {
+  border-bottom: 2px dotted black;
+  margin-bottom: 10px;
+  display: flex;
+  /* background-color: #e6e7e8; */
+}
+.link-li{
+  padding: 5px 15px 5px 5px;
+  list-style: none;
+}
+.link-ac{
+  background-color:  #d9d9d9;
+  border-radius: 5px;
+  margin-bottom: 5px;
 }
 
 /*==================================================================

@@ -13,7 +13,7 @@
     <link href="css/datepicker3.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     <script src="js/lumino.glyphs.js"></script>
-</head>
+</head> 
 
 <body style="background-image: url('img/bg_hoasen.gif');">
     <div class="bg0 p-t-100 p-b-140" style="background-image: url('img/bg_hoasen.gif');">
@@ -22,33 +22,31 @@
                 <div class="log">
                     <div class="card col-lg-6">
                         <a class="login">Log in</a>
-                        <div class="inputBox">
-                            <input type="text" required="required">
-                            <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</span>
-                        </div>
-
-                        <div class="inputBox">
-                            <input type="password" required="required">
-                            <span><i class="fa fa-key" aria-hidden="true"></i> Password</span>
-                        </div>
-
-                        <button class="enter"><b>Login</b></button>
-                        <div class="inputBox more">
-                            <a href="">Đăng ký |</a>
-                            <a href="">Quên mật khẩu?</a>
-
-                        </div>
+                        <form action="" method="post">
+                            @include('errors.note')
+                            <div class="inputBox" style="margin-bottom: 30px;">
+                                <input type="text" required="required" name="email" >
+                                <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</span>
+                            </div>
+                            <div class="inputBox" style="margin-bottom: 30px;">
+                                <input type="password" required="required" name="password">
+                                <span><i class="fa fa-key" aria-hidden="true"></i> Password</span>
+                            </div>
+                            <button class="enter" style="margin-left:130px;margin-bottom:50px"><b>Login</b></button>
+                            <div class="inputBox more">
+                                <a href="{{ route('register.form') }}">Đăng ký |</a>
+                                <a href="">Quên mật khẩu?</a>
+                            </div>
+                            {{csrf_field()}}
+                        </form>
                     </div>
-                    <div class="col-lg-6">
+                    <!-- <div class="col-lg-6">
                         <img src="img/logo-011.png" alt="" style="height: 400px;width: 570px;">
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
-
     </div>
-    </div>
-
 
     <!-- Footer -->
     <!-- <div class="bg-footer">
@@ -58,10 +56,8 @@
             </li>
             <li>Bản quyền: Học viện Chính trị&nbsp;khu vực IV&nbsp;</li>
             <li>Số 6 Nguyễn Văn Cừ (nối dài), phường An Bình, quận Ninh Kiều, thành phố Cần Thơ</li>
-
         </ul>
     </div> -->
-
 </body>
 
 </html>

@@ -62,7 +62,7 @@ class MonController extends Controller
         $mon->save();
 
         return redirect()->intended('bandaotao/mon');
-    }
+    } 
 
     public function getDeleteMon($id) { 
         Mon::destroy($id);

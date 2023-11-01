@@ -15,7 +15,7 @@
                                 <thead>
                                     <tr class="bg-primary">
                                         <th>Mã bài</th>
-                                        <th>Tên bài</th>
+                                        <th>Tên bài giảng</th>
                                         <th>Số tiết</th>
                                         <th>Thuộc môn</th>
                                         <th>Tùy chọn</th>
@@ -46,7 +46,7 @@
         <!-- thêm mới -->
         <div class="row">
             <button class="btn-new" id="popup-btn"><i class="fa fa-plus" aria-hidden="true"></i> Thêm bài giảng </button>
-            <a href="{{asset('lanhdaokhoa/baigiang')}}" class="btn-new"><i class="fa fa-undo" aria-hidden="true"></i> Quay lại</a>
+            <a href="{{asset('lanhdaokhoa/baigiang')}}" class="btn-new" style="text-decoration:none;color: white;"><i class="fa fa-undo" aria-hidden="true"></i> Quay lại</a>
             <div class="col-lg-12">
                 <div class="panel ">
                     <div class="popup">
@@ -72,7 +72,6 @@
                                     <div class="form-group">
                                         <label>Thuộc môn</label>
                                         <select required name="thuocmon" class="form-control">
-                                           
                                             <option value="{{$mon->m_mamon}}">{{$mon->m_tenmon}}</option>
                                         </select>
                                     </div>

@@ -50,15 +50,21 @@
                             </a>
                         </li> |
                         <li>
-                            <a href="{{asset('giangvien/')}}">
+                            <a href="{{asset('giangvien/lop')}}">
+                                <span class="col-xs-3"><i class="glyph fa fa-industry" aria-hidden="true"></i></span>
+                                <span class="col-xs-9">Lớp học</span>
+                            </a>
+                        </li>|
+                        <li>
+                            <a href="{{asset('giangvien/mon')}}">
+                                <span class="col-xs-3"><i class="glyph fa fa-book" aria-hidden="true"></i></span>
+                                <span class="col-xs-9">Môn học</span>
+                            </a>
+                        </li>|
+                        <li>
+                            <a href="{{asset('giangvien/lichday')}}">
                                 <span class="col-xs-3"><i class="glyph fa fa-list-alt" aria-hidden="true"></i></span>
                                 <span class="col-xs-9">Lịch giảng dạy</span>
-                            </a>
-                        </li> |
-                        <li>
-                            <a href="{{asset('giangvien/')}}">
-                                <span class="col-xs-3"><i class="glyph fa fa-university" aria-hidden="true"></i></span>
-                                <span class="col-xs-9">Lớp học</span>
                             </a>
                         </li>
                     </ul>
@@ -78,9 +84,9 @@
                         <div class="col-lg-8">
                             <ul class="user-menu">
                                 <a href="#" class="user" data-toggle="dropdown">
-                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> Adminvebfsb
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> {{Auth::user()->email}}
                                 </a> &nbsp;
-                                <a href="" class="user">
+                                <a href="{{asset('logout')}}" class="user">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i> Thoát
                                 </a>
                             </ul>
@@ -182,32 +188,7 @@
         })
     </script>
 
-    <!-- lịch -->
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/chart.min.js"></script>
-    <script src="js/chart-data.js"></script>
-    <script src="js/easypiechart.js"></script>
-    <script src="js/easypiechart-data.js"></script>
-    <script src="js/bootstrap-datepicker.js"></script>
-
-    <script>
-        $('#calendar2').datepicker({});
-
-        ! function($) {
-            $(document).on("click", "ul.nav li.parent > a > span.icon", function() {
-                $(this).find('em:first').toggleClass("glyphicon-minus");
-            });
-            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-        }(window.jQuery);
-
-        $(window).on('resize', function() {
-            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-        })
-        $(window).on('resize', function() {
-            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-        })
-    </script>
+    
 </body>
 
 </html>

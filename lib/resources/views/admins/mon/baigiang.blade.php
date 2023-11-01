@@ -18,7 +18,6 @@
                                         <th>Tên bài</th>
                                         <th>Số tiết</th>
                                         <th>Thuộc môn</th>
-                                        <!-- <th>Tùy chọn</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -28,10 +27,6 @@
                                         <td>{{$bai->b_tenbai}}</td>
                                         <td>{{$bai->b_sotiet}}</td>
                                         <td>{{$bai->m_tenmon}}</td>
-                                        <!-- <td style="text-align: center;">
-                                            <a href="{{asset('lanhdaokhoa/baigiang/danhsach/'.$mon->m_mamon.'/edit/'.$bai->b_mabai)}}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> </a>
-                                            <a href="{{asset('lanhdaokhoa/baigiang/danhsach/'.$mon->m_mamon.'/delete/'.$bai->b_mabai)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
-                                        </td> -->
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -41,9 +36,9 @@
                     </div>
                 </div>
             </div>
-            <a href="{{asset('bandaotao/mon')}}" class="btn-new"><i class="fa fa-undo" aria-hidden="true"></i> Quay lại</a>
+            <a href="{{asset('bandaotao/mon')}}" class="btn-new" style="color: white;"><i class="fa fa-undo" aria-hidden="true"></i> Quay lại</a>
         </div>
-    </div><!--/.row-->
-</div> <!--/.main-->
+    </div>
+</div> 
 
 @stop
