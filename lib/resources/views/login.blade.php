@@ -13,7 +13,7 @@
     <link href="css/datepicker3.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     <script src="js/lumino.glyphs.js"></script>
-</head> 
+</head>
 
 <body style="background-image: url('img/bg_hoasen.gif');">
     <div class="bg0 p-t-100 p-b-140" style="background-image: url('img/bg_hoasen.gif');">
@@ -21,11 +21,11 @@
             <div class="row">
                 <div class="log">
                     <div class="card col-lg-6">
-                        <a class="login">Log in</a>
+                        <a class="login" style="color: #881A1A;">Đăng nhập</a>
                         <form action="" method="post">
                             @include('errors.note')
                             <div class="inputBox" style="margin-bottom: 30px;">
-                                <input type="text" required="required" name="email" >
+                                <input type="text" required="required" name="email">
                                 <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</span>
                             </div>
                             <div class="inputBox" style="margin-bottom: 30px;">
@@ -40,24 +40,11 @@
                             {{csrf_field()}}
                         </form>
                     </div>
-                    <!-- <div class="col-lg-6">
-                        <img src="img/logo-011.png" alt="" style="height: 400px;width: 570px;">
-                    </div> -->
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <!-- <div class="bg-footer">
-        <ul class="ul-footer">
-            <li class="tieude">
-                <p>HỌC VIỆN CHÍNH TRỊ KHU&nbsp;VỰC IV</p>
-            </li>
-            <li>Bản quyền: Học viện Chính trị&nbsp;khu vực IV&nbsp;</li>
-            <li>Số 6 Nguyễn Văn Cừ (nối dài), phường An Bình, quận Ninh Kiều, thành phố Cần Thơ</li>
-        </ul>
-    </div> -->
 </body>
 
 </html>

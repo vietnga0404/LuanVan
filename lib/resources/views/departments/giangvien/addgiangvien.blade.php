@@ -3,13 +3,13 @@
 @section('main')
 
 <div class="p-t-100 p-b-140">
-    <div class="container">
+    <div class="container"> 
         <div class="row">
             <form action="" method="get" style="margin-bottom: 20px;margin-left:17px" autocomplete="off">
                 <div class="row">
                     <div class="col-md-3">
                         <select class="form-control" name="chucvu">
-                            <option value="0">Chức vụ</option>
+                            <option value="0">[ Chức vụ ]</option>
                             @if(!empty(getAllChucVu()))
                             @foreach (getAllChucVu() as $chucvu)
                             <option value="{{$chucvu->cv_id}}" {{request()->chucvu==$chucvu->cv_id?'selected':false}}>{{$chucvu->cv_ten}}</option>
@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-md-3">
                         <select class="form-control" name="thuockhoa">
-                            <option value="0">Thuộc khoa</option>
+                            <option value="0">[ Thuộc khoa ]</option>
                             @if(!empty(getAllKhoa()))
                             @foreach (getAllKhoa() as $khoa)
                             <option value="{{$khoa->k_makhoa}}" {{request()->thuockhoa==$khoa->k_makhoa?'selected':false}}>{{$khoa->k_tenkhoa}}</option>

@@ -21,7 +21,7 @@ class LessonController extends Controller
 
         $data['listbai'] = DB::table('baigiang')
             ->join('mon', 'baigiang.b_mon', '=', 'mon.m_mamon')
-            ->orderBy('b_mabai', 'asc')->get();
+            ->orderBy('b_mabai', 'desc')->get();
  
         return view('departments.baigiang.addlesson', $data);
     }
@@ -30,7 +30,6 @@ class LessonController extends Controller
     {
         $data['mon'] = Mon::find($ma);
 
-        // $data['listmon'] = Mon::all();
         $data['listbai'] = DB::table('baigiang')
             ->join('mon', 'baigiang.b_mon', '=', 'mon.m_mamon')
             ->where('baigiang.b_mon' , '=', $ma)

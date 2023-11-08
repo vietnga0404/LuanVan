@@ -11,11 +11,11 @@
                     <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li>
                     <li class="link-li"><a href="{{asset('bandaotao/phancong/mon')}}" >Danh sách môn</a></li>
                     <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li>
-                    <li class="link-li link-ac"><a href="{{asset('')}}" style="color: #881A1A;"><b>Phân công lớp</b></a></li>
+                    <li class="link-li link-ac"><a href="{{asset('bandaotao/phancong/mon')}}" style="color: #881A1A;"><b>Phân công lớp</b></a></li>
                     <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li>
                     <li class="link-li"><a href="{{asset('bandaotao/phancong/lop')}}" >Danh sách lớp</a></li>
-                    <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li>
-                    <li class="link-li"><a href="" >Phân công chi tiết</a></li>
+                    <!-- <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li>
+                    <li class="link-li"><a href="" >Phân công chi tiết</a></li> -->
                 </ul>
             </div>
         </div>
@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-12">
                 <div class="panel">
-                    <div class="panel-heading"><b>Phân công</b></div>
+                    <div class="panel-heading"><b>Phân công lớp</b></div>
                     <div class="panel-body">
                         <form method="post" enctype="multipart/form-data">
                             <div class="row" style="border-bottom: 2px dotted #ddd;margin-bottom:10px">

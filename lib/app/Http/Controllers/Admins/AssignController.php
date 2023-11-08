@@ -13,7 +13,10 @@ class AssignController extends Controller
     //  
     public function getAssign()
     {
-        $data['lich'] = LichDay::all();
+        $data['lich'] = DB::table('lichday')
+            ->join('lop', 'lichday.ld_lop', '=', 'lop.l_malop')
+            ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
+            ->get();
 
         return view('admins.phancong.phancong', $data);
     }
@@ -46,7 +49,7 @@ class AssignController extends Controller
         $data['lich'] = DB::table('lichday')
             ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
             ->join('lop', 'lichday.ld_lop', '=', 'lop.l_malop')
-            ->orderBy('ld_malich', 'asc')->get();
+            ->orderBy('ld_malich', 'desc')->get();
 
 
         return view('admins.phancong.danhsachlop', $data);
@@ -62,11 +65,26 @@ class AssignController extends Controller
 
         $data['lich'] = LichDay::find($id);
 
-        // $data['lich'] = DB::table('lichday')
-        //     ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
-        //     ->join('lop', 'lichday.ld_lop', '=', 'lop.l_malop')
-        //     ->orderBy('ld_malich', 'asc')->get();
+        $data['lich'] = DB::table('lichday')
+            ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
+            ->join('lop', 'lichday.ld_lop', '=', 'lop.l_malop')
+            // ->join('buoi', 'lichday.ld_buoi', '=', 'buoi.mabuoi')
+            ->where('lichday.ld_malich', '=', $id)
+            ->orderBy('ld_malich', 'desc')->get();
+
 
         return view('admins.phancong.chitiet', $data);
+    }
+    public function postDetail(Request $request, $id)
+    {
+        $lichday = LichDay::find($id);
+        $lichday->ld_baigiang = $request->baigiang;
+        $lichday->ld_ngay = $request->ngay;
+        $lichday->ld_thu = $request->thu;
+        $lichday->ld_buoi = $request->buoi;
+        $lichday->ld_status = $request->status;
+        $lichday->save();
+
+        return redirect()->intended('bandaotao/phancong');
     }
 }

@@ -16,17 +16,17 @@
                                         <th>Lớp</th>
                                         <th>Môn</th>
                                         <th>Tên bài giảng</th>
-                                        <th>Ngày</th>
+                                        <th>Thứ - Ngày</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($lichday as $ld)
+                                    @foreach($lich as $ld)
                                     <tr>
                                         <td>{{$ld->l_tenlop}}</td>
                                         <td>{{$ld->m_tenmon}}</td>
-                                        <td>{{$ld->b_tenbai}}</td>
-                                        <td>{{$ld->ld_ngay}}</td>
+                                        <td>{{$ld->ld_baigiang}}</td>
+                                        <td>{{$ld->ld_thu}} - {{$ld->ld_ngay}}</td>
                                         <td>
                                             <a href="{{asset('lanhdaokhoa/phancong/giangvien/'.$ld->ld_malich)}}">Phân công giảng viên</a>
                                         </td>

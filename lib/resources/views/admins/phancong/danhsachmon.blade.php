@@ -4,7 +4,21 @@
 
 <div class="p-t-100 p-b-140">
     <div class="container">
-        
+    <div class="row">
+            <div class="col-lg-12">
+                <ul class="link-ul">
+                    <li class="link-li"><a href="{{asset('bandaotao/phancong')}}" >Phân công</a></li>
+                    <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li>
+                    <li class="link-li link-ac"><a href="{{asset('bandaotao/phancong/mon')}}" style="color: #881A1A;"><b>Danh sách môn</b></a></li>
+                    <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li>
+                    <!-- <li class="link-li"><a href="{{asset('bandaotao/phancong')}}" >Phân công lớp</a></li>
+                    <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li> -->
+                    <li class="link-li"><a href="{{asset('bandaotao/phancong/lop')}}" >Danh sách lớp</a></li>
+                    <!-- <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li>
+                    <li class="link-li"><a href="" >Phân công chi tiết</a></li> -->
+                </ul>
+            </div>
+        </div>
         <!-- danh sách môn -->
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-12">
@@ -32,27 +46,14 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <a href="{{asset('bandaotao/phancong')}}" class="btn-new" style="text-decoration:none;color: white;"><i class="fa fa-undo" aria-hidden="true"></i> Quay lại</a>
                         </div>
                     </div>
                     <div class="clearfix"></div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <ul class="link-ul">
-                    <li class="link-li"><a href="{{asset('bandaotao/phancong')}}" >Phân công</a></li>
-                    <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li>
-                    <li class="link-li link-ac"><a href="{{asset('bandaotao/phancong/mon')}}" style="color: #881A1A;"><b>Danh sách môn</b></a></li>
-                    <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li>
-                    <li class="link-li"><a href="{{asset('bandaotao/phancong/'.$mon->m_mamon.'/lop/')}}" >Phân công lớp</a></li>
-                    <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li>
-                    <li class="link-li"><a href="{{asset('bandaotao/phancong/lop')}}" >Danh sách lớp</a></li>
-                    <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li>
-                    <li class="link-li"><a href="" >Phân công chi tiết</a></li>
-                </ul>
-            </div>
-        </div>
+       
     </div>
 </div>
 @stop

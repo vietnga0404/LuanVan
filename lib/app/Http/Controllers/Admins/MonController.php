@@ -74,7 +74,8 @@ class MonController extends Controller
         $data['mon'] = Mon::find($id);
         $data['listmon'] = Mon::all();
         $data['listbai'] = DB::table('baigiang')
-            ->join('mon', 'baigiang.b_mon', '=', 'mon.m_mamon')->where('baigiang.b_mon' , '=', $id)
+            ->join('mon', 'baigiang.b_mon', '=', 'mon.m_mamon')
+            ->where('baigiang.b_mon' , '=', $id)
             ->orderBy('b_mabai', 'asc')->get();
 
         return view('admins.mon.baigiang', $data);

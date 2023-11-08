@@ -39,7 +39,7 @@ class LoginController extends Controller
     public function getLogout()
     {
         Auth::logout();
-        return redirect()->intended('login');
+        return redirect()->intended('/');
     }
 
     public function registerForm()

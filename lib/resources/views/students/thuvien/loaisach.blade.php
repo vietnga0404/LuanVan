@@ -19,11 +19,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($thuvien as $tv)
+                                    @foreach($sach as $loaisach)
                                     <tr>
-                                        <td>{{$tv->id}}</td>
-                                        <td><a href="" class="tv">{{$tv->masach}}</a></td>
-                                        <td><a href="" class="tv">{{$tv->tensach}}</a></td>
+                                        <td>{{$loaisach->id}}</td>
+                                        <td><a href="" class="tv">{{$loaisach->masach}}</a></td>
+                                        <td><a href="" class="tv">{{$loaisach->tensach}}</a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -38,16 +38,11 @@
                     <div class="panel-body">
                         <form action="">
                             <section>Từ khóa</section>
-                            <input type="text" name="key" style="width: 100%;margin-bottom: 10px;">
+                            <input type="text" name="tukhoa" style="width: 100%;margin-bottom: 10px;">
 
                             <section>Loại sách</section>
-                            <select required name="loaisach" class="form-control" style="margin-bottom: 10px;">
+                            <select required name="hinhthuc" class="form-control" style="margin-bottom: 10px;">
                                 <option value="0">[Tất cả]</option>
-                                @if(!empty(getAllLoaiSach()))
-                                @foreach(getAllLoaiSach() as $loai)
-                                <option value="{{$loai->maloai}}" {{request()->loaisach==$loai->maloai?'selected':false}}>{{$loai->tenloai}}</option>
-                                @endforeach
-                                @endif
                             </select>
 
                             <section>Tên sách</section>

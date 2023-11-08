@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function search(Request $request){
 
         $keyword = $request->get('keyword');
-        // dd($keyword);
+        dd($keyword);
 
         $result = Khoa::where('k_tenkhoa','LIKE','%'.$keyword.'%')
         ->orWhere('lop', function($query) use($keyword){
@@ -25,12 +25,12 @@ class HomeController extends Controller
         ->orWhere('mon', function($query) use($keyword){
             $query->where('m_tenmon','LIKE','%'.$keyword.'%');
         })
-        ->orWhere('giangvien', function($query) use($keyword){
-            $query->where('gv_ten','LIKE','%'.$keyword.'%');
-        })
-        ->orWhere('lichday', function($query) use($keyword){
-            $query->where('ld_baigiang','LIKE','%'.$keyword.'%');
-        })
+        // ->orWhere('giangvien', function($query) use($keyword){
+        //     $query->where('gv_ten','LIKE','%'.$keyword.'%');
+        // })
+        // ->orWhere('lichday', function($query) use($keyword){
+        //     $query->where('ld_baigiang','LIKE','%'.$keyword.'%');
+        // })
         ->get();
         dd($result);
 

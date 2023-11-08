@@ -45,7 +45,7 @@
                     <ul class="main-menu">
                         <li>
                             <a href="{{asset('hocvien/home')}}">
-                                <span class="col-xs-3"><i class="glyph fa fa-user" aria-hidden="true"></i></span>
+                                <span class="col-xs-3"><i class="glyph fa fa-home" aria-hidden="true"></i></span>
                                 <span class="col-xs-9">Trang chủ</span>
                             </a>
                         </li> |
@@ -74,12 +74,12 @@
                 <div class="col-lg-12">
                     <div class="page-header page-menu">
                         <div class="col-lg-4 page-title ">
-                            <b>Giảng viên</b>
+                            <b>Học viên</b>
                         </div>
                         <div class="col-lg-8">
                             <ul class="user-menu">
-                                <a href="#" class="user" data-toggle="dropdown">
-                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> {{Auth::user()->email}}
+                                <a href="{{asset('/login')}}" class="user" >
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> Đăng nhập
                                 </a> &nbsp;
                                 <a href="{{asset('logout')}}" class="user">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i> Thoát

@@ -40,7 +40,6 @@
             </div>
             <div class="main-m">
                 <div class="container">
-                    <!-- <div id="myDIV"> -->
                     <ul class="main-menu">
                         <li>
                             <a href="{{asset('bandaotao/home')}}">
@@ -82,6 +81,71 @@
                 </div>
             </div>
         </div>
+
+        <!--  -->
+        <!-- Header Mobile -->
+        <!-- <div class="wrap-header-mobile">
+            <div class="bg-header col-xs-12">
+                <div class="logo-mobile">
+                    <a href="{{asset('/')}}"><img src="img/name1.png" alt="IMG-LOGO"></a>
+                </div>
+            </div>
+           
+            <div class="wrap-icon-header flex-w flex-r-m m-r-15">
+                fregqe
+            </div>
+
+            <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </div>
+        </div> -->
+
+        <!-- Menu Mobile -->
+        <div class="menu-mobile">
+            <div class="main-menu-m">
+                <ul class="main-menu">
+                    <li>
+                        <a href="{{asset('bandaotao/home')}}">
+                            <span class="col-xs-3"><i class="glyph fa fa-home" aria-hidden="true"></i></span>
+                            <span class="col-xs-9">Trang chủ</span>
+                        </a>
+                    </li> |
+                    <li>
+                        <a href="{{asset('bandaotao/khoa')}}">
+                            <span class="col-xs-4"><i class="glyph fa fa-building" aria-hidden="true"></i></span>
+                            <span class="col-xs-8">Khoa</span>
+                        </a>
+                    </li> |
+                    <li>
+                        <a href="{{asset('bandaotao/lop')}}">
+                            <span class="col-xs-3"><i class="glyph fa fa-industry" aria-hidden="true"></i></span>
+                            <span class="col-xs-9">Lớp học</span>
+                        </a>
+                    </li> |
+                    <li>
+                        <a href="{{asset('bandaotao/mon')}}">
+                            <span class="col-xs-3"><i class="glyph fa fa-book" aria-hidden="true"></i></span>
+                            <span class="col-xs-9">Môn học</span>
+                        </a>
+                    </li> |
+                    <li>
+                        <a href="{{asset('bandaotao/phancong')}}">
+                            <span class="col-xs-3"><i class="glyph fa fa-calendar" aria-hidden="true"></i></span>
+                            <span class="col-xs-9">Phân công</span>
+                        </a>
+                    </li> |
+                    <li>
+                        <a href="{{asset('bandaotao/')}}">
+                            <span class="col-xs-3"><i class="glyph fa fa-id-card" aria-hidden="true"></i></span>
+                            <span class="col-xs-9">Tài khoản</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
     </header>
 
     <div class="p-t-100 p-b-140">
@@ -104,7 +168,7 @@
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 

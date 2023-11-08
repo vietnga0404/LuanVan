@@ -15,25 +15,24 @@ class AssignController extends Controller
     //  
     public function getList()
     {
-        $data['lichday'] = DB::table('lichday')
+        $data['lich'] = DB::table('lichday')
             ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
             ->join('lop', 'lichday.ld_lop', '=', 'lop.l_malop')
-            ->join('baigiang', 'lichday.ld_baigiang', '=', 'baigiang.b_mabai')
-            ->orderBy('ld_malich', 'asc')->get();
+            ->get();
 
         return view('departments.phancong.danhsach', $data);
     }
     public function getGV($id)
     {
         $data['lich'] = LichDay::find($id);
-        
+
         $data['lichday'] = DB::table('lichday')
             ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
             ->join('lop', 'lichday.ld_lop', '=', 'lop.l_malop')
-            ->join('baigiang', 'lichday.ld_baigiang', '=', 'baigiang.b_mabai')
-            ->join('buoi', 'lichday.ld_buoi','=', 'buoi.mabuoi')
-            ->where('lichday.ld_malich','=', $id)
-            ->orderBy('ld_malich', 'asc')->get();
+            // ->join('baigiang', 'lichday.ld_baigiang', '=', 'baigiang.b_mabai')
+            // ->join('buoi', 'lichday.ld_buoi', '=', 'buoi.mabuoi')
+            ->where('lichday.ld_malich', '=', $id)
+            ->orderBy('ld_malich', 'desc')->get();
 
         $mon = $data['lich']->ld_mon;
         $mon = Mon::where('m_mamon', '=', $mon)->first();
@@ -41,5 +40,4 @@ class AssignController extends Controller
 
         return view('departments.phancong.giangvien', $data);
     }
-} 
- 
+}

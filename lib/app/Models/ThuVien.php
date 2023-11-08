@@ -9,7 +9,6 @@ class ThuVien extends Model
 {
     use HasFactory;
     protected $table = 'thuvien';
-    protected $primaryKey = 'masach';
-    protected $keyType = 'string';
+    protected $primaryKey = 'id';
     protected $guarded = [];
 }

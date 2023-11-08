@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <select required name="hinhthuc" class="form-control">
-                            <option value="0">Hình thức</option>
+                            <option value="0">[ Hình thức ]</option>
                             <option value="Tập trung" {{request()->hinhthuc=='Tập trung'?'selected':false}}>Tập trung</option>
                             <option value="Không tập trung" {{request()->hinhthuc=='Không tập trung'?'selected':false}}>Không tập trung</option>
                         </select>
@@ -78,7 +78,6 @@
                     <div class="popup">
                         <div class="popup-content">
                             <span class="close-btn">&times;</span>
-
                             <form method="post" enctype="multipart/form-data" autocomplete="off">
                                 <div class="row" style="padding: 25px;">
                                     <div class="panel ">

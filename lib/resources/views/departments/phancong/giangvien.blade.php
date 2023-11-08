@@ -28,13 +28,13 @@
                                     <tr>
                                         <td>{{$lich->l_tenlop}}</td>
                                         <td>{{$lich->m_tenmon}}</td>
-                                        <td>{{$lich->b_tenbai}}</td>
+                                        <td>{{$lich->ld_baigiang}}</td>
                                         <td>{{$lich->ld_ngay}} - {{$lich->ld_thu}}</td>
-                                        <td>{{$lich->tenbuoi}}</td>
+                                        <td>{{$lich->ld_buoi}}</td>
                                         @foreach($giangvien as $gv)
                                         <td>
                                             <select name="" id="">
-                                                <option value="">giang vien</option>
+                                                <option value="0"></option>
                                                 <option value="{{$gv->gv_ma}}">{{$gv->gv_ten}}</option>
                                             </select>
                                         </td>
