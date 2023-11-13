@@ -11,22 +11,20 @@
                     <div class="panel-heading"><b>Danh sách bài giảng môn: "{{$mon->m_tenmon}}"</b></div>
                     <div class="panel-body">
                         <div class="bootstrap-table">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" style="text-align:center">
                                 <thead>
                                     <tr class="bg-primary">
-                                        <th>Mã bài</th>
-                                        <th>Tên bài</th>
+                                        <th>Mã bài giảng</th>
+                                        <th>Tên bài giảng</th>
                                         <th>Số tiết</th>
-                                        <th>Thuộc môn</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($listbai as $bai)
                                     <tr>
-                                        <td>{{$bai->b_mabai}}</td>
-                                        <td>{{$bai->b_tenbai}}</td>
+                                        <td style="width: 15%;">{{$bai->b_mabai}}</td>
+                                        <td style="width: 70%;">{{$bai->b_tenbai}}</td>
                                         <td>{{$bai->b_sotiet}}</td>
-                                        <td>{{$bai->m_tenmon}}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

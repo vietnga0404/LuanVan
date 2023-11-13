@@ -11,7 +11,7 @@
                     <div class="panel-heading"><b>Danh sách khoa</b></div>
                     <div class="panel-body">
                         <div class="bootstrap-table">
-                            <table class="table table-bordered" style="text-align:center">
+                            <table class="table table-bordered" >
                                 <thead>
                                     <tr class="bg-primary">
                                         <th style="width:20%">Mã khoa</th>
@@ -22,7 +22,7 @@
                                 <tbody>
                                     @foreach($listkhoa as $khoa)
                                     <tr>
-                                        <td>{{$khoa->k_makhoa}}</td>
+                                        <td style="text-align:center">{{$khoa->k_makhoa}}</td>
                                         <td>{{$khoa->k_tenkhoa}}</td>
                                         <td style="text-align: center;">
                                             <a href="{{asset('bandaotao/khoa/edit/'.$khoa->k_makhoa)}}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> </a>

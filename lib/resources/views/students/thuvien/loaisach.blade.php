@@ -43,6 +43,11 @@
                             <section>Loại sách</section>
                             <select required name="hinhthuc" class="form-control" style="margin-bottom: 10px;">
                                 <option value="0">[Tất cả]</option>
+                                @if(!empty(getAllLoaiSach()))
+                                @foreach(getAllLoaiSach() as $loai)
+                                <option value="{{$loai->maloai}}" {{request()->loaisach==$loai->maloai?'selected':false}}>{{$loai->tenloai}}</option>
+                                @endforeach
+                                @endif
                             </select>
 
                             <section>Tên sách</section>
@@ -57,7 +62,7 @@
                     <div class="panel-heading"><b>Danh mục loại sách</b></div>
                     <div class="panel-body">
                         <ul class="thuvien">
-                            @foreach($loaisach as $sach)
+                            @foreach($ls as $sach)
                             <li><a href="{{asset('hocvien/thuvien/loaisach/'.$sach->maloai)}}">{{$sach->tenloai}}</a></li>
                             @endforeach
                         </ul>

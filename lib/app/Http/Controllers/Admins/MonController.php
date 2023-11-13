@@ -72,7 +72,7 @@ class MonController extends Controller
     public function getListLesson($id){
         
         $data['mon'] = Mon::find($id);
-        $data['listmon'] = Mon::all();
+
         $data['listbai'] = DB::table('baigiang')
             ->join('mon', 'baigiang.b_mon', '=', 'mon.m_mamon')
             ->where('baigiang.b_mon' , '=', $id)

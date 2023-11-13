@@ -28,16 +28,14 @@
                             <div class="form-group">
                                 <label>Thuộc môn</label>
                                 <select required name="thuocmon" class="form-control">
-                                    @foreach($listmon as $mon)
                                     <option value="{{$mon->m_mamon}}" >{{$mon->m_tenmon}}</option>
-                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="submit" value="Sửa bài giảng" class="form-control btn-new">
                             </div>
                             <div class="form-group">
-                                <a href="{{asset('lanhdaokhoa/baigiang/danhsach/'.$ma)}}" class="form-control btn btn-default">Hủy Bỏ</a>
+                                <a href="{{asset('lanhdaokhoa/baigiang/danhsach/'.$mon->m_mamon)}}" class="form-control btn btn-default">Hủy Bỏ</a>
                             </div>
                             {{csrf_field()}}
                         </form>

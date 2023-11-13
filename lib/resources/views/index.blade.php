@@ -43,7 +43,7 @@
                     <ul class="main-menu">
                         <li>
                             <a href="{{asset('/login')}}">
-                                <span class="col-xs-12">Phân công môn học</span>
+                                <span class="col-xs-12">Phân công giảng dạy</span>
                             </a>
                         </li> |
                         <li>

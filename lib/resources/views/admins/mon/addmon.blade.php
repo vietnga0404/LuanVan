@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <select class="form-control" name="thuockhoa">
-                            <option value="0">[ Thuộc khoa ]</option> 
+                            <option value="0">Chọn khoa </option> 
                             @if(!empty(getAllKhoa()))
                             @foreach (getAllKhoa() as $khoa)
                             <option value="{{$khoa->k_makhoa}}" {{request()->thuockhoa==$khoa->k_makhoa?'selected':false}}>{{$khoa->k_tenkhoa}}</option>

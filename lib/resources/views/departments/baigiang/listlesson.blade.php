@@ -25,7 +25,7 @@
                                     @foreach($listbai as $bai)
                                     <tr>
                                         <td>{{$bai->b_mabai}}</td>
-                                        <td>{{$bai->b_tenbai}}</td>
+                                        <td  style="width: 50%;">{{$bai->b_tenbai}}</td>
                                         <td>{{$bai->b_sotiet}}</td>
                                         <td>{{$bai->m_tenmon}}</td>
                                         <td style="text-align: center;">

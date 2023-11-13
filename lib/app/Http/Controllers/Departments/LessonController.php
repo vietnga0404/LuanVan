@@ -56,7 +56,8 @@ class LessonController extends Controller
 
         $data['listmon'] = Mon::all();
         $data['bai'] = BaiGiang::find($id);
-        $data['ma'] = $ma;
+        // $data['ma'] = $ma;
+        $data['mon'] = Mon::find($ma);
 
         return view('departments.baigiang.editlesson', $data);
     }

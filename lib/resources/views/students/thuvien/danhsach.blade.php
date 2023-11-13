@@ -8,21 +8,21 @@
             <div class="col-md-9">
                 <div class="panel ">
                     <div class="panel-heading"><b>Thư viện sách</b></div>
-                    <div class="panel-body none-padding">
+                    <div class="panel-body ">
                         <div class="bootstrap-table">
-                            <table class="table table-bordered" style="margin-top:20px;text-align:center">
+                            <table class="table table-bordered">
                                 <thead>
                                     <tr class="bg-primary">
-                                        <th style="width: 5%;">STT</th>
-                                        <th style="width: 15%;">Mã sách</th>
+                                        <th style="width:5%;">STT</th>
+                                        <th style="width:15%;">Mã sách</th>
                                         <th>Tên sách</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($thuvien as $tv)
                                     <tr>
-                                        <td>{{$tv->id}}</td>
-                                        <td><a href="" class="tv">{{$tv->masach}}</a></td>
+                                        <td style="text-align:center">{{$tv->id}}</td>
+                                        <td style="text-align:center"><a href="" class="tv">{{$tv->masach}}</a></td>
                                         <td><a href="" class="tv">{{$tv->tensach}}</a></td>
                                     </tr>
                                     @endforeach

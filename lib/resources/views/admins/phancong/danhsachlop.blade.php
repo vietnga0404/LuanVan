@@ -28,7 +28,7 @@
                             <table class="table table-bordered" style="margin-top:20px;text-align:center">
                                 <thead>
                                     <tr class="bg-primary">
-                                        <!-- <th>Mã lịch</th> -->
+                                        <th>Mã lịch</th>
                                         <th>Lớp học</th>
                                         <th>Môn học</th>
                                         <th style="width: 18%;">Thời gian</th>
@@ -39,9 +39,10 @@
                                 <tbody>
                                     @foreach($lich as $ld)
                                     <tr>
+                                        <td>{{$ld->ld_malich}}</td>
                                         <td>{{$ld->l_tenlop}}</td>
                                         <td>{{$ld->m_tenmon}}</td>
-                                        <td>Từ ngày {{$ld->ld_tungay}} đến ngày {{$ld->ld_denngay}}</td>
+                                        <td>Từ ngày: <b>{{$ld->ld_tungay}}</b> <br> Đến ngày: <b>{{$ld->ld_denngay}}</b></td>
                                         <td>{{$ld->ld_diadiem}}</td>
                                         <td>
                                             <a href="{{asset('bandaotao/phancong/'.$ld->m_mamon.'/lop/'.$ld->ld_malich)}}">Phân công chi tiết</a>

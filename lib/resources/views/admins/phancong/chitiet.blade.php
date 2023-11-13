@@ -53,46 +53,45 @@
                             </div>
                             @endforeach
                         </form>
-                    </div>
-                    <div class="panel-body">
-                        <form action="" method="post">
-                            <!-- <div class="bootstrap-table"> -->
-                                <table class="table table-bordered" style="margin-top:20px;text-align:center">
-                                    <thead>
-                                        <tr class="bg-primary">
-                                            <th>Tên bài giảng</th>
-                                            <th>Số tiết</th>
-                                            <th>Thứ - ngày</th>
-                                            <th>Buổi</th>
-                                            <th>Trạng thái</th>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <select name="baigiang" id="" style="width:70%">
-                                                    <option value="0"></option>
-                                                    @foreach($listbai as $bai)
-                                                    <option value="{{$bai->b_mabai}}">{{$bai->b_tenbai}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-                                            <td>{{$bai->b_sotiet}}</td>
-                                            <td>
-
-                                                <select name="" id="">
-                                                    <option value=""></option>
-                                                </select>
-                                            </td>
-                                            <td></td>
-                                            <td>fs</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <input type="submit" name="submit" value="Phân công" class="btn-new">
-                                <a href="{{asset('bandaotao/phancong/lop')}}" class="btn-new" style="text-decoration:none;color: white;"><i class="fa fa-undo" aria-hidden="true"></i> Quay lại</a>
-                            <!-- </div> -->
+                        <form action="{{ route('postDetail', ['ma' => $phanCong['ma'], 'id' => $phanCong['id']]) }}" method="post">
+                            <table class="table table-bordered" style="margin-top:20px;text-align:center">
+                                <thead>
+                                    <tr class="bg-primary">
+                                        <th>Tên bài giảng</th>
+                                        <th>Số tiết</th>
+                                        <th>Thứ - ngày</th>
+                                        <th>Buổi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="width:35%">
+                                            <select id="" name="baigiang" style="width:60%">
+                                                <option value="">Chọn bài giảng</option>
+                                                @foreach($listbai as $bai)
+                                                <option value="{{$bai->b_mabai}}">{{$bai->b_tenbai}}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <td>{{$bai->b_sotiet}}</td>
+                                        <td style="width:35%">
+                                            <input type="text" id="dateString" value="" placeholder="--------" name="thu" style="border: none;width:20%">|
+                                            <input type="date" name="ngay" id="" onchange="showThu(event);">
+                                        </td>
+                                        <td style="width:20%">
+                                            <select id="" name="buoi" style="width:70%">
+                                                <option value="">Chọn buổi</option>
+                                                @foreach($chitiet as $ct)
+                                                <option value="{{$ct->mabuoi}}">{{$ct->tenbuoi}}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <input type="submit" name="submit" value="Phân công" class="btn-new">
+                            <a href="{{asset('bandaotao/phancong/lop')}}" class="btn-new" style="text-decoration:none;color: white;"><i class="fa fa-undo" aria-hidden="true"></i> Quay lại</a>
                             {{csrf_field()}}
                         </form>
                     </div>
@@ -103,4 +102,20 @@
     </div>
 </div>
 
+<script>
+    function showThu(e) {
+        days = new Array(
+            'Chủ nhật',
+            'Thứ 2',
+            'Thứ 3',
+            'Thứ 4',
+            'Thứ 5',
+            'Thứ 6',
+            'Thứ 7',
+        );
+        value = new Date(e.target.value);
+        string = value.getDay();
+        document.getElementById("dateString").value = days[string];
+    }
+</script>
 @stop

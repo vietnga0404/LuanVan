@@ -61,12 +61,14 @@ Route::group(['prefix' => 'bandaotao', 'middleware' => ['custom_auth']], functio
     // Phân công
     Route::group(['prefix' => 'phancong'], function () {
         Route::get('/', '\App\Http\Controllers\Admins\AssignController@getAssign');
+        Route::get('/edit/{id}', '\App\Http\Controllers\Admins\AssignController@getEdit');
+        Route::get('/delete/{id}', '\App\Http\Controllers\Admins\AssignController@getDelete');
         Route::get('mon', '\App\Http\Controllers\Admins\AssignController@getMon');
         Route::get('{ma}/lop', '\App\Http\Controllers\Admins\AssignController@getAddLop');
         Route::post('{ma}/lop', '\App\Http\Controllers\Admins\AssignController@postAddLop');
         Route::get('lop', '\App\Http\Controllers\Admins\AssignController@getLop');
         Route::get('{ma}/lop/{id}', '\App\Http\Controllers\Admins\AssignController@getDetail');
-        Route::post('{ma}/lop/{id}', '\App\Http\Controllers\Admins\AssignController@postDetail');
+        Route::post('{ma}/lop/{id}', '\App\Http\Controllers\Admins\AssignController@postDetail')->name('postDetail');
     });
 });
 
@@ -97,6 +99,7 @@ Route::group(['prefix' => 'lanhdaokhoa', 'middleware' => ['custom_auth']], funct
     Route::group(['prefix' => 'phancong'], function () {
         Route::get('/', '\App\Http\Controllers\Departments\AssignController@getList');
         Route::get('giangvien/{id}', '\App\Http\Controllers\Departments\AssignController@getGV');
+        Route::post('giangvien/{id}', '\App\Http\Controllers\Departments\AssignController@postGV')->name('postGV');
     });
 });
 

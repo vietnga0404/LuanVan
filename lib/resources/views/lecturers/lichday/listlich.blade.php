@@ -7,6 +7,76 @@
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-12">
                 <div class="panel ">
+                    <div class="panel-heading"><b>Lịch giảng dạy</b></div>
+                    <div class="panel-body">
+                        <table style="border: 0;cellpadding:0;cellspacing: 5px;">
+                            <tbody>
+                                <tr>
+                                    <td align=right style="padding-right: 10px;width: 110px;">Lớp học:</td>
+                                    <td align=left>
+                                        <select class="form-select form-control" name="" style="width: 50%;">
+                                            <option value="0">[ Chức vụ ]</option>
+
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align=right style="padding-right: 10px;width: 20%;"> <label for="">Môn học:</label></td>
+                                    <td align=left>
+                                        <select class="form-select form-control" name="" style="width: 50%;">
+                                            <option value="0">[ Chức vụ ]</option>
+
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align=right style="padding-right: 10px;width: 20%;"> <label for="">Giảng viên:</label></td>
+                                    <td align=left>
+                                        <select class=" form-select form-control" name="" style="width: 50%;">
+                                            <option value="0">[ Chức vụ ]</option>
+
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn-new" id="popup-btn" style="margin-left:470px ;"><i class="fa fa-search" aria-hidden="true"></i> Xem lịch giảng dạy</button>
+                        <div class="col-lg-12">
+                            <div class="panel ">
+                                <div class="popup">
+                                    <div class="popup-content">
+                                        <span class="close-btn">&times;</span>
+                                        <form method="post" autocomplete="off">
+                                            <div class="row" style="padding: 25px;">
+                                                <div class="panel ">
+                                                    <div class="panel-heading"><b>Thêm lớp mới</b></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Mã khoa</label>
+                                                    <input required type="text" name="ma" class="form-control" placeholder="Mã khoa...">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Tên khoa</label>
+                                                    <input required type="text" name="name" class="form-control" placeholder="Tên khoa...">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="submit" name="submit" class="form-control btn-new" placeholder="Tên khoa..." value="Thêm mới">
+                                                </div>
+                                            </div>
+                                            {{csrf_field()}}
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="col-xs-12 col-md-12 col-lg-12">
+                <div class="panel ">
                     <div class="panel-heading"><b>Danh sách lớp</b></div>
                     <div class="panel-body">
                         <div class="bootstrap-table">
@@ -21,7 +91,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   
+
                                     <tr>
                                         <td>thrs</td>
                                         <td>shh</td>
@@ -29,7 +99,7 @@
                                         <td>sghs</td>
 
                                     </tr>
-                                 
+
                                 </tbody>
                             </table>
                         </div>
@@ -37,7 +107,7 @@
                     <div class="clearfix"></div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 

@@ -19,7 +19,6 @@ class LopController extends Controller
         $filters = [];
         $key = null;
 
-
         if (!empty($request->get('hinhthuc'))) {
             $listlop = $listlop->where('l_hinhthuc', '=', $request->get('hinhthuc'));
         }

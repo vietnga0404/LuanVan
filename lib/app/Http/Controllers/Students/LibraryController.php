@@ -14,6 +14,9 @@ class LibraryController extends Controller
     public function index(Request $request, $filters = [])
     {
         $data['loaisach'] = LoaiSach::all();
+
+        $ls = LoaiSach::all();
+
         $data['thuvien'] = null;
         $query = DB::table('thuvien')
         ->join('loaisach', 'thuvien.loai', '=', 'loaisach.maloai');
@@ -33,18 +36,20 @@ class LibraryController extends Controller
 
         $data['thuvien'] = $query->orderBy('id', 'asc')->get();
 
-            return view("students.thuvien.danhsach", $data);
+            return view("students.thuvien.danhsach", compact('ls'),$data);
     }
-    public function getLoai($id)
+    public function getLoai($id, Request $request, $filters = [])
     {
-        $data['loaisach'] = LoaiSach::all();
-
         $data['loai'] = LoaiSach::find($id);
-        $data['sach'] = DB::table('thuvien')
-            ->join('loaisach', 'thuvien.loai', '=', 'loaisach.maloai')
-            ->where('thuvien.loai', '=', $id)
-            ->orderBy('id', 'asc')->get();
 
-        return view('students.thuvien.loaisach', $data);
+        $data['sach'] = DB::table('thuvien')
+        ->join('loaisach', 'thuvien.loai', '=', 'loaisach.maloai')
+        ->where('thuvien.loai', '=', $id)
+        ->orderBy('id', 'asc')->get();
+
+        $ls = LoaiSach::all();
+        
+
+        return view('students.thuvien.loaisach', compact('ls'), $data);
     }
 }
