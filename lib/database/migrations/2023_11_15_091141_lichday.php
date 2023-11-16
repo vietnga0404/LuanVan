@@ -31,7 +31,7 @@ return new class extends Migration
             $table->foreign('ld_buoi')->references('mabuoi')->on('buoi')->onDelete('cascade');
             $table->string('ld_gv')->nullable();
             $table->foreign('ld_gv')->references('gv_ma')->on('giangvien')->onDelete('cascade');
-            $table->bit('ld_status')->nullable();
+            $table->integer('ld_status')->nullable();
 
             $table->timestamps();
         });

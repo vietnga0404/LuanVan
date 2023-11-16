@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class ChucVu extends Model
+
+class TrinhDo extends Model
 {
     use HasFactory;
-    protected $table = 'chucvu';
-    protected $primaryKey = 'cv_id';
-    protected $keyType = 'integer';
+    protected $table = 'trinhdo';
+    protected $primaryKey = 'td_id';
+    protected $keyType = 'string';
     protected $guarded = [];
 
     public function getAll()
     {
-        $cv = DB::table($this->table)
-            ->orderBy('cv_id', 'asc')->get();
-        return $cv;
+        $trinhdo = DB::table($this->table)
+            ->orderBy('td_id', 'asc')->get();
+        return $trinhdo;
     }
-
 }

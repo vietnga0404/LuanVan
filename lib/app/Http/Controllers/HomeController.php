@@ -11,7 +11,7 @@ class HomeController extends Controller
     //
     public function getHome()
     {
-        return view('index');
+        return view('homepage.index');
     }
     public function search(Request $request){
 
@@ -32,8 +32,27 @@ class HomeController extends Controller
         //     $query->where('ld_baigiang','LIKE','%'.$keyword.'%');
         // })
         ->get();
-        dd($result);
 
         return view('homepage.search', ['result' => $result]);
+    }
+    public function getHoatDong()
+    {
+        return view('homepage.hoatdong');
+    }
+    public function getThongTin()
+    {
+        return view('homepage.thongtin');
+    }
+    public function getSuKien()
+    {
+        return view('homepage.sukien');
+    }
+    public function getThongBao()
+    {
+        return view('homepage.thongbao');
+    }
+    public function getVanBan()
+    {
+        return view('homepage.vanban');
     }
 }

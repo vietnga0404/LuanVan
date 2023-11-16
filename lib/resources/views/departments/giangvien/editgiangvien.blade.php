@@ -35,10 +35,10 @@
                                 <input required type="number" name="sdt" class="form-control" value="{{$giangvien->gv_sdt}}">
                             </div>
                             <div class="form-group">
-                                <label>Chức vụ</label>
-                                <select required name="chucvu" class="form-control">
-                                    @foreach($chucvulist as $chucvu)
-                                    <option value="{{$chucvu->cv_id}}" @if($giangvien->gv_chucvu == $chucvu->cv_id) selected @endif >{{$chucvu->cv_ten}}</option>
+                                <label>Trình độ</label>
+                                <select required name="trinhdo" class="form-control">
+                                    @foreach($trinhdolist as $trinhdo)
+                                    <option value="{{$trinhdo->td_id}}" @if($giangvien->gv_trinhdo == $trinhdo->td_id) selected @endif >{{$trinhdo->td_ten}}</option>
                                     @endforeach
                                 </select>
                             </div>

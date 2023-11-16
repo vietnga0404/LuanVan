@@ -152,16 +152,18 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   }
 }
 
+
 /* Home */
 .hoatdong {
   padding-bottom: 10px;
   padding-top: 10px;
-  background-image: url(../img/ANND2_20231009103021PM.jpg);
+  background-image: url(../img/ht2.jpg_20231029024756AM.jpg);
   height: 380px;
 }
 
 .hoatdong-tittle>a {
   color: #881A1A;
+  /* padding-left: 10px; */
 }
 
 .noibat {
@@ -190,7 +192,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 .noibat-tittle {
   color: #333;
 }
-.noibat-tittle:hover{
+
+.noibat-tittle:hover {
   color: #881A1A;
 }
 
@@ -200,8 +203,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .info {
-  background-image: url(../img/IMG_3444.JPG_20231018105019PM.jpg);
-  height: 200px;
+  background-image: url(../img/ANND2_20231009103021PM.jpg);
+  height: 250px;
   width: 100%;
   /* max-height: 389px !important; */
 }
@@ -249,6 +252,56 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   color: #881A1A;
 }
 
+/* // tin tức // */
+.panel-title {
+  border-bottom: 2px solid #881A1A;
+
+}
+
+.panel-title>a {
+  background-color: #881A1A;
+  padding: 4px;
+}
+
+.panel-content {
+  padding-top: 10px;
+}
+
+.content-title {
+  color: #337ab7;
+  font-size: 20px;
+}
+
+.content {
+  padding-top: 20px;
+}
+
+.content>p {
+  color: #000;
+}
+
+.content-note {
+  text-align: center;
+  font-size: 15px;
+  padding: 0px 25px 0px 25px;
+}
+.panel-ft {
+	background: #fff;
+	border-top: 2px dotted #ddd;
+  padding-top: 100px;
+}
+.ft-li {
+  /* border-bottom: 2px dotted #ddd; */
+}
+
+.ft-li>a {
+  color: #000;
+  font-size: 17px;
+}
+
+.ft-li>a:hover {
+  color: #881A1A;
+}
 /* //LOGIN// */
 .log {
   background-image: url(../img/bg_login.PNG);

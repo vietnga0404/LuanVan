@@ -16,6 +16,13 @@ use Carbon\Carbon;
 
 Route::get('/', '\App\Http\Controllers\HomeController@getHome');
 Route::get('/search', '\App\Http\Controllers\HomeController@search');
+Route::get('/hoatdong', '\App\Http\Controllers\HomeController@getHoatDong');
+Route::get('/thongtin', '\App\Http\Controllers\HomeController@getThongTin');
+Route::get('/sukien', '\App\Http\Controllers\HomeController@getSuKien');
+Route::get('/thongbao', '\App\Http\Controllers\HomeController@getThongBao');
+Route::get('/vanban', '\App\Http\Controllers\HomeController@getVanBan');
+
+
 
 Route::get('/login', '\App\Http\Controllers\LoginController@getLogin');
 Route::post('/login', '\App\Http\Controllers\LoginController@postLogin');
@@ -117,7 +124,7 @@ Route::group(['prefix' => 'giangvien', 'middleware' => ['custom_auth']], functio
         Route::get('danhsach/{id}', '\App\Http\Controllers\Lecturers\LecturerController@getListBai');
     });
     //Lịch dạy
-    Route::get('lichday', '\App\Http\Controllers\Lecturers\LecturerController@getLich');
+    Route::get('lichday', '\App\Http\Controllers\Lecturers\ScheduleController@getSchedule');
 });
 
 ////* Học Viên *//// 

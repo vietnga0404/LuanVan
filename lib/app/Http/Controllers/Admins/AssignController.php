@@ -123,7 +123,7 @@ class AssignController extends Controller
             $lichday = LichDay::where('ld_malich', '=', $id)->first();
             $lichday->ld_baigiang = $data['baigiang'];
             $lichday->ld_ngay = $data['ngay'];
-            $lichday->ld_thu = self::THU[$data['thu']];
+            // $lichday->ld_thu = self::THU[$data['thu']];
             $lichday->ld_buoi = $data['buoi'];
             $lichday->ld_status = 0;
 

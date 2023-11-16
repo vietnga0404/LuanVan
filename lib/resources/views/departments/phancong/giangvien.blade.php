@@ -34,6 +34,7 @@
                                         {{$lich->ld_diadiem}}
                                     </div>
                                 </div>
+                                
                             </div>
 
                             <div class="bootstrap-table">
@@ -51,9 +52,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <!-- <td>{{$lich->l_tenlop}}</td> -->
-                                            <!-- <td>{{$lich->m_tenmon}}</td> -->
+
+                                        <tr>                                           
                                             <td style="width: 40%;">{{$lich->b_tenbai}}</td>
                                             <td>{{$lich->tenthu}} <br> {{$lich->ld_ngay}}</td>
                                             <td>{{$lich->tenbuoi}}</td>
@@ -61,19 +61,18 @@
                                                 <select name="giang_vien" id="" style="width: 90%;">
                                                     <option value="">Chọn giảng viên</option>
                                                     @foreach($giangvien as $gv)
-                                                    <option value="{{$gv->gv_ma}}">{{$gv->gv_ten}}</option>
+                                                    <option value="{{$gv->gv_ma}}">{{$gv->td_kihieu}} {{$gv->gv_ten}}</option>
                                                     @endforeach
                                                 </select>
-                                            </td>
-                                            <!-- <td>Từ ngày {{$lich->ld_tungay}} đến ngày {{$lich->ld_denngay}}</td> -->
-                                            <!-- <td>{{$lich->ld_diadiem}}</td> -->
+                                            </td>                                         
                                         </tr>
-                                        @endforeach
+                                       
                                     </tbody>
                                 </table>
                                 <input type="submit" name="submit" value="Phân công" class="btn-new">
                                 <a href="{{asset('lanhdaokhoa/phancong')}}" class="btn-new" style="text-decoration:none;color: white;"><i class="fa fa-undo" aria-hidden="true"></i> Quay lại</a>
                             </div>
+                            @endforeach
                             {{csrf_field()}}
                         </form>
                     </div>

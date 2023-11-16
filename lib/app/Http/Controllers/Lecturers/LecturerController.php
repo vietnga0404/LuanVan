@@ -50,7 +50,5 @@ class LecturerController extends Controller
 
         return view('lecturers.mon.baigiang', $data);
     }
-    public function getLich() {
-        return view('lecturers.lichday.listlich');
-    }
+   
 }

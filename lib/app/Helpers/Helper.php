@@ -1,16 +1,17 @@
 <?php 
 
-use App\Models\ChucVu;
+use App\Models\TrinhDo;
+use App\Models\GiangVien;
 use App\Models\Khoa;
 use App\Models\LoaiSach;
 use App\Models\Lop;
 use App\Models\Mon;
 
 
-function getAllChucVu()
+function getAllTrinhDo()
 {
-    $cv = new ChucVu;
-    return $cv->getAll();
+    $td = new TrinhDo;
+    return $td->getAll();
 }
 
 function getAllKhoa()
@@ -34,4 +35,10 @@ function getAllMon()
 {
     $mon = new Mon;
     return $mon->getAll();
+}
+
+function getAllGV()
+{
+    $giangvien = new GiangVien;
+    return $giangvien->getAll();
 }

@@ -62,10 +62,32 @@
                                         <th>Số tiết</th>
                                         <th>Thứ - ngày</th>
                                         <th>Buổi</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                @foreach($listbai as $bai)
+                                    <tr>                                    
+                                        <td><input type="text" value="{{$bai->b_tenbai}}" name="baigiang" style="border: none;width:100%"></td>
+                                        <td>{{$bai->b_sotiet}}</td>
+                                        <td style="width: 25%;">
+                                            <input type="text" id="dateString" value="" placeholder="--------" name="thu" style="border: none;width:30%">|
+                                            <input type="date" name="ngay" id="" >
+                                        </td>
+                                        <td>
+                                            <select id="" name="buoi" style="width:70%">
+                                                <option value="">Chọn buổi</option>
+                                                @foreach($chitiet as $ct)
+                                                <option value="{{$ct->mabuoi}}">{{$ct->tenbuoi}}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <!-- <td> <input type="submit" name="submit" value="Phân công" class="btn-new"> -->
+                                        </td>
+                                    </tr>
+                                    @endforeach
+
+                                    <!-- <tr>
                                         <td style="width:35%">
                                             <select id="" name="baigiang" style="width:60%">
                                                 <option value="">Chọn bài giảng</option>
@@ -87,7 +109,7 @@
                                                 @endforeach
                                             </select>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                             <input type="submit" name="submit" value="Phân công" class="btn-new">

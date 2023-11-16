@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('chucvu', function (Blueprint $table) {
-            $table->integer('cv_id');
-            $table->primary('cv_id');
-            $table->string('cv_ten');
+        Schema::create('trinhdo', function (Blueprint $table) {
+            $table->integer('td_id');
+            $table->primary('td_id');
+            $table->string('td_ten');
+            $table->string('td_kihieu');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chucvu');
+        Schema::dropIfExists('trinhdo');
     }
 };

@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Departments;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Departments\EditLecturerRequest;
 use App\Http\Requests\Departments\AddLecturerRequest;
-use App\Models\ChucVu;
 use App\Models\GiangVien;
 use App\Models\Khoa;
+use App\Models\TrinhDo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -18,17 +18,17 @@ class LecturerController extends Controller
     public function getLecturer(Request $request,  $filters = []) 
     {
         $data['listkhoa'] = '\App\Models\Khoa'::all();
-        $data['listchucvu'] = ChucVu::all();
+        $data['listtrinhdo'] = TrinhDo::all();
         $data['listgv'] = null;
         $query = DB::table('giangvien')
             ->join('khoa', 'giangvien.gv_khoa', '=', 'khoa.k_makhoa')
-            ->join('chucvu', 'giangvien.gv_chucvu', '=', 'chucvu.cv_id');
+            ->join('trinhdo', 'giangvien.gv_trinhdo', '=', 'trinhdo.td_id');
 
         $filters = [];
         $key = null;
 
-        if(!empty($request->get('chucvu'))) {
-            $query = $query->where('gv_chucvu', '=', $request->get('chucvu'));
+        if(!empty($request->get('trinhdo'))) {
+            $query = $query->where('gv_trinhdo', '=', $request->get('trinhdo'));
         }
 
         if(!empty($request->get('thuockhoa'))) {
@@ -49,7 +49,7 @@ class LecturerController extends Controller
         $giangvien->gv_ten = $request->name;
         $giangvien->gv_gioitinh = $request->gioitinh;
         $giangvien->gv_sdt = $request->sdt;
-        $giangvien->gv_chucvu = $request->chucvu;
+        $giangvien->gv_trinhdo = $request->trinhdo;
         $giangvien->gv_khoa = $request->thuockhoa;
         $giangvien->gv_slug = Str::slug($request->name);
         $giangvien->save();
@@ -59,7 +59,7 @@ class LecturerController extends Controller
     public function getEditLecturer($id)
     {
         $data['khoalist'] = '\App\Models\Khoa'::all();
-        $data['chucvulist'] = ChucVu::all();
+        $data['trinhdolist'] = TrinhDo::all();
         $data['giangvien'] = GiangVien::find($id);
         return view ('departments.giangvien.editgiangvien', $data);
     }
@@ -70,7 +70,7 @@ class LecturerController extends Controller
         $giangvien->gv_ten = $request->name;
         $giangvien->gv_gioitinh = $request->gioitinh;
         $giangvien->gv_sdt = $request->sdt;
-        $giangvien->gv_chucvu = $request->chucvu;
+        $giangvien->gv_trinhdo = $request->trinhdo;
         $giangvien->gv_khoa = $request->thuockhoa;
         $giangvien->gv_slug = Str::slug($request->name);
         $giangvien->save();

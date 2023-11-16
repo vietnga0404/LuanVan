@@ -148,6 +148,10 @@ th {
 	color: #337ab7;
 }
 
+.img-class img {
+    max-width: 100% !important;
+    height: auto !important;
+}
 
 /*Buttons*/
 .btn-sub {
@@ -414,10 +418,10 @@ a.bg-danger:hover {
 	color: #5f6468;
 }
 
-.panel-footer {
+/* .panel-footer {
 	background: #fff;
 	border-top: 1px solid #eee;
-}
+} */
 
 .panel-widget {
 	padding: 0;
@@ -723,6 +727,7 @@ a.bg-danger:hover {
 .close-btn:hover {
 	color: #D2D2D2;
 }
+
 
 /*Navbar*/
 

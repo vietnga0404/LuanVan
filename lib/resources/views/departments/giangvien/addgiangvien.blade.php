@@ -8,11 +8,11 @@
             <form action="" method="get" style="margin-bottom: 20px;margin-left:17px" autocomplete="off">
                 <div class="row">
                     <div class="col-md-3">
-                        <select class="form-control" name="chucvu">
-                            <option value="0">[ Chức vụ ]</option>
-                            @if(!empty(getAllChucVu()))
-                            @foreach (getAllChucVu() as $chucvu)
-                            <option value="{{$chucvu->cv_id}}" {{request()->chucvu==$chucvu->cv_id?'selected':false}}>{{$chucvu->cv_ten}}</option>
+                        <select class="form-control" name="trinhdo">
+                            <option value="0">[ Trình độ ]</option>
+                            @if(!empty(getAllTrinhDo()))
+                            @foreach (getAllTrinhDo() as $trinhdo)
+                            <option value="{{$trinhdo->td_id}}" {{request()->trinhdo==$trinhdo->td_id?'selected':false}}>{{$trinhdo->td_ten}}</option>
                             @endforeach
                             @endif
                         </select>
@@ -55,7 +55,7 @@
                                         <th>Tên giảng viên</th>
                                         <th>Giới tính</th>
                                         <th>Số điện thoại</th>
-                                        <th>Chức vụ</th>
+                                        <th>Trình độ</th>
                                         <th>Thuộc khoa</th>
                                         <th>Tùy chọn</th>
                                     </tr>
@@ -67,7 +67,7 @@
                                         <td>{{$giangvien->gv_ten}}</td>
                                         <td>{{$giangvien->gv_gioitinh}}</td>
                                         <td>{{$giangvien->gv_sdt}}</td>
-                                        <td>{{$giangvien->cv_ten}}</td>
+                                        <td>{{$giangvien->td_ten}}</td>
                                         <td>{{$giangvien->k_tenkhoa}}</td>
                                         <td>
                                             <a href="{{asset('lanhdaokhoa/giangvien/edit/'.$giangvien->gv_ma)}}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></a>
@@ -117,10 +117,10 @@
                                         <input required type="number" name="sdt" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label>Chức vụ</label>
-                                        <select required name="chucvu" class="form-control">
-                                            @foreach ($listchucvu as $chucvu)
-                                            <option value="{{$chucvu->cv_id}}">{{$chucvu->cv_ten}}</option>
+                                        <label>Trình độ</label>
+                                        <select required name="trinhdo" class="form-control">
+                                            @foreach ($listtrinhdo as $trinhdo)
+                                            <option value="{{$trinhdo->td_id}}">{{$trinhdo->td_ten}}</option>
                                             @endforeach
                                         </select>
                                     </div>

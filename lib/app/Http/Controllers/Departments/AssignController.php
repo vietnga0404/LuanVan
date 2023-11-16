@@ -38,28 +38,27 @@ class AssignController extends Controller
             ->join('thu', 'lichday.ld_thu', '=', 'thu.mathu')
             ->where('lichday.ld_malich', '=', $id)
             ->orderBy('ld_malich', 'desc')->get();
-        
+
         $gvIds = DB::table('lichday')
-            ->where('ld_ngay', '=', $data['lich']['ld_ngay']) 
+            ->where('ld_ngay', '=', $data['lich']['ld_ngay'])
             ->get('ld_gv');
 
-        $ids = array_map(function ($item) {
-            if (!is_null($item->ld_gv)) return $item->ld_gv;
-        }, $gvIds->toArray());
+        $data['ldId'] = $id;
+
+        // $ids = array_map(function ($item) {
+        //     if (!is_null($item->ld_gv)) return $item->ld_gv;
+        // }, $gvIds->toArray());
 
 
-        $ids = array_filter($ids, function ($item) {
-            if (!is_null($item)) return $item;
-        });
-
+        // $ids = array_filter($ids, function ($item) {
+        //     if (!is_null($item)) return $item;
+        // });
 
         $mon = $data['lich']->ld_mon;
         $mon = Mon::where('m_mamon', '=', $mon)->first();
         $data['giangvien'] = GiangVien::where('gv_khoa', '=', $mon->m_khoa)
-            ->whereNotIn('gv_ma', $ids)
+            // ->whereNotIn('gv_ma', $ids)
             ->get();
-
-        $data['ldId'] = $id;
 
         return view('departments.phancong.giangvien', $data);
     }

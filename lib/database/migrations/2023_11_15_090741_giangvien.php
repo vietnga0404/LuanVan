@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('gv_sdt');
             $table->string('gv_khoa');
             $table->foreign('gv_khoa')->references('k_makhoa')->on('khoa')->onDelete('cascade');
-            $table->integer('gv_chucvu');
-            $table->foreign('gv_chucvu')->references('cv_id')->on('chucvu')->onDelete('cascade');
+            $table->integer('gv_trinhdo');
+            $table->foreign('gv_trinhdo')->references('td_id')->on('trinhdo')->onDelete('cascade');
             $table->string('gv_slug');
             $table->timestamps();
         });
