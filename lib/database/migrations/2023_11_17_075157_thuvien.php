@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('thuvien', function (Blueprint $table) {
-            $table->increments('id');
             $table->string('masach');
+            $table->primary('masach');
             $table->string('tensach');
             $table->integer('loai');
             $table->foreign('loai')->references('maloai')->on('loaisach')->onDelete('cascade');

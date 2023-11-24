@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
 use App\Models\BaiGiang;
+use App\Models\Lop;
 use App\Models\LichDay;
 use App\Models\Mon;
 use App\Models\Buoi;
 use App\Models\Thu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class AssignController extends Controller
 {
@@ -25,12 +27,16 @@ class AssignController extends Controller
 
     public function getAssign(Request $request,  $filters = [])
     {
+        // $data['list'] = Lop::all();
+
         $data['lich'] = null;
         $query = DB::table('lichday')
+            ->select('lop.l_tenlop', 'mon.m_tenmon', 'lichday.ld_status', 'lichday.ld_lop', 'lichday.ld_mon')
             ->join('lop', 'lichday.ld_lop', '=', 'lop.l_malop')
             ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
             ->join('baigiang', 'lichday.ld_baigiang', '=', 'baigiang.b_mabai')
-            ->join('thu', 'lichday.ld_thu', '=', 'thu.mathu');
+            ->join('thu', 'lichday.ld_thu', '=', 'thu.mathu')
+            ->distinct();
 
         $filters = [];
         $key = null;
@@ -74,12 +80,16 @@ class AssignController extends Controller
 
         return redirect()->intended('bandaotao/phancong/lop');
     }
-    public function getLop()
+    public function getLop(Request $request)
     {
         $data['lich'] = DB::table('lichday')
+            ->select('lop.l_tenlop', 'mon.m_tenmon', 'lichday.ld_status', 'lichday.ld_lop', 'lichday.ld_mon', 'mon.m_mamon')
             ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
             ->join('lop', 'lichday.ld_lop', '=', 'lop.l_malop')
-            ->orderBy('ld_malich', 'desc')->get();
+            ->distinct()->orderBy('ld_malich', 'desc')->get();
+
+
+        // dd($data);
 
         return view('admins.phancong.danhsachlop', $data);
     }
@@ -97,7 +107,7 @@ class AssignController extends Controller
         $data['lich'] = DB::table('lichday')
             ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
             ->join('lop', 'lichday.ld_lop', '=', 'lop.l_malop')
-            ->where('lichday.ld_malich', '=', $id)
+            ->where('lichday.ld_lop', '=', $id)
             ->orderBy('ld_malich', 'desc')->get();
 
         $data['chitiet'] = Buoi::all();
@@ -109,51 +119,143 @@ class AssignController extends Controller
             'id' => $id
         ];
 
+        $data['lop'] = $data['lich'][0]->l_tenlop;
+        $data['mon'] = $data['lich'][0]->m_tenmon;
+        $data['tungay'] = $data['lich'][0]->ld_tungay;
+        $data['denngay'] = $data['lich'][0]->ld_denngay;
+        $data['diadiem'] = $data['lich'][0]->ld_diadiem;
+        // dd($data);
+
         return view('admins.phancong.chitiet', $data);
     }
     public function postDetail(Request $request, $ma, $id)
     {
-        $data = $request->all();
-        $lichdays = LichDay::where('ld_baigiang', '=', $data['baigiang'])
-            ->where('ld_malich', '=', $id)
-            ->where('ld_mon', '=', $ma)
-            ->get();
+        $request = $request->all();
+        $data = $request['data'];
 
-        if (!count($lichdays)) {
-            $lichday = LichDay::where('ld_malich', '=', $id)->first();
-            $lichday->ld_baigiang = $data['baigiang'];
-            $lichday->ld_ngay = $data['ngay'];
-            // $lichday->ld_thu = self::THU[$data['thu']];
-            $lichday->ld_buoi = $data['buoi'];
-            $lichday->ld_status = 0;
-
-            $lichday->save();
-
-            return redirect()->intended('bandaotao/phancong');
-        } else {
-            return back()->withInput()->with('error', 'Bài giảng đã được phân công!');
+        if ($this->checkDuplicateDay($data)) {
+            return back()->withInput()->with('error', 'Thời gian phân công đã bị trùng! Vui lòng phân công lại.');
         }
+
+        $dateInserts = [];
+
+        $lichday = LichDay::where('ld_lop', '=', $id)
+            ->where('ld_mon', '=', $ma)
+            ->first();
+
+        foreach ($data as $key => $lich) {
+            $dateInserts[] = [
+                "ld_mon" => $ma,
+                "ld_lop" => $lichday->ld_lop,
+                "ld_tungay" => $lichday->ld_tungay,
+                "ld_denngay" => $lichday->ld_denngay,
+                "ld_diadiem" => $lichday->ld_diadiem,
+                "ld_baigiang" => $key,
+                "ld_ngay" => $lich['ngay'],
+                "ld_thu" => self::THU[$lich['thu']],
+                "ld_buoi" => $lich['buoi'],
+                "ld_status" => 0,
+                "created_at" => $lichday->created_at,
+                "updated_at" => Carbon::now(),
+            ];
+        }
+
+        LichDay::insert($dateInserts);
+
+        $lichday->delete();
+        return redirect()->intended('bandaotao/phancong');
     }
 
-    public function getEdit($id)
+    public function checkDuplicateDay($data)
     {
-        $data['lich'] = LichDay::find($id);
+        $dates = array_map(function ($item) {
+            return $item['ngay'];
+        }, $data);
 
+        $checkDuplicate = array_count_values($dates);
+
+        if (count($checkDuplicate) == count($dates)) return false;
+
+        foreach ($checkDuplicate as $key => $value) {
+            if ($value > 1) {
+                $keys = array_keys($dates, $key);
+                $buoi = $data[$keys[0]]['buoi'];
+
+                foreach ($keys as $index => $keyCheck) {
+                    if ($index != 0 && $buoi == $data[$keyCheck]['buoi']) return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public function getSchdule(Request $request)
+    {
         $data['lich'] = DB::table('lichday')
             ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
             ->join('lop', 'lichday.ld_lop', '=', 'lop.l_malop')
             ->join('baigiang', 'lichday.ld_baigiang', '=', 'baigiang.b_mabai')
             ->join('thu', 'lichday.ld_thu', '=', 'thu.mathu')
             ->join('buoi', 'lichday.ld_buoi', '=', 'buoi.mabuoi')
-            ->where('lichday.ld_malich', '=', $id)
-            ->orderBy('ld_malich', 'desc')->get();
+            ->join('giangvien', 'lichday.ld_gv', '=', 'giangvien.gv_ma')
+            ->where('lichday.ld_mon', '=', $request->get('mon'))
+            ->where('lichday.ld_lop', '=', $request->get('lop'))
+            ->orderBy('ld_malich', 'asc')->get();
 
-        return view('admins.phancong.editphancong', $data);
+        $data['lop'] = $data['lich'][0]->l_tenlop;
+        $data['mon'] = $data['lich'][0]->m_tenmon;
+        $data['tungay'] = $data['lich'][0]->ld_tungay;
+        $data['denngay'] = $data['lich'][0]->ld_denngay;
+        $data['diadiem'] = $data['lich'][0]->ld_diadiem;
+
+        return view('admins.phancong.lichday', $data);
     }
 
-    public function getDelete($id)
+    public function EditLichDay(Request $request)
     {
-        LichDay::destroy($id);
-        return back();
+        $data['lich'] = DB::table('lichday')
+            ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
+            ->join('lop', 'lichday.ld_lop', '=', 'lop.l_malop')
+            ->join('baigiang', 'lichday.ld_baigiang', '=', 'baigiang.b_mabai')
+            ->join('thu', 'lichday.ld_thu', '=', 'thu.mathu')
+            ->join('buoi', 'lichday.ld_buoi', '=', 'buoi.mabuoi')
+            ->join('giangvien', 'lichday.ld_gv', '=', 'giangvien.gv_ma')
+            ->where('lichday.ld_mon', '=', $request->get('mon'))
+            ->where('lichday.ld_lop', '=', $request->get('lop'))
+            ->orderBy('ld_malich', 'desc')->get();
+
+        $data['lop'] = $data['lich'][0]->l_tenlop;
+        $data['mon'] = $data['lich'][0]->m_tenmon;
+        $data['tungay'] = $data['lich'][0]->ld_tungay;
+        $data['denngay'] = $data['lich'][0]->ld_denngay;
+        $data['diadiem'] = $data['lich'][0]->ld_diadiem;
+
+        $data['chitiet'] = Buoi::all();
+
+
+        // dd($data);
+
+        return view('admins.phancong.editlich', $data);
+    }
+
+    public function postEdit()
+    {
+
+
+        return redirect()->intended('bandaotao/phancong');
+    }
+
+    public function getDelete(Request $request)
+    {
+
+        $lichday = DB::table('lichday')
+            ->where('lichday.ld_mon', '=', $request->get('mon'))
+            ->where('lichday.ld_lop', '=', $request->get('lop'))
+            ->delete();
+        
+        // dd($lichday);
+
+        return redirect()->intended('bandaotao/phancong');
     }
 }

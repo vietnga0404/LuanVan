@@ -22,8 +22,8 @@
                                     @foreach($thuvien as $tv)
                                     <tr>
                                         <td style="text-align:center">{{$tv->id}}</td>
-                                        <td style="text-align:center"><a href="" class="tv">{{$tv->masach}}</a></td>
-                                        <td><a href="" class="tv">{{$tv->tensach}}</a></td>
+                                        <td style="text-align:center"><a href="{{asset('hocvien/thuvien/chitietsach/'.$tv->masach)}}" class="tv">{{$tv->masach}}</a></td>
+                                        <td><a href="{{asset('hocvien/thuvien/chitietsach/'.$tv->masach)}}" class="tv">{{$tv->tensach}}</a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

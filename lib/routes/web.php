@@ -16,6 +16,7 @@ use Carbon\Carbon;
 
 Route::get('/', '\App\Http\Controllers\HomeController@getHome');
 Route::get('/search', '\App\Http\Controllers\HomeController@search');
+
 Route::get('/hoatdong', '\App\Http\Controllers\HomeController@getHoatDong');
 Route::get('/thongtin', '\App\Http\Controllers\HomeController@getThongTin');
 Route::get('/sukien', '\App\Http\Controllers\HomeController@getSuKien');
@@ -68,14 +69,18 @@ Route::group(['prefix' => 'bandaotao', 'middleware' => ['custom_auth']], functio
     // Phân công
     Route::group(['prefix' => 'phancong'], function () {
         Route::get('/', '\App\Http\Controllers\Admins\AssignController@getAssign');
-        Route::get('/edit/{id}', '\App\Http\Controllers\Admins\AssignController@getEdit');
-        Route::get('/delete/{id}', '\App\Http\Controllers\Admins\AssignController@getDelete');
         Route::get('mon', '\App\Http\Controllers\Admins\AssignController@getMon');
         Route::get('{ma}/lop', '\App\Http\Controllers\Admins\AssignController@getAddLop');
         Route::post('{ma}/lop', '\App\Http\Controllers\Admins\AssignController@postAddLop');
         Route::get('lop', '\App\Http\Controllers\Admins\AssignController@getLop');
-        Route::get('{ma}/lop/{id}', '\App\Http\Controllers\Admins\AssignController@getDetail');
+        Route::get('{ma}/lop/{id}', '\App\Http\Controllers\Admins\AssignController@getDetail')->name('phancong');
         Route::post('{ma}/lop/{id}', '\App\Http\Controllers\Admins\AssignController@postDetail')->name('postDetail');
+        
+        Route::get('chitiet', '\App\Http\Controllers\Admins\AssignController@getSchdule')->name('getSchdule');        
+        Route::get('chitiet/edit/', '\App\Http\Controllers\Admins\AssignController@EditLichDay')->name('EditLichDay');
+        Route::post('chitiet/edit/', '\App\Http\Controllers\Admins\AssignController@postEdit')->name('postEdit');
+        Route::get('chitiet/delete/', '\App\Http\Controllers\Admins\AssignController@getDelete')->name('Delete');
+    
     });
 });
 
@@ -105,8 +110,13 @@ Route::group(['prefix' => 'lanhdaokhoa', 'middleware' => ['custom_auth']], funct
     //Phân công
     Route::group(['prefix' => 'phancong'], function () {
         Route::get('/', '\App\Http\Controllers\Departments\AssignController@getList');
-        Route::get('giangvien/{id}', '\App\Http\Controllers\Departments\AssignController@getGV');
-        Route::post('giangvien/{id}', '\App\Http\Controllers\Departments\AssignController@postGV')->name('postGV');
+        Route::get('giangvien', '\App\Http\Controllers\Departments\AssignController@getGV')->name('getGV');
+        Route::post('giangvien', '\App\Http\Controllers\Departments\AssignController@postGV')->name('postGV');
+
+        Route::get('chitiet', '\App\Http\Controllers\Departments\AssignController@getSchduleGV')->name('getSchduleGV');        
+        Route::get('chitiet/edit/', '\App\Http\Controllers\Departments\AssignController@EditGV')->name('EditGV');
+        Route::post('chitiet/edit/', '\App\Http\Controllers\Departments\AssignController@postEdit')->name('postEdit');
+        Route::get('chitiet/delete/', '\App\Http\Controllers\Departments\AssignController@getDelete')->name('Delete');
     });
 });
 
@@ -125,6 +135,8 @@ Route::group(['prefix' => 'giangvien', 'middleware' => ['custom_auth']], functio
     });
     //Lịch dạy
     Route::get('lichday', '\App\Http\Controllers\Lecturers\ScheduleController@getSchedule');
+    Route::get('timlichday', '\App\Http\Controllers\Lecturers\ScheduleController@findSchedule')->name('findSchedule');
+
 });
 
 ////* Học Viên *//// 
@@ -141,5 +153,7 @@ Route::group(['prefix' => 'hocvien'], function () {
     Route::group(['prefix' => 'thuvien'], function () {
         Route::get('/', '\App\Http\Controllers\Students\LibraryController@index');
         Route::get('/loaisach/{id}','\App\Http\Controllers\Students\LibraryController@getLoai');
+        Route::get('/chitietsach/{id}','\App\Http\Controllers\Students\LibraryController@getDetail');
+
     });
 });

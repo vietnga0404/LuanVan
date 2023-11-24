@@ -1,5 +1,5 @@
-@extends('layout.department')
-@section('title', 'Phân công giảng viên' )
+@extends('layout.admin')
+@section('title', 'Phân công giảng dạy')
 @section('main')
 
 <div class="p-t-100 p-b-140">
@@ -9,8 +9,7 @@
                 <div class="panel ">
                     <div class="panel-heading"><b>Chi tiết lịch dạy</b></div>
                     <div class="panel-body">
-                        <form method="post" action="{{ route('postGV') }}">
-                            @csrf
+                        <form method="post" enctype="multipart/form-data">
                             <div class="row" style="border-bottom: 2px dotted #ddd;">
 
                                 <div class="col-md-6">
@@ -44,7 +43,6 @@
                                         <th>Số tiết</th>
                                         <th>Thứ - ngày</th>
                                         <th>Buổi</th>
-                                        <th>Giảng viên</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -54,18 +52,15 @@
                                             {{$ld->b_tenbai}}
                                         </td>
                                         <td> {{$ld->b_sotiet}}</td>
-                                        <td>
-                                        {{$ld->tenthu}} <br> {{date('d-m-Y',strtotime($ld->ld_ngay))}}
+                                        <td>                                         
+                                            <input type="text" id="dateString{{$ld->b_mabai}}" value="{{$ld->tenthu}}" placeholder="--------" name="data[{{ $ld->b_mabai }}][thu]" style="border: none;width:30%">|
+                                            <input type="date" name="data[{{ $ld->b_mabai }}][ngay]" id="" value="{{$ld->ld_ngay}}" onchange="showThu(event, '{{ $ld->b_mabai }}');">
                                         </td>
                                         <td>
-                                            {{$ld->tenbuoi}}
-                                        </td>
-                                        <td>
-                                        
-                                            <select name="data[{{ $ld->ld_malich }}]" id="" style="width: 90%;">
-                                                <option value="">Chọn giảng viên</option>
-                                                @foreach($giangvien as $gv)
-                                                <option value="{{$gv->gv_ma}}">{{$gv->gv_ten}}</option>
+                                            <select id="" name="buoi" style="width:70%">
+                                                <option value="">Chọn buổi</option>
+                                                @foreach($chitiet as $ct)
+                                                <option value="{{$ct->mabuoi}}" @if($ct->mabuoi == $ld->ld_buoi) selected @endif >{{$ct->tenbuoi}}</option>
                                                 @endforeach
                                             </select>
                                         </td>
@@ -73,9 +68,13 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <button type="submit" class="btn-new"> Phân công</button>
-                            <a href="{{asset('lanhdaokhoa/phancong')}}" class="btn-new" style="text-decoration:none;color: white;"><i class="fa fa-undo" aria-hidden="true"></i> Quay lại</a>
-
+                            <div class="form-group">
+                                <input type="submit" name="submit" value="Sửa lịch dạy" class="form-control btn-new">
+                            </div>
+                            <div class="form-group">
+                                <a href="{{asset('bandaotao/phancong/')}}" class="form-control btn btn-default">Hủy Bỏ</a>
+                            </div>
+                            {{csrf_field()}}
                         </form>
                     </div>
                     <div class="clearfix"></div>
@@ -85,4 +84,21 @@
     </div>
 </div>
 
+
+<script>
+    function showThu(e, bai) {
+        days = new Array(
+            'Chủ nhật',
+            'Thứ 2',
+            'Thứ 3',
+            'Thứ 4',
+            'Thứ 5',
+            'Thứ 6',
+            'Thứ 7',
+        );
+        value = new Date(e.target.value);
+        string = value.getDay();
+        document.getElementById("dateString" + bai).value = days[string];
+    }
+</script>
 @stop

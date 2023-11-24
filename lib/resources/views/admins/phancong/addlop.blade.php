@@ -14,8 +14,7 @@
                     <li class="link-li link-ac"><a href="{{asset('bandaotao/phancong/mon')}}" style="color: #881A1A;"><b>Phân công lớp</b></a></li>
                     <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li>
                     <li class="link-li"><a href="{{asset('bandaotao/phancong/lop')}}" >Danh sách lớp</a></li>
-                    <!-- <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li>
-                    <li class="link-li"><a href="" >Phân công chi tiết</a></li> -->
+
                 </ul>
             </div>
         </div>

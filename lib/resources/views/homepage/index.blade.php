@@ -25,33 +25,33 @@
                             <ul class="col-md-12 none-padding noibat">
                                 <li>
                                     <h4>
-                                        <a href="" title="Lễ công bố và trao các quyết định về công tác tổ chức, cán bộ">
+                                        <a href="{{asset('/hoatdong')}}" title="Lễ công bố và trao các quyết định về công tác tổ chức, cán bộ">
                                             <span class="col-sm-12 col-xs-3 none-padding">
                                                 <img src="img/bn1_20231010083537PM.jpg" alt="" class="noibat-img">
                                             </span>
                                             <span class="col-sm-12 col-xs-9 none-padding">
                                                 <p class="noibat-tittle">Lễ công bố và trao các quyết định về công tác tổ chức, cán bộ ...</p>
                                             </span>
-                                            <p class="noibat-time">(03/11/2023 - 18:30)</p>
+                                            <p class="noibat-time">(17/11/2023 - 18:30)</p>
                                         </a>
                                     </h4>
                                 </li>
                                 <li>
                                     <h4>
-                                        <a href="">
+                                        <a href="{{asset('/hoatdong')}}">
                                             <span class="col-sm-12 col-xs-3 none-padding">
                                                 <img src="img/IMG_3169.JPG_20231008101617PM.jpg" alt="" class="noibat-img">
                                             </span>
                                             <span class="col-sm-12 col-xs-9 none-padding">
                                                 <p class="noibat-tittle">Bí thư thứ hai Đại sứ quán Úc thăm và làm việc với Học viện Chính trị khu vực IV ...</p>
                                             </span>
-                                            <p class="noibat-time">(03/11/2023 - 18:30)</p>
+                                            <p class="noibat-time">(08/11/2023 - 12:30)</p>
                                         </a>
                                     </h4>
                                 </li>
                                 <li>
                                     <h4>
-                                        <a href="">
+                                        <a href="{{asset('/hoatdong')}}">
                                             <span class="col-sm-12 col-xs-3 none-padding">
                                                 <img src="img/c1_20230802114135PM.jpg" alt="" class="noibat-img">
                                             </span>
@@ -64,14 +64,14 @@
                                 </li>
                                 <li>
                                     <h4>
-                                        <a href="">
+                                        <a href="{{asset('/hoatdong')}}">
                                             <span class="col-sm-12 col-xs-3 none-padding">
                                                 <img src="img/st1_20231103061836PM.jpg" alt="" class="noibat-img">
                                             </span>
                                             <span class="col-sm-12 col-xs-9 none-padding">
                                                 <p class="noibat-tittle">Khai giảng Lớp Bồi dưỡng nghiệp vụ công tác Văn phòng ...</p>
                                             </span>
-                                            <p class="noibat-time">(03/11/2023 - 18:30)</p>
+                                            <p class="noibat-time">(29/10/2023 - 18:00)</p>
                                         </a>
                                     </h4>
                                 </li>
@@ -97,11 +97,11 @@
                         </div>
                         <div class="col-md-6 none-padding">
                             <ul style="  list-style: square inside;">
-                                <li class="info-li"><a href="">Hoạt động trồng cây tạo cảnh quan khuôn viên Học viện</a></li>
-                                <li class="info-li"><a href="">Ra mắt mô hình “Nuôi heo đất, cất 5 ngàn” của Chi bộ Lớp Cao cấp Lý luận chính trị K17A9 – Học viện Chính trị Khu vực IV.</a></li>
-                                <li class="info-li"><a href="">Kế hoạch Tổ chức tiếp sinh và khai giảng năm học mới các Lớp Cao cấp LLCT hệ tập trung K16</a></li>
-                                <li class="info-li"><a href="">Giới thiệu quyển sách “Một số vấn đề lý luận và thực tiễn về đổi mới, phát triển đất nước”</a></li>
-                                <li class="info-li"><a href="">Lễ công bố quyết định của Ban Bí thư Trung ương đảng về công tác cán bộ</a></li>
+                                <li class="info-li"><a href="{{asset('/thongtin')}}">Hoạt động trồng cây tạo cảnh quan khuôn viên Học viện</a></li>
+                                <li class="info-li"><a href="{{asset('/thongtin')}}">Ra mắt mô hình “Nuôi heo đất, cất 5 ngàn” của Chi bộ Lớp Cao cấp Lý luận chính trị K17A9 – Học viện Chính trị Khu vực IV.</a></li>
+                                <li class="info-li"><a href="{{asset('/thongtin')}}">Kế hoạch Tổ chức tiếp sinh và khai giảng năm học mới các Lớp Cao cấp LLCT hệ tập trung K16</a></li>
+                                <li class="info-li"><a href="{{asset('/thongtin')}}">Giới thiệu quyển sách “Một số vấn đề lý luận và thực tiễn về đổi mới, phát triển đất nước”</a></li>
+                                <li class="info-li"><a href="{{asset('/thongtin')}}">Lễ công bố quyết định của Ban Bí thư Trung ương đảng về công tác cán bộ</a></li>
                             </ul>
                         </div>
                     </div>

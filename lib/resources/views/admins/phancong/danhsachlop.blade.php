@@ -11,11 +11,7 @@
                     <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li>
                     <li class="link-li"><a href="{{asset('bandaotao/phancong/mon')}}">Danh sách môn</a></li>
                     <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li>
-                    <!-- <li class="link-li"><a href="{{asset('')}}"><b>Phân công lớp</b></a></li>
-                    <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li> -->
                     <li class="link-li link-ac"><a href="{{asset('bandaotao/phancong/lop')}}" style="color: #881A1A;">Danh sách lớp</a></li>
-                    <!-- <li class="link-li"><i class="fa fa-long-arrow-right " aria-hidden="true"></i></li>
-                    <li class="link-li"><a href="">Phân công chi tiết</a></li> -->
                 </ul>
             </div>
         </div>
@@ -28,25 +24,25 @@
                             <table class="table table-bordered" style="margin-top:20px;text-align:center">
                                 <thead>
                                     <tr class="bg-primary">
-                                        <th>Mã lịch</th>
                                         <th>Lớp học</th>
                                         <th>Môn học</th>
-                                        <th style="width: 18%;">Thời gian</th>
-                                        <th>Địa điểm</th>
+                                        <th>Trạng thái</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($lich as $ld)
                                     <tr>
-                                        <td>{{$ld->ld_malich}}</td>
                                         <td>{{$ld->l_tenlop}}</td>
                                         <td>{{$ld->m_tenmon}}</td>
-                                        <td>Từ ngày: <b>{{$ld->ld_tungay}}</b> <br> Đến ngày: <b>{{$ld->ld_denngay}}</b></td>
-                                        <td>{{$ld->ld_diadiem}}</td>
+                                        <td>{!!$ld->ld_status==0?'<button class="btn btn-primary btn-sm" disabled>Đang phân công</button>':'<button class="btn btn-success btn-sm" disabled>Đã phân công</button>'!!}</td>
                                         <td>
-                                            <a href="{{asset('bandaotao/phancong/'.$ld->m_mamon.'/lop/'.$ld->ld_malich)}}">Phân công chi tiết</a>
+                                            @if ($ld->ld_status==0)
+                                            <a href="{{ route('phancong', ['ma' => $ld->ld_mon, 'id' => $ld->ld_lop]) }}">Phân công chi tiết</a>
+                                            @else
+                                            @endif
                                         </td>
+
                                     </tr>
                                     @endforeach
                                 </tbody>

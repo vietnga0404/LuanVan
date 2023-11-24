@@ -1,5 +1,5 @@
 @extends('layout.department')
-@section('title', 'Phân công giảng viên' )
+@section('title', 'Phân công giảng viên')
 @section('main')
 
 <div class="p-t-100 p-b-140">
@@ -9,10 +9,8 @@
                 <div class="panel ">
                     <div class="panel-heading"><b>Chi tiết lịch dạy</b></div>
                     <div class="panel-body">
-                        <form method="post" action="{{ route('postGV') }}">
-                            @csrf
-                            <div class="row" style="border-bottom: 2px dotted #ddd;">
-
+                        <form method="post" enctype="multipart/form-data">
+                            <div class="row" style="border-bottom: 2px dotted #ddd;">                                
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">Lớp học: </label>
@@ -25,7 +23,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="">Từ ngày:</label>
+                                        <label for="">Từ ngày:&nbsp;&nbsp;</label>
                                         {{date('d-m-Y',strtotime($tungay))}}
                                         <label for="">Đến ngày:</label>
                                         {{date('d-m-Y',strtotime($denngay))}}
@@ -44,38 +42,30 @@
                                         <th>Số tiết</th>
                                         <th>Thứ - ngày</th>
                                         <th>Buổi</th>
-                                        <th>Giảng viên</th>
+                                        <th>Tên giảng viên</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($lich as $ld)
+                                @foreach($lich as $ld)
                                     <tr>
                                         <td style="width:50%">
                                             {{$ld->b_tenbai}}
                                         </td>
                                         <td> {{$ld->b_sotiet}}</td>
                                         <td>
-                                        {{$ld->tenthu}} <br> {{date('d-m-Y',strtotime($ld->ld_ngay))}}
+                                            {{$ld->tenthu}} <br> {{date('d-m-Y',strtotime($ld->ld_ngay))}}
                                         </td>
                                         <td>
                                             {{$ld->tenbuoi}}
                                         </td>
                                         <td>
-                                        
-                                            <select name="data[{{ $ld->ld_malich }}]" id="" style="width: 90%;">
-                                                <option value="">Chọn giảng viên</option>
-                                                @foreach($giangvien as $gv)
-                                                <option value="{{$gv->gv_ma}}">{{$gv->gv_ten}}</option>
-                                                @endforeach
-                                            </select>
-                                        </td>
+                                            {{$ld->gv_ten}}
+                                        </td>                                        
                                     </tr>
-                                    @endforeach
+                                @endforeach
                                 </tbody>
                             </table>
-                            <button type="submit" class="btn-new"> Phân công</button>
-                            <a href="{{asset('lanhdaokhoa/phancong')}}" class="btn-new" style="text-decoration:none;color: white;"><i class="fa fa-undo" aria-hidden="true"></i> Quay lại</a>
-
+                            <a href="{{asset('lanhdaokhoa/phancong/')}}" class="btn-new" style="text-decoration:none;color: white;"><i class="fa fa-undo" aria-hidden="true"></i> Quay lại</a>
                         </form>
                     </div>
                     <div class="clearfix"></div>
@@ -84,5 +74,4 @@
         </div>
     </div>
 </div>
-
 @stop
