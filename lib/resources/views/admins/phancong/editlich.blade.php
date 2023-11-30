@@ -4,12 +4,13 @@
 
 <div class="p-t-100 p-b-140">
     <div class="container">
-        <div class="row">
+        <div class="row">        
             <div class="col-xs-12 col-md-12 col-lg-12">
+            @include('errors.note')
                 <div class="panel ">
                     <div class="panel-heading"><b>Chi tiết lịch dạy</b></div>
                     <div class="panel-body">
-                        <form method="post" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('bdtEditLichDay', ['mon' => $phanCong['mon'], 'lop' => $phanCong['lop']]) }}">
                             <div class="row" style="border-bottom: 2px dotted #ddd;">
 
                                 <div class="col-md-6">
@@ -39,31 +40,34 @@
                             <table class="table table-bordered" style="margin-top:20px;text-align:center">
                                 <thead>
                                     <tr class="bg-primary">
-                                        <th>Tên bài giảng</th>
+                                        <th  style="width:40%">Tên bài giảng</th>
                                         <th>Số tiết</th>
-                                        <th>Thứ - ngày</th>
+                                        <th style="width:27%">Thứ - ngày</th>
                                         <th>Buổi</th>
+                                        <th>Giảng viên</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($lich as $ld)
+                                    <input type="hidden" name="data[{{ $ld->b_mabai }}][ld_malich]" id="" value="{{$ld->ld_malich}}">
                                     <tr>
-                                        <td style="width:50%">
+                                        <td>
                                             {{$ld->b_tenbai}}
                                         </td>
                                         <td> {{$ld->b_sotiet}}</td>
                                         <td>                                         
-                                            <input type="text" id="dateString{{$ld->b_mabai}}" value="{{$ld->tenthu}}" placeholder="--------" name="data[{{ $ld->b_mabai }}][thu]" style="border: none;width:30%">|
-                                            <input type="date" name="data[{{ $ld->b_mabai }}][ngay]" id="" value="{{$ld->ld_ngay}}" onchange="showThu(event, '{{ $ld->b_mabai }}');">
+                                            <input type="text" id="dateString{{$ld->b_mabai}}" value="{{$ld->tenthu}}" placeholder="--------" name="data[{{ $ld->b_mabai }}][ld_thu]" style="border: none;width:25%">|
+                                            <input type="date" name="data[{{ $ld->b_mabai }}][ld_ngay]" id="" value="{{$ld->ld_ngay}}" onchange="showThu(event, '{{ $ld->b_mabai }}');">
                                         </td>
                                         <td>
-                                            <select id="" name="buoi" style="width:70%">
+                                            <select id="" name="data[{{ $ld->b_mabai }}][ld_buoi]" style="width:70%">
                                                 <option value="">Chọn buổi</option>
                                                 @foreach($chitiet as $ct)
                                                 <option value="{{$ct->mabuoi}}" @if($ct->mabuoi == $ld->ld_buoi) selected @endif >{{$ct->tenbuoi}}</option>
                                                 @endforeach
                                             </select>
                                         </td>
+                                        <td> {{$ld->gv_ten}}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

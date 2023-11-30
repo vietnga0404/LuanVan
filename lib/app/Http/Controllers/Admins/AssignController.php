@@ -25,7 +25,7 @@ class AssignController extends Controller
         'Thứ 7' => 6,
     ];
 
-    public function getAssign(Request $request,  $filters = [])
+    public function getAssign(Request $request)
     {
         // $data['list'] = Lop::all();
 
@@ -37,9 +37,6 @@ class AssignController extends Controller
             ->join('baigiang', 'lichday.ld_baigiang', '=', 'baigiang.b_mabai')
             ->join('thu', 'lichday.ld_thu', '=', 'thu.mathu')
             ->distinct();
-
-        $filters = [];
-        $key = null;
 
         if (!empty($request->get('lop'))) {
             $query = $query->where('ld_lop', '=', $request->get('lop'));
@@ -69,6 +66,13 @@ class AssignController extends Controller
     }
     public function postAddLop(Request $request)
     {
+        $lichs = DB::table('lichday')->where('ld_lop', '=', $request->lop)
+            ->where('ld_mon', '=', $request->mon)
+            ->whereNull('ld_status')->get();
+
+        if (count($lichs) > 0)
+            return back()->withInput()->with('error', 'Môn ' . $request->mon . ' đã được tạo lịch cho lớp ' . $request->lop . '.');
+
         $lichday = new LichDay();
         $lichday->ld_mon = $request->mon;
         $lichday->ld_lop = $request->lop;
@@ -107,12 +111,11 @@ class AssignController extends Controller
         $data['lich'] = DB::table('lichday')
             ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
             ->join('lop', 'lichday.ld_lop', '=', 'lop.l_malop')
+
             ->where('lichday.ld_lop', '=', $id)
             ->orderBy('ld_malich', 'desc')->get();
 
         $data['chitiet'] = Buoi::all();
-
-        $data['thu'] = Thu::all();
 
         $data['phanCong'] = [
             'ma' => $ma,
@@ -124,6 +127,7 @@ class AssignController extends Controller
         $data['tungay'] = $data['lich'][0]->ld_tungay;
         $data['denngay'] = $data['lich'][0]->ld_denngay;
         $data['diadiem'] = $data['lich'][0]->ld_diadiem;
+
         // dd($data);
 
         return view('admins.phancong.chitiet', $data);
@@ -169,13 +173,24 @@ class AssignController extends Controller
     public function checkDuplicateDay($data)
     {
         $dates = array_map(function ($item) {
-            return $item['ngay'];
+            return $item['ngay'] ?? $item['ld_ngay'];
         }, $data);
 
         $checkDuplicate = array_count_values($dates);
 
         if (count($checkDuplicate) == count($dates)) return false;
 
+        // foreach ($checkDuplicate as $key => $value) {
+        //     if ($value > 1) {
+        //         $keys = array_keys($dates, $key);
+        //         $buoi = $data[$keys[0]]['buoi'] ?? $data[$keys[0]]['ld_buoi'];
+
+        //         foreach ($keys as $index => $keyCheck) {
+        //             $checkBuoi =  $data[$keyCheck]['ld_buoi'];
+        //             if ($index != 0 && $buoi == $checkBuoi) return true;
+        //         }
+        //     }
+        // }
         foreach ($checkDuplicate as $key => $value) {
             if ($value > 1) {
                 $keys = array_keys($dates, $key);
@@ -212,7 +227,7 @@ class AssignController extends Controller
         return view('admins.phancong.lichday', $data);
     }
 
-    public function EditLichDay(Request $request)
+    public function EditLichDay($mon, $lop)
     {
         $data['lich'] = DB::table('lichday')
             ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
@@ -221,9 +236,9 @@ class AssignController extends Controller
             ->join('thu', 'lichday.ld_thu', '=', 'thu.mathu')
             ->join('buoi', 'lichday.ld_buoi', '=', 'buoi.mabuoi')
             ->join('giangvien', 'lichday.ld_gv', '=', 'giangvien.gv_ma')
-            ->where('lichday.ld_mon', '=', $request->get('mon'))
-            ->where('lichday.ld_lop', '=', $request->get('lop'))
-            ->orderBy('ld_malich', 'desc')->get();
+            ->where('lichday.ld_mon', '=', $mon)
+            ->where('lichday.ld_lop', '=', $lop)
+            ->orderBy('ld_malich', 'asc')->get();
 
         $data['lop'] = $data['lich'][0]->l_tenlop;
         $data['mon'] = $data['lich'][0]->m_tenmon;
@@ -234,14 +249,37 @@ class AssignController extends Controller
         $data['chitiet'] = Buoi::all();
 
 
-        // dd($data);
+        $data['phanCong'] = [
+            'mon' => $mon,
+            'lop' => $lop
+        ];
 
         return view('admins.phancong.editlich', $data);
     }
 
-    public function postEdit()
+    public function postEdit(Request $request)
     {
+        $request = $request->all();
+        $data = $request['data'];
 
+        // dd($data);
+        if ($this->checkDuplicateDay($data)) {
+            return back()->withInput()->with('error', 'Thời gian phân công đã bị trùng! Vui lòng phân công lại.');
+        }
+
+        $updatedData = array_map(function ($item) {
+            $item['ld_thu'] = self::THU[$item['ld_thu']];
+            return $item;
+        }, $data);
+
+        foreach ($updatedData as $lich) {
+            // LichDay::update($lich);
+            $phancong = LichDay::find($lich['ld_malich']);
+            $phancong->ld_ngay = $lich['ld_ngay'];
+            $phancong->ld_buoi = $lich['ld_buoi'];
+            $phancong->ld_thu = $lich['ld_thu'];
+            $phancong->save();
+        }
 
         return redirect()->intended('bandaotao/phancong');
     }
@@ -253,8 +291,6 @@ class AssignController extends Controller
             ->where('lichday.ld_mon', '=', $request->get('mon'))
             ->where('lichday.ld_lop', '=', $request->get('lop'))
             ->delete();
-        
-        // dd($lichday);
 
         return redirect()->intended('bandaotao/phancong');
     }

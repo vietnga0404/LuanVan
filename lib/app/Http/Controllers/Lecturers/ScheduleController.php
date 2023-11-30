@@ -6,18 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Models\LichDay;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 class ScheduleController extends Controller
 {
     // 
-    public function getSchedule()
+    public function getLich()
     {
+
         return view('lecturers.lichday.listlich');
     }
-    public function findSchedule(Request $request, $filters = [])
+    public function findLich(Request $request)
     {
-        $lichday = DB::table('lichday')
+        $data['lichday'] = DB::table('lichday')
             ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
             ->join('lop', 'lichday.ld_lop', '=', 'lop.l_malop')
             ->join('baigiang', 'lichday.ld_baigiang', '=', 'baigiang.b_mabai')
@@ -27,18 +29,29 @@ class ScheduleController extends Controller
 
 
         if (!empty($request->get('lop'))) {
-            $lichday = $lichday->where('ld_lop', '=', $request->get('lop'));
+            $data['lichday'] = $data['lichday']->where('ld_lop', '=', $request->get('lop'));
         }
         if (!empty($request->get('mon'))) {
-            $lichday = $lichday->where('ld_mon', '=', $request->get('mon'));
+            $data['lichday'] = $data['lichday']->where('ld_mon', '=', $request->get('mon'));
         }
         if (!empty($request->get('giangvien'))) {
-            $lichday = $lichday->where('ld_gv', '=', $request->get('giangvien'));
+            $data['lichday'] = $data['lichday']->where('ld_gv', '=', $request->get('giangvien'));
         }
-        $lichday = $lichday->get();
+        $data['lichday'] = $data['lichday']->get();
 
-        // dd($lichday);
 
-        return view('lecturers.lichday.danhsach', compact('lichday'));
+        if (count($data['lichday']) > 0) { 
+            $data['lop'] = $data['lichday'][0]->l_tenlop;
+            $data['mon'] = $data['lichday'][0]->m_tenmon;
+            $data['tungay'] = $data['lichday'][0]->ld_tungay;
+            $data['denngay'] = $data['lichday'][0]->ld_denngay;
+            $data['diadiem'] = $data['lichday'][0]->ld_diadiem;
+
+            $data['ngay'] = $data['lichday'][0]->created_at;
+
+            return view('lecturers.lichday.danhsach', $data);
+        }
+
+        return view('lecturers.lichday.note');
     }
 }

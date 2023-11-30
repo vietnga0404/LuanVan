@@ -57,7 +57,7 @@
                             </a>
                         </li> |
                         <li>
-                            <a href="{{asset('hocvien/thoikhoabieu')}}">
+                            <a href="{{asset('/login')}}">
                                 <span class="col-xs-12">Thời khóa biểu</span>
                             </a>
                         </li>

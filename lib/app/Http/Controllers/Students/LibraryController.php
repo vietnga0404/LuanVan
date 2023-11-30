@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 class LibraryController extends Controller
 {
     //
-    public function index(Request $request, $filters = [])
+    public function index(Request $request)
     {
         $data['loaisach'] = LoaiSach::all();
 
@@ -21,9 +21,6 @@ class LibraryController extends Controller
         $data['thuvien'] = null;
         $query = DB::table('thuvien')
             ->join('loaisach', 'thuvien.loai', '=', 'loaisach.maloai');
-
-        $filters = [];
-        $key = null;
 
         if (!empty($request->get('key'))) {
             $query->where('tensach', 'like', '%' . $request->get('key') . '%');
@@ -39,7 +36,7 @@ class LibraryController extends Controller
 
         return view("students.thuvien.danhsach", compact('ls'), $data);
     }
-    public function getLoai($id, Request $request, $filters = [])
+    public function getLoai($id, Request $request)
     {
         $data['loai'] = LoaiSach::find($id);
 
@@ -54,15 +51,29 @@ class LibraryController extends Controller
         return view('students.thuvien.loaisach', compact('ls'), $data);
     }
 
-    public function getDetail($id)
+    public function getDetail(Request $request, $id)
     {
         $data['chitiet'] = ChiTiet::find($id);
 
-        $data['chitiet'] = DB::table('chitiet')
+        $data['chitiet'] = null;
+        $query = DB::table('chitiet')
         ->join('thuvien', 'chitiet.sach', '=', 'thuvien.masach')
         ->join('loaisach','chitiet.loai','=','loaisach.maloai')
-        ->where('chitiet.sach', '=', $id)
-        ->get();
+        ->where('chitiet.sach', '=', $id);
+
+        $data['loaisach'] = LoaiSach::all();
+
+        if (!empty($request->get('key'))) {
+            $query->where('tensach', 'like', '%' . $request->get('key') . '%');
+        }
+        if (!empty($request->get('loaisach'))) {
+            $query = $query->where('loai', '=', $request->get('loaisach'));
+        }
+        if (!empty($request->get('tensach'))) {
+            $query = $query->where('tensach', '=', $request->get('tensach'));
+        }
+
+        $data['chitiet'] = $query->get();
         // dd($data);
         return view('students.thuvien.chitiet', $data);
     }

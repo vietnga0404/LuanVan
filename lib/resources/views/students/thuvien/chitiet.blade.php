@@ -49,6 +49,44 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-3">
+                <div class="panel ">
+                    <div class="panel-heading"><b>Tìm sách</b></div>
+                    <div class="panel-body">
+                        <form action="">
+                            <section>Từ khóa</section>
+                            <input type="text" name="key" style="width: 100%;margin-bottom: 10px;">
+
+                            <section>Loại sách</section>
+                            <select required name="loaisach" class="form-control" style="margin-bottom: 10px;">
+                                <option value="0">[Tất cả]</option>
+                                @if(!empty(getAllLoaiSach()))
+                                @foreach(getAllLoaiSach() as $loai)
+                                <option value="{{$loai->maloai}}" {{request()->loaisach==$loai->maloai?'selected':false}}>{{$loai->tenloai}}</option>
+                                @endforeach
+                                @endif
+                            </select>
+
+                            <section>Tên sách</section>
+                            <input type="text" name="tensach" id="" style="width: 100%;margin-bottom: 10px;">
+
+                            <button type="submit" class="btn-new" style="margin-top: 10px;">Tìm kiếm</button>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="panel ">
+                    <div class="panel-heading"><b>Danh mục loại sách</b></div>
+                    <div class="panel-body">
+                        <ul class="thuvien">
+                            @foreach($loaisach as $sach)
+                            <li><a href="{{asset('hocvien/thuvien/loaisach/'.$sach->maloai)}}">{{$sach->tenloai}}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

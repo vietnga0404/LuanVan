@@ -23,31 +23,31 @@
                 <div class="panel ">
                     <div class="panel-heading"><b>Phân công chi tiết </b></div>
                     <div class="panel-body">
-                    <div class="row" style="border-bottom: 2px dotted #ddd;">                                
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="">Lớp học: </label>
-                                        {{$lop}}
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Môn học:</label>
-                                        {{$mon}}
-                                    </div>
+                        <div class="row" style="border-bottom: 2px dotted #ddd;">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Lớp học: </label>
+                                    {{$lop}}
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="">Từ ngày:&nbsp;&nbsp;</label>
-                                        {{date('d-m-Y',strtotime($tungay))}}
-                                        <label for="">Đến ngày:</label>
-                                        {{date('d-m-Y',strtotime($denngay))}}
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Địa điểm:</label>
-                                        {{$diadiem}}
-                                    </div>
+                                <div class="form-group">
+                                    <label for="">Môn học:</label>
+                                    {{$mon}}
                                 </div>
-
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Từ ngày:&nbsp;&nbsp;</label>
+                                    {{date('d-m-Y',strtotime($tungay))}}
+                                    <label for="">Đến ngày:</label>
+                                    {{date('d-m-Y',strtotime($denngay))}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Địa điểm:</label>
+                                    {{$diadiem}}
+                                </div>
+                            </div>
+
+                        </div>
 
 
                         <form action="{{ route('postDetail', ['ma' => $phanCong['ma'], 'id' => $phanCong['id']]) }}" method="post">
@@ -60,10 +60,12 @@
                                         <th>Buổi</th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
                                     @foreach($listbai as $bai)
+                                    
                                     <tr>
-                                        <td  name="data[{{ $bai->b_mabai }}][baigiang]" style="width: 50%;">{{$bai->b_tenbai}}</td>
+                                        <td name="data[{{ $bai->b_mabai }}][baigiang]" style="width: 50%;">{{$bai->b_tenbai}}</td>
                                         <td>{{$bai->b_sotiet}}</td>
                                         <td style="width: 25%;">
                                             <input type="text" id="dateString{{$bai->b_mabai}}" value="" placeholder="--------" name="data[{{ $bai->b_mabai }}][thu]" style="border: none;width:30%">|
@@ -73,7 +75,7 @@
                                             <select id="" name="data[{{ $bai->b_mabai }}][buoi]" style="width:70%">
                                                 <option value="">Chọn buổi</option>
                                                 @foreach($chitiet as $ct)
-                                                <option value="{{$ct->mabuoi}}">{{$ct->tenbuoi}}</option>
+                                                <option value="{{$ct->mabuoi}}" >{{$ct->tenbuoi}}</option>
                                                 @endforeach
                                             </select>
                                         </td>

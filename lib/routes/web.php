@@ -75,12 +75,11 @@ Route::group(['prefix' => 'bandaotao', 'middleware' => ['custom_auth']], functio
         Route::get('lop', '\App\Http\Controllers\Admins\AssignController@getLop');
         Route::get('{ma}/lop/{id}', '\App\Http\Controllers\Admins\AssignController@getDetail')->name('phancong');
         Route::post('{ma}/lop/{id}', '\App\Http\Controllers\Admins\AssignController@postDetail')->name('postDetail');
-        
-        Route::get('chitiet', '\App\Http\Controllers\Admins\AssignController@getSchdule')->name('getSchdule');        
-        Route::get('chitiet/edit/', '\App\Http\Controllers\Admins\AssignController@EditLichDay')->name('EditLichDay');
-        Route::post('chitiet/edit/', '\App\Http\Controllers\Admins\AssignController@postEdit')->name('postEdit');
+
+        Route::get('chitiet', '\App\Http\Controllers\Admins\AssignController@getSchdule')->name('getSchdule');
+        Route::get('{mon}/{lop}/edit', '\App\Http\Controllers\Admins\AssignController@EditLichDay')->name('bdtEditLichDay');
+        Route::post('{ma}/{id}/edit', '\App\Http\Controllers\Admins\AssignController@postEdit')->name('postEdit');
         Route::get('chitiet/delete/', '\App\Http\Controllers\Admins\AssignController@getDelete')->name('Delete');
-    
     });
 });
 
@@ -113,10 +112,10 @@ Route::group(['prefix' => 'lanhdaokhoa', 'middleware' => ['custom_auth']], funct
         Route::get('giangvien', '\App\Http\Controllers\Departments\AssignController@getGV')->name('getGV');
         Route::post('giangvien', '\App\Http\Controllers\Departments\AssignController@postGV')->name('postGV');
 
-        Route::get('chitiet', '\App\Http\Controllers\Departments\AssignController@getSchduleGV')->name('getSchduleGV');        
-        Route::get('chitiet/edit/', '\App\Http\Controllers\Departments\AssignController@EditGV')->name('EditGV');
-        Route::post('chitiet/edit/', '\App\Http\Controllers\Departments\AssignController@postEdit')->name('postEdit');
-        Route::get('chitiet/delete/', '\App\Http\Controllers\Departments\AssignController@getDelete')->name('Delete');
+        Route::get('chitiet', '\App\Http\Controllers\Departments\AssignController@getSchduleGV')->name('getSchduleGV');
+        Route::get('{mon}/{lop}/edit/', '\App\Http\Controllers\Departments\AssignController@EditGV')->name('EditGV');
+        Route::post('{mon}/{lop}/edit/', '\App\Http\Controllers\Departments\AssignController@postEditGV')->name('postEditGV');
+        Route::get('chitiet/delete/', '\App\Http\Controllers\Departments\AssignController@getDeleteGV')->name('DeleteGV');
     });
 });
 
@@ -134,9 +133,10 @@ Route::group(['prefix' => 'giangvien', 'middleware' => ['custom_auth']], functio
         Route::get('danhsach/{id}', '\App\Http\Controllers\Lecturers\LecturerController@getListBai');
     });
     //Lịch dạy
-    Route::get('lichday', '\App\Http\Controllers\Lecturers\ScheduleController@getSchedule');
-    Route::get('timlichday', '\App\Http\Controllers\Lecturers\ScheduleController@findSchedule')->name('findSchedule');
-
+    Route::group(['prefix' => 'lichday'], function () {
+        Route::get('/', '\App\Http\Controllers\Lecturers\ScheduleController@getLich');
+        Route::get('xemchitiet', '\App\Http\Controllers\Lecturers\ScheduleController@findLich')->name('findLich');
+    });
 });
 
 ////* Học Viên *//// 
@@ -148,12 +148,12 @@ Route::group(['prefix' => 'hocvien'], function () {
     //Thời khóa biểu
     Route::group(['prefix' => 'thoikhoabieu'], function () {
         Route::get('/', '\App\Http\Controllers\Students\ScheduleController@getSchedule');
+        Route::get('xemchitiet', '\App\Http\Controllers\Students\ScheduleController@findSchedule')->name('findSchedule');
     });
     //Thư viện
     Route::group(['prefix' => 'thuvien'], function () {
         Route::get('/', '\App\Http\Controllers\Students\LibraryController@index');
-        Route::get('/loaisach/{id}','\App\Http\Controllers\Students\LibraryController@getLoai');
-        Route::get('/chitietsach/{id}','\App\Http\Controllers\Students\LibraryController@getDetail');
-
+        Route::get('/loaisach/{id}', '\App\Http\Controllers\Students\LibraryController@getLoai');
+        Route::get('/chitietsach/{id}', '\App\Http\Controllers\Students\LibraryController@getDetail');
     });
 });

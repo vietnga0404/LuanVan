@@ -15,18 +15,16 @@
                                 <thead>
                                     <tr class="bg-primary">
                                         <th>Mã bài</th>
-                                        <th>Tên bài</th>
+                                        <th style="width: 80%;">Tên bài</th>
                                         <th>Số tiết</th>
-                                        <th>Thuộc môn</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($listbai as $bai)
                                     <tr>
-                                        <td>{{$bai->b_mabai}}</td>
+                                        <td style="text-align:center">{{$bai->b_mabai}}</td>
                                         <td>{{$bai->b_tenbai}}</td>
-                                        <td>{{$bai->b_sotiet}}</td>
-                                        <td>{{$bai->m_tenmon}}</td>
+                                        <td style="text-align:center">{{$bai->b_sotiet}}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

@@ -11,12 +11,10 @@ use Illuminate\Support\Facades\DB;
 class LecturerController extends Controller
 {
     //
-    public function getLop(Request $request,  $filters = [])
+    public function getLop(Request $request)
     {
         $listlop = '\App\Models\Lop'::query();
 
-        $filters = [];
-        $key = null;
 
         if (!empty($request->get('hinhthuc'))) {
             $listlop = $listlop->where('l_hinhthuc', '=', $request->get('hinhthuc'));
@@ -32,12 +30,22 @@ class LecturerController extends Controller
         return view('lecturers.lop.listlop', compact('filters', 'listlop'));
     }
 
-    public function getMon()
+    public function getMon(Request $request)
     {
         $data['listkhoa'] = '\App\Models\Khoa'::all();
-        $data['listmon'] = DB::table('mon')
-        ->join('khoa', 'mon.m_khoa', '=', 'khoa.k_makhoa')->get();
+        $data['listmon'] = null;
+        $query = DB::table('mon')
+        ->join('khoa', 'mon.m_khoa', '=', 'khoa.k_makhoa');
 
+        if(!empty($request->get('thuockhoa'))) {
+            $query = $query->where('m_khoa', '=', $request->get('thuockhoa'));
+        }
+
+        if(!empty($request->get('key'))) {
+            $query->where('m_tenmon', 'like', '%' .$request->get('key'). '%');
+        }
+
+        $data['listmon'] = $query->get();
         return view('lecturers.mon.listmon', $data);
     }
     public function getListBai($id)

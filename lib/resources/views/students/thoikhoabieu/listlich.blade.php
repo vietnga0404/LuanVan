@@ -1,16 +1,17 @@
-@extends('layout.lecturer')
-@section('title', 'Lịch dạy' )
+@extends('layout.student')
+@section('title', 'Thời khóa biểu' )
 @section('main')
 
 <div class="bg0 p-t-100 p-b-140" style="background-color: #F8F0E5;">
     <div class="container">
         <div class="row">
+            @include('errors.note')
             <div class="col-xs-12 col-md-12 col-lg-12">
-                @include('errors.note')
+
                 <div class="panel ">
-                    <div class="panel-heading"><b>Lịch giảng dạy</b></div>
+                    <div class="panel-heading"><b>Thời khóa biểu</b></div>
                     <div class="panel-body">
-                        <form method="get" action="{{ route('findLich') }}" style="margin-bottom: 20px;margin-left:17px" autocomplete="off">
+                        <form method="get" action="{{ route('findSchedule') }}" style="margin-bottom: 20px;margin-left:17px" autocomplete="off">
                             <div style="margin-left: 200px;">
                                 <table style="border: 0;">
                                     <tbody>
@@ -35,19 +36,6 @@
                                                     @if(!empty(getAllMon()))
                                                     @foreach(getAllMon() as $mon)
                                                     <option value="{{$mon->m_mamon}}" {{request()->mon==$mon->m_mamon?'selected':false}}>{{$mon->m_tenmon}}</option>
-                                                    @endforeach
-                                                    @endif
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td align=right style="padding-right: 10px;width: 20%;"> <label for="">Giảng viên:</label></td>
-                                            <td align=left>
-                                                <select class=" form-select form-control" name="giangvien" style="width: 50%;">
-                                                    <option value=""></option>
-                                                    @if(!empty(getAllGV()))
-                                                    @foreach(getAllGV() as $giangvien)
-                                                    <option value="{{$giangvien->gv_ma}}" {{request()->giangvien==$giangvien->gv_ma?'selected':false}}>{{$giangvien->gv_ten}}</option>
                                                     @endforeach
                                                     @endif
                                                 </select>

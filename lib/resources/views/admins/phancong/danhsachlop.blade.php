@@ -37,9 +37,10 @@
                                         <td>{{$ld->m_tenmon}}</td>
                                         <td>{!!$ld->ld_status==0?'<button class="btn btn-primary btn-sm" disabled>Đang phân công</button>':'<button class="btn btn-success btn-sm" disabled>Đã phân công</button>'!!}</td>
                                         <td>
-                                            @if ($ld->ld_status==0)
+                                            @if (is_null($ld->ld_status))
                                             <a href="{{ route('phancong', ['ma' => $ld->ld_mon, 'id' => $ld->ld_lop]) }}">Phân công chi tiết</a>
-                                            @else
+                                            @elseif($ld->ld_status==0) 
+                                            
                                             @endif
                                         </td>
 

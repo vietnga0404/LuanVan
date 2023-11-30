@@ -70,13 +70,13 @@
                                 <span class="col-xs-3"><i class="glyph fa fa-calendar" aria-hidden="true"></i></span>
                                 <span class="col-xs-9">Phân công</span>
                             </a>
-                        </li> |
-                        <li>
+                        </li> 
+                        <!-- <li>
                             <a href="{{asset('bandaotao/')}}">
                                 <span class="col-xs-3"><i class="glyph fa fa-id-card" aria-hidden="true"></i></span>
                                 <span class="col-xs-9">Tài khoản</span>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -133,15 +133,10 @@
                     <li>
                         <a href="{{asset('bandaotao/phancong')}}">
                             <span class="col-xs-3"><i class="glyph fa fa-calendar" aria-hidden="true"></i></span>
-                            <span class="col-xs-9">Phân công</span>
+                            <span class="col-xs-9">Phân công giảng dạy</span>
                         </a>
-                    </li> |
-                    <li>
-                        <a href="{{asset('bandaotao/')}}">
-                            <span class="col-xs-3"><i class="glyph fa fa-id-card" aria-hidden="true"></i></span>
-                            <span class="col-xs-9">Tài khoản</span>
-                        </a>
-                    </li>
+                    </li> 
+                    
                 </ul>
             </div>
         </div>

@@ -8,7 +8,7 @@
             <div class="col-md-9">
                 <div class="panel ">
                     <div class="panel-heading"><b>Thư viện sách</b></div>
-                    <div class="panel-body none-padding">
+                    <div class="panel-body">
                         <div class="bootstrap-table">
                             <table class="table table-bordered" style="margin-top:20px;text-align:center">
                                 <thead>

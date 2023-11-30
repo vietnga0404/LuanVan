@@ -75,7 +75,7 @@
                                             @if ($ld->ld_status==0)
                                             @else
                                             <a href="{{ route('getSchdule', ['mon' => $ld->ld_mon, 'lop' => $ld->ld_lop]) }}" class="btn btn-default" title="Xem chi tiết"><span class="glyphicon glyphicon-eye-open"></span></a>
-                                            <a href="{{ route('EditLichDay', ['mon' => $ld->ld_mon, 'lop' => $ld->ld_lop]) }}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a href="{{ route('bdtEditLichDay', ['mon' => $ld->ld_mon, 'lop' => $ld->ld_lop]) }}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></a>
                                             <a href="{{ route('Delete', ['mon' => $ld->ld_mon, 'lop' => $ld->ld_lop]) }}" onclick="return confirm('Bạn chắc chắn muốn xóa!!')" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
                                             @endif
                                         </td>

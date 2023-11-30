@@ -17,7 +17,6 @@
                                         <th>Mã bài</th>
                                         <th>Tên bài giảng</th>
                                         <th>Số tiết</th>
-                                        <th>Thuộc môn</th>
                                         <th>Tùy chọn</th>
                                     </tr>
                                 </thead>
@@ -25,9 +24,8 @@
                                     @foreach($listbai as $bai)
                                     <tr>
                                         <td>{{$bai->b_mabai}}</td>
-                                        <td  style="width: 50%;">{{$bai->b_tenbai}}</td>
+                                        <td  style="width: 60%;">{{$bai->b_tenbai}}</td>
                                         <td>{{$bai->b_sotiet}}</td>
-                                        <td>{{$bai->m_tenmon}}</td>
                                         <td style="text-align: center;">
                                             <a href="{{asset('lanhdaokhoa/baigiang/danhsach/'.$mon->m_mamon.'/edit/'.$bai->b_mabai)}}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> </a>
                                             <a href="{{asset('lanhdaokhoa/baigiang/danhsach/'.$mon->m_mamon.'/delete/'.$bai->b_mabai)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>

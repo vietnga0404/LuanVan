@@ -6,10 +6,11 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-12">
+            @include('errors.note')
                 <div class="panel ">
                     <div class="panel-heading"><b>Chi tiết lịch dạy</b></div>
                     <div class="panel-body">
-                        <form method="post" action="{{ route('postEdit') }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('postEditGV', ['mon' => $phanCong['mon'], 'lop' => $phanCong['lop']]) }}" enctype="multipart/form-data">
                             <div class="row" style="border-bottom: 2px dotted #ddd;">
 
                                 <div class="col-md-6">
@@ -53,11 +54,11 @@
                                         </td>
                                         <td> {{$ld->b_sotiet}}</td>
                                         <td>
-                                            {{$ld->ld_thu}} <br> {{date('d-m-Y',strtotime($ld->ld_ngay))}}
+                                            {{$ld->tenthu}} <br> {{date('d-m-Y',strtotime($ld->ld_ngay))}}
                                         </td>
                                         <td>{{$ld->tenbuoi}}</td>
                                         <td>
-                                            <select id="" name="giangvien" style="width:90%">
+                                            <select id="" name="data[{{ $ld->ld_malich }}]" style="width:90%">
                                                 <option value="">Chọn giảng viên</option>
                                                 @foreach($giangvien as $gv)
                                                 <option value="{{$gv->gv_ma}}" @if($gv->gv_ma == $ld->ld_gv) selected @endif >{{$gv->gv_ten}}</option>

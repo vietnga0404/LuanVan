@@ -42,38 +42,36 @@
                                 <p style="text-align: center;color:black;font-size:20px"><b>ĐẢNG CỘNG SẢN VIỆT NAM</b></p>
                             </div>
                             <div class="form-group">
-                                <p style="text-align: center;color:black;font-size:18px"><i>Cần Thơ, ngày tháng năm</i></p>
+                                <p style="text-align: center;color:black;font-size:18px"><i>Cần Thơ, ngày {{date('d',strtotime($ngay))}} tháng {{date('m',strtotime($ngay))}} năm {{date('y',strtotime($ngay))}}</i></p>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <p style="text-align: center;color:black;font-size:25px;padding:30px"><b>KẾ HOẠCH HỌC TẬP</b></p>
                     </div>
-                    <div class="row">
-                        @foreach($lichday as $lich)
+                    <div class="row">                        
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Lớp học: </label>
-                                {{$lich->l_tenlop}}
+                                {{$lop}} 
                             </div>
                             <div class="form-group">
                                 <label for="">Môn học:</label>
-                                {{$lich->m_tenmon}}
+                                {{$mon}}
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="">Từ ngày:&nbsp;&nbsp;</label>
-                                {{date('d-m-Y',strtotime($lich->ld_tungay))}}
+                                <label for="">Từ ngày:</label>
+                                {{date('d-m-Y',strtotime($tungay))}}
                                 <label for="">Đến ngày:</label>
-                                {{date('d-m-Y',strtotime($lich->ld_denngay))}}
+                                {{date('d-m-Y',strtotime($denngay))}}
                             </div>
                             <div class="form-group">
                                 <label for="">Địa điểm:</label>
-                                {{$lich->l_tenlop}}
+                                {{$diadiem}}
                             </div>
-                        </div>                        
-                        @endforeach
+                        </div>                                                
                     </div>
 
                     <table class="table table-bordered" style="margin-top:20px;text-align:center;padding: 10px">

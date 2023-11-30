@@ -12,12 +12,10 @@ use  App\Models\Lop;
 class LopController extends Controller
 {
     //
-    public function getLop(Request $request,  $filters = [])
+    public function getLop(Request $request)
     {
         $listlop = '\App\Models\Lop'::query();
 
-        $filters = [];
-        $key = null;
 
         if (!empty($request->get('hinhthuc'))) {
             $listlop = $listlop->where('l_hinhthuc', '=', $request->get('hinhthuc'));
@@ -30,7 +28,7 @@ class LopController extends Controller
             $listlop->where('l_tenlop', 'like', '%' . $request->get('key') . '%');
         }
 
-        $listlop = $listlop->get();
+        $listlop = $listlop->orderBy('created_at', 'desc')->get();
 
         return view('admins.lop.addlop', compact('filters', 'listlop'));
     }

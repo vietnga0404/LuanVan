@@ -32,11 +32,12 @@
                                 <input type="password" required="required" name="password">
                                 <span><i class="fa fa-key" aria-hidden="true"></i> Password</span>
                             </div>
-                            <button class="enter" style="margin-left:130px;margin-bottom:50px"><b>Login</b></button>
+                            <button class="enter" style="margin-left:130px;margin-bottom:50px;width:125px"><b>Đăng nhập</b></button>
                             <div class="inputBox more">
                                 <a href="{{ route('register.form') }}">Đăng ký |</a>
-                                <a href="">Quên mật khẩu?</a>
+                                <a href="{{ asset('/') }}">Quay lại Trang chủ</a> <br>
                             </div>
+
                             {{csrf_field()}}
                         </form>
                     </div>

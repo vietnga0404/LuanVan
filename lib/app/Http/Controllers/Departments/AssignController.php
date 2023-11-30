@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 class AssignController extends Controller
 {
     //  
-    public function getList()
+    public function getList(Request $request)
     {
 
         $data['lich'] = null;
@@ -22,39 +22,26 @@ class AssignController extends Controller
             ->join('lop', 'lichday.ld_lop', '=', 'lop.l_malop')
             ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
             ->distinct();
-            
+
+        if (!empty($request->get('lop'))) {
+            $query = $query->where('ld_lop', '=', $request->get('lop'));
+        }
+
+        if (!empty($request->get('mon'))) {
+            $query = $query->where('ld_mon', '=', $request->get('mon'));
+        }
+
+        if (!empty($request->get('key'))) {
+            $query->where('ld_baigiang', 'like', '%' . $request->get('key') . '%');
+        }
+        $data['lich'] = $query->orderBy('ld_malich', 'desc')->get();
+
         $data['lich'] = $query->orderBy('ld_malich', 'desc')->get();
 
         return view('departments.phancong.phancong', $data);
     }
     public function getGV(Request $request)
     {
-        // $data['lich'] = LichDay::find($id);
-
-        // $data['lichday'] = DB::table('lichday')
-        //     ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
-        //     ->join('lop', 'lichday.ld_lop', '=', 'lop.l_malop')
-        //     ->join('baigiang', 'lichday.ld_baigiang', '=', 'baigiang.b_mabai')
-        //     ->join('buoi', 'lichday.ld_buoi', '=', 'buoi.mabuoi')
-        //     ->join('thu', 'lichday.ld_thu', '=', 'thu.mathu')
-        //     ->where('lichday.ld_malich', '=', $id)
-        //     ->orderBy('ld_malich', 'desc')->get();
-
-        // $gvIds = DB::table('lichday')
-        //     ->where('ld_ngay', '=', $data['lich']['ld_ngay'])
-        //     ->get('ld_gv');
-
-        // $data['ldId'] = $id;
-
-        // $ids = array_map(function ($item) {
-        //     if (!is_null($item->ld_gv)) return $item->ld_gv;
-        // }, $gvIds->toArray());
-
-
-        // $ids = array_filter($ids, function ($item) {
-        //     if (!is_null($item)) return $item;
-        // });
-
         $data['lich'] = DB::table('lichday')
             ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
             ->join('lop', 'lichday.ld_lop', '=', 'lop.l_malop')
@@ -75,9 +62,8 @@ class AssignController extends Controller
         $data['listmon'] = $data['lich'][0]->ld_mon;
 
         $listmon = Mon::where('m_mamon', '=', $data['listmon'])->first();
-        $data['giangvien'] = GiangVien::where('gv_khoa', '=', $listmon->m_khoa)
-            // ->whereNotIn('gv_ma', $ids)
-            ->get();
+        $data['giangvien'] = GiangVien::where('gv_khoa', '=', $listmon->m_khoa)->get();
+
 
         // dd($data);
 
@@ -135,7 +121,7 @@ class AssignController extends Controller
         return view('departments.phancong.lichday', $data);
     }
 
-    public function EditGV(Request $request)
+    public function EditGV($mon, $lop)
     {
         $data['lich'] = DB::table('lichday')
             ->join('mon', 'lichday.ld_mon', '=', 'mon.m_mamon')
@@ -144,8 +130,8 @@ class AssignController extends Controller
             ->join('thu', 'lichday.ld_thu', '=', 'thu.mathu')
             ->join('buoi', 'lichday.ld_buoi', '=', 'buoi.mabuoi')
             ->join('giangvien', 'lichday.ld_gv', '=', 'giangvien.gv_ma')
-            ->where('lichday.ld_mon', '=', $request->get('mon'))
-            ->where('lichday.ld_lop', '=', $request->get('lop'))
+            ->where('lichday.ld_mon', '=', $mon)
+            ->where('lichday.ld_lop', '=', $lop)
             ->orderBy('ld_malich', 'asc')->get();
 
         $data['lop'] = $data['lich'][0]->l_tenlop;
@@ -160,16 +146,38 @@ class AssignController extends Controller
         $data['giangvien'] = GiangVien::where('gv_khoa', '=', $listmon->m_khoa)
             ->get();
 
+        $data['phanCong'] = [
+            'mon' => $mon,
+            'lop' => $lop
+        ];
         // dd($data);
         return view('departments.phancong.editlich', $data);
     }
-    public function postEdit(Request $request)
-    {
-       
-        return redirect()->intended('lanhdaokhoa/phancong');
+    // public function postEditGV(Request $request)
+    // {
+    //     $data = $request->all();
+    //     $data = $request['data'];
 
-    }
-    public function getDelete(Request $request)
+    //     // dd($data);
+
+    //     foreach ($data as $key => $value) {
+    //         $lich = LichDay::find(['ld_malich' => $key])->first();
+
+
+    //         $checkGV = $this->checkSttGV($value, $lich);
+
+    //         if (!$checkGV) {
+    //             return back()->withInput()->with('error', 'Có giảng viên đã bị trùng lịch! Vui lòng phân công lại.');
+    //         }
+
+    //         $lich->ld_gv = $value;
+
+    //         $lich->save();
+    //     }
+
+    //     return redirect()->intended('lanhdaokhoa/phancong');
+    // }
+    public function getDeleteGV(Request $request)
     {
 
         $lichday = DB::table('lichday')

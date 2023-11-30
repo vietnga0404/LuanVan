@@ -302,6 +302,16 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 .ft-li>a:hover {
   color: #881A1A;
 }
+/* //Register// */
+.log2 {
+  background-image: url(../img/bg-login2.png);
+  height: 500px;
+  margin-top: 150px;
+  margin-bottom: 100px;
+  box-shadow: 16px 16px 32px #c8c8c8,
+    -16px -16px 32px #fefefe;
+
+}
 /* //LOGIN// */
 .log {
   background-image: url(../img/bg_login.PNG);

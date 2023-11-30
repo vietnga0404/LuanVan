@@ -5,7 +5,7 @@
     <base href="{{ asset('public/layout/')}}/">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Đăng nhập</title>
+    <title> Đăng ký</title>
     <link rel="icon" type="image/png" href="{{asset('public/layout/img/logo1.png')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/layout/css/main.css')}}">
@@ -19,11 +19,15 @@
     <div class="bg0 p-t-100 p-b-140" style="background-image: url('img/bg_hoasen.gif');">
         <div class="container">
             <div class="row">
-                <div class="log">
+                <div class="log2">
                     <div class="card col-lg-6">
-                        <a class="login">Log in</a>
+                        <a class="login">Đăng ký</a>
                         <form action="{{ route('register.handle') }}" method="post">
                             @include('errors.note')
+                            <div class="inputBox" style="margin-bottom: 30px;">
+                                <input type="password" required="required" name="name">
+                                <span><i class="fa fa-user-o" aria-hidden="true"></i> Name</span>
+                            </div>
                             <div class="inputBox" style="margin-bottom: 30px;">
                                 <input type="text" required="required" name="email" value="{{old('email')}}">
                                 <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</span>
@@ -31,21 +35,23 @@
                             <div class="inputBox" style="margin-bottom: 30px;">
                                 <input type="password" required="required" name="password">
                                 <span><i class="fa fa-key" aria-hidden="true"></i> Password</span>
-                            </div>
+                            </div>                            
                             <div class="inputBox" style="margin-bottom: 30px;">
                                 <select name="role">
                                     <option value="giangvien"> Giảng viên </option>
                                     <option value="hocvien"> Học viên </option>
                                 </select>
                             </div>
-                            <button class="enter" style="margin-left:130px;margin-bottom:50px" type="submit"><b>Đăng ký</b></button>
-                            
+                            <button class="enter" style="margin-left:130px;" type="submit"><b>Đăng ký</b></button>
+                            <div class="inputBox more">
+                                <a href="{{ asset('/login') }}">Đăng nhập |</a>
+                                <a href="{{ asset('/') }}">Quay lại Trang chủ</a> <br>
+                            </div>
+
                             {{csrf_field()}}
                         </form>
                     </div>
-                    <!-- <div class="col-lg-6">
-                        <img src="img/logo-011.png" alt="" style="height: 400px;width: 570px;">
-                    </div> -->
+
                 </div>
             </div>
         </div>

@@ -50,7 +50,7 @@
                             <form method="post" autocomplete="off">
                                 <div class="row" style="padding: 25px;">
                                     <div class="panel ">
-                                        <div class="panel-heading"><b>Thêm lớp mới</b></div>
+                                        <div class="panel-heading"><b>Thêm khoa mới</b></div>
                                     </div>
                                     <div class="form-group">
                                         <label>Mã khoa</label>
