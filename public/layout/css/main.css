@@ -7,7 +7,7 @@
         + Section Layouts / section .name-section
         ...
   + Footer / footer
-
+ 
 ------ -------------------------------------------------------------*/
 /*------------------------------------------------------------------
 [COLOR CODES]
@@ -285,11 +285,13 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   font-size: 15px;
   padding: 0px 25px 0px 25px;
 }
+
 .panel-ft {
-	background: #fff;
-	border-top: 2px dotted #ddd;
+  background: #fff;
+  border-top: 2px dotted #ddd;
   padding-top: 100px;
 }
+
 .ft-li {
   /* border-bottom: 2px dotted #ddd; */
 }
@@ -302,6 +304,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 .ft-li>a:hover {
   color: #881A1A;
 }
+
 /* //Register// */
 .log2 {
   background-image: url(../img/bg-login2.png);
@@ -312,6 +315,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
     -16px -16px 32px #fefefe;
 
 }
+
 /* //LOGIN// */
 .log {
   background-image: url(../img/bg_login.PNG);
@@ -1240,6 +1244,32 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   opacity: 1;
 }
 
+/* ////// thong ke ////// */
+.box {
+  border-radius: 5px;
+  padding: 10px;
+}
+.uil {
+  position: absolute;
+  height: 40px;
+  width: 45px;
+  font-size: 20px;
+  top: 10px;
+  left: 15px;
+  text-align: center;
+  color: white;
+}
+.tittle {
+  font-size:30px;
+  font-weight: 300;
+  color: white
+}
+
+.line {
+  border-bottom: 1px solid #f2f2f2;
+  margin-left: 50px;
+  margin-right: 50px;
+}
 
 /*//////////////////////////////////////////////////////////////////
 [ Header cart ]*/
