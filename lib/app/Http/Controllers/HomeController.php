@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BaiGiang;
+use App\Models\GiangVien;
+use App\Models\Lop;
+use App\Models\Mon;
 use App\Models\Khoa;
-use App\Models\LichDay;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,27 +16,21 @@ class HomeController extends Controller
     {
         return view('homepage.index');
     }
-    public function search(Request $request){
+    public function search(Request $request)
+    {
 
         $keyword = $request->get('keyword');
-        dd($keyword);
 
-        $result = Khoa::where('k_tenkhoa','LIKE','%'.$keyword.'%')
-        ->orWhere('lop', function($query) use($keyword){
-            $query->where('l_tenlop','LIKE','%'.$keyword.'%');
-        })
-        ->orWhere('mon', function($query) use($keyword){
-            $query->where('m_tenmon','LIKE','%'.$keyword.'%');
-        })
-        // ->orWhere('giangvien', function($query) use($keyword){
-        //     $query->where('gv_ten','LIKE','%'.$keyword.'%');
-        // })
-        // ->orWhere('lichday', function($query) use($keyword){
-        //     $query->where('ld_baigiang','LIKE','%'.$keyword.'%');
-        // })
-        ->get();
+        $resultKhoa = Khoa::where('k_tenkhoa', 'LIKE', '%' . $keyword . '%')->get();
+        $resultLop = Lop::where('l_tenlop', 'LIKE', '%' . $keyword . '%')->get();
+        $resultMon = Mon::where('m_tenmon', 'LIKE', '%' . $keyword . '%')->get();
+        $resultBai = BaiGiang::where('b_tenbai', 'LIKE', '%' . $keyword . '%')->get();
+        $resultGV = GiangVien::where('gv_ten', 'LIKE', '%' . $keyword . '%')->get();
 
-        return view('homepage.search', ['result' => $result]);
+
+        // dd($resultLop, $resultMon,$resultGV, $resultBai);
+
+        return view('homepage.search', compact('resultKhoa', 'resultLop', 'resultMon', 'resultBai', 'resultGV'));
     }
     public function getHoatDong()
     {

@@ -79,7 +79,7 @@
                         <div class="col-lg-8">
                             <ul class="user-menu">
                                 <a href="{{asset('/login')}}" class="user" >
-                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> {{Auth::user()->email}}
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> {{Auth::user()->name}}
                                 </a> &nbsp;
                                 <a href="{{asset('logout')}}" class="user">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i> Thoát

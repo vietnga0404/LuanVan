@@ -38,7 +38,7 @@ class LecturerController extends Controller
         if(!empty($request->get('key'))) {
             $query->where('gv_ten', 'like', '%' .$request->get('key'). '%');
         }
-        $data['listgv'] = $query->orderBy('gv_ma', 'asc')->get();
+        $data['listgv'] = $query->orderBy('gv_ten', 'asc')->paginate(10);
  
         return view('departments.giangvien.addgiangvien', $data);
     }

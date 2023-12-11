@@ -25,9 +25,9 @@ class LecturerController extends Controller
         if (!empty($request->get('key'))) {
             $listlop->where('l_tenlop', 'like', '%' . $request->get('key') . '%');
         }
-        $listlop = $listlop->get();
+        $listlop = $listlop->orderBy('created_at', 'desc')->get();
 
-        return view('lecturers.lop.listlop', compact('filters', 'listlop'));
+        return view('lecturers.lop.listlop', compact('listlop'));
     }
 
     public function getMon(Request $request)

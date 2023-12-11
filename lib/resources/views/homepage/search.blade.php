@@ -69,8 +69,147 @@
 
     <div class=" p-t-100 p-b-140" style="margin-top:30px">
         <div class="container">
+            <div class="col-lg-12" style="margin-bottom: 20px;">
+                <a href="{{asset('/')}}" class="btn-new" style="text-decoration:none;color: white;"><i class="fa fa-undo" aria-hidden="true"></i> Quay lại</a>
+            </div>
             <div class="row">
-                sdvjsdlvfewefewfwefewefefwwee
+                <div class="col-lg-12">
+                    <div class="panel-heading"><b>Kết quả tìm kiếm từ khóa: "{{request()->keyword}}"</b></div>
+                    <div class="panel">
+                        @if(count($resultKhoa))
+                        <p style="font-size: 20px;padding: 10px 0px 0px 20px;color:#881A1A;text-decoration:underline"><b>Khoa:</b></p>
+                        <div class="panel-body" style="padding-top: 0px;">
+                            <div class="bootstrap-table">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="bg-primary">
+                                            <th style="width:20%;">Mã Khoa</th>
+                                            <th style=" text-align:left">Tên khoa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($resultKhoa as $khoa)
+                                        <tr>
+                                            <td  style="text-align:center">{{$khoa->k_makhoa}}</td>
+                                            <td>{{$khoa->k_tenkhoa}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        @endif
+                    </div>
+                    <div class="panel">
+                        @if(count($resultLop))
+                        <p style="font-size: 20px;padding: 10px 0px 0px 20px;color:#881A1A;text-decoration:underline"><b>Lớp:</b></p>
+                        <div class="panel-body" style="padding-top: 0px;">
+                            <div class="bootstrap-table">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="bg-primary">
+                                            <th style="width:20%;">Mã Lớp</th>
+                                            <th style=" text-align:left">Tên lớp</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($resultLop as $lop)
+                                        <tr>
+                                            <td  style="text-align:center">{{$lop->l_malop}}</td>
+                                            <td>{{$lop->l_tenlop}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        @endif
+                    </div>
+                    <div class="panel">
+                        @if(count($resultMon))
+                        <p style="font-size: 20px;padding: 10px 0px 0px 20px;color:#881A1A;text-decoration:underline"><b>Môn:</b></p>
+                        <div class="panel-body" style="padding-top: 0px;">
+                            <div class="bootstrap-table">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="bg-primary">
+                                            <th style="width:20%;">Mã môn</th>
+                                            <th style=" text-align:left">Tên môn</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($resultMon as $mon)
+                                        <tr>
+                                            <td  style="text-align:center">{{$mon->m_mamon}}</td>
+                                            <td>{{$mon->m_tenmon}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        @endif
+                    </div>
+                    <div class="panel">
+                        @if(count($resultBai))
+                        <p style="font-size: 20px;padding: 10px 0px 0px 20px;color:#881A1A;text-decoration:underline"><b>Bài giảng:</b></p>
+                        <div class="panel-body" style="padding-top: 0px;">
+                            <div class="bootstrap-table">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="bg-primary">
+                                            <th style="width:20%;">Mã bài giảng</th>
+                                            <th style="text-align:left">Tên bài giảng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            @foreach($resultBai as $bai)
+                                        <tr>
+                                            <td style="text-align:center">{{$bai->b_mabai}}</td>
+                                            <td>{{$bai->b_tenbai}}</td>
+                                        </tr>
+                                        @endforeach
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        @endif
+                    </div>
+                    <div class="panel">
+                        @if(count($resultGV))
+                        <p style="font-size: 20px;padding: 10px 0px 0px 20px;color:#881A1A;text-decoration:underline"><b>Giảng viên:</b></p>
+                        <div class="panel-body" style="padding-top: 0px;">
+                            <div class="bootstrap-table">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="bg-primary">
+                                            <th style="width:20%;">Mã GV</th>
+                                            <th style="text-align:left">Tên GV</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            @foreach($resultGV as $gv)
+                                        <tr>
+                                            <td  style="text-align:center">{{$gv->gv_ma}}</td>
+                                            <td>{{$gv->gv_ten}}</td>
+                                        </tr>
+                                        @endforeach
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
     </div>

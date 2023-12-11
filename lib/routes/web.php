@@ -15,14 +15,13 @@ use Carbon\Carbon;
 */
 
 Route::get('/', '\App\Http\Controllers\HomeController@getHome');
-Route::get('/search', '\App\Http\Controllers\HomeController@search');
+Route::get('/search', '\App\Http\Controllers\HomeController@search')->name('search');
 
 Route::get('/hoatdong', '\App\Http\Controllers\HomeController@getHoatDong');
 Route::get('/thongtin', '\App\Http\Controllers\HomeController@getThongTin');
 Route::get('/sukien', '\App\Http\Controllers\HomeController@getSuKien');
 Route::get('/thongbao', '\App\Http\Controllers\HomeController@getThongBao');
 Route::get('/vanban', '\App\Http\Controllers\HomeController@getVanBan');
-
 
 
 Route::get('/login', '\App\Http\Controllers\LoginController@getLogin');
@@ -39,47 +38,47 @@ Route::get('logout', '\App\Http\Controllers\LoginController@getLogout');
 Route::group(['prefix' => 'bandaotao', 'middleware' => ['custom_auth']], function () {
     // Home
     Route::group(['prefix' => 'home'], function () {
-        Route::get('/', '\App\Http\Controllers\Admins\HomeController@getHome');
+        Route::get('/', '\App\Http\Controllers\Trainings\HomeController@getHome');
     });
     // Khoa
     Route::group(['prefix' => 'khoa'], function () {
-        Route::get('/', '\App\Http\Controllers\Admins\KhoaController@getKhoa');
-        Route::post('/', '\App\Http\Controllers\Admins\KhoaController@postKhoa');
-        Route::get('edit/{id}', '\App\Http\Controllers\Admins\KhoaController@getEditKhoa');
-        Route::post('edit/{id}', '\App\Http\Controllers\Admins\KhoaController@postEditKhoa');
-        Route::get('delete/{id}', '\App\Http\Controllers\Admins\KhoaController@getDeleteKhoa');
+        Route::get('/', '\App\Http\Controllers\Trainings\KhoaController@getKhoa');
+        Route::post('/', '\App\Http\Controllers\Trainings\KhoaController@postKhoa');
+        Route::get('edit/{id}', '\App\Http\Controllers\Trainings\KhoaController@getEditKhoa');
+        Route::post('edit/{id}', '\App\Http\Controllers\Trainings\KhoaController@postEditKhoa');
+        Route::get('delete/{id}', '\App\Http\Controllers\Trainings\KhoaController@getDeleteKhoa');
     });
     // Lớp
     Route::group(['prefix' => 'lop'], function () {
-        Route::get('/', '\App\Http\Controllers\Admins\LopController@getLop');
-        Route::post('/', '\App\Http\Controllers\Admins\LopController@postLop');
-        Route::get('edit/{id}', '\App\Http\Controllers\Admins\LopController@getEditLop');
-        Route::post('edit/{id}', '\App\Http\Controllers\Admins\LopController@postEditLop');
-        Route::get('delete/{id}', '\App\Http\Controllers\Admins\LopController@getDeleteLop');
+        Route::get('/', '\App\Http\Controllers\Trainings\LopController@getLop');
+        Route::post('/', '\App\Http\Controllers\Trainings\LopController@postLop');
+        Route::get('edit/{id}', '\App\Http\Controllers\Trainings\LopController@getEditLop');
+        Route::post('edit/{id}', '\App\Http\Controllers\Trainings\LopController@postEditLop');
+        Route::get('delete/{id}', '\App\Http\Controllers\Trainings\LopController@getDeleteLop');
     });
     // Môn
     Route::group(['prefix' => 'mon'], function () {
-        Route::get('/', '\App\Http\Controllers\Admins\MonController@getMon');
-        Route::post('/', '\App\Http\Controllers\Admins\MonController@postMon');
-        Route::get('edit/{id}', '\App\Http\Controllers\Admins\MonController@getEditMon');
-        Route::post('edit/{id}', '\App\Http\Controllers\Admins\MonController@postEditMon');
-        Route::get('delete/{id}', '\App\Http\Controllers\Admins\MonController@getDeleteMon');
-        Route::get('danhsach/{id}', '\App\Http\Controllers\Admins\MonController@getListLesson');
+        Route::get('/', '\App\Http\Controllers\Trainings\MonController@getMon');
+        Route::post('/', '\App\Http\Controllers\Trainings\MonController@postMon');
+        Route::get('edit/{id}', '\App\Http\Controllers\Trainings\MonController@getEditMon');
+        Route::post('edit/{id}', '\App\Http\Controllers\Trainings\MonController@postEditMon');
+        Route::get('delete/{id}', '\App\Http\Controllers\Trainings\MonController@getDeleteMon');
+        Route::get('danhsach/{id}', '\App\Http\Controllers\Trainings\MonController@getListLesson');
     });
     // Phân công
     Route::group(['prefix' => 'phancong'], function () {
-        Route::get('/', '\App\Http\Controllers\Admins\AssignController@getAssign');
-        Route::get('mon', '\App\Http\Controllers\Admins\AssignController@getMon');
-        Route::get('{ma}/lop', '\App\Http\Controllers\Admins\AssignController@getAddLop');
-        Route::post('{ma}/lop', '\App\Http\Controllers\Admins\AssignController@postAddLop');
-        Route::get('lop', '\App\Http\Controllers\Admins\AssignController@getLop');
-        Route::get('{ma}/lop/{id}', '\App\Http\Controllers\Admins\AssignController@getDetail')->name('phancong');
-        Route::post('{ma}/lop/{id}', '\App\Http\Controllers\Admins\AssignController@postDetail')->name('postDetail');
+        Route::get('/', '\App\Http\Controllers\Trainings\AssignController@getAssign');
+        Route::get('mon', '\App\Http\Controllers\Trainings\AssignController@getMon');
+        Route::get('{ma}/lop', '\App\Http\Controllers\Trainings\AssignController@getAddLop');
+        Route::post('{ma}/lop', '\App\Http\Controllers\Trainings\AssignController@postAddLop');
+        Route::get('lop', '\App\Http\Controllers\Trainings\AssignController@getLop');
+        Route::get('{ma}/lop/{id}', '\App\Http\Controllers\Trainings\AssignController@getDetail')->name('phancong');
+        Route::post('{ma}/lop/{id}', '\App\Http\Controllers\Trainings\AssignController@postDetail')->name('postDetail');
 
-        Route::get('chitiet', '\App\Http\Controllers\Admins\AssignController@getSchdule')->name('getSchdule');
-        Route::get('{mon}/{lop}/edit', '\App\Http\Controllers\Admins\AssignController@EditLichDay')->name('bdtEditLichDay');
-        Route::post('{ma}/{id}/edit', '\App\Http\Controllers\Admins\AssignController@postEdit')->name('postEdit');
-        Route::get('chitiet/delete/', '\App\Http\Controllers\Admins\AssignController@getDelete')->name('Delete');
+        Route::get('chitiet', '\App\Http\Controllers\Trainings\AssignController@getSchdule')->name('getSchdule');
+        Route::get('{mon}/{lop}/edit', '\App\Http\Controllers\Trainings\AssignController@EditLichDay')->name('bdtEditLichDay');
+        Route::post('{mon}/{lop}/edit', '\App\Http\Controllers\Trainings\AssignController@postEdit')->name('postEdit');
+        Route::get('chitiet/delete/', '\App\Http\Controllers\Trainings\AssignController@getDelete')->name('Delete');
     });
 });
 
@@ -140,7 +139,7 @@ Route::group(['prefix' => 'giangvien', 'middleware' => ['custom_auth']], functio
 });
 
 ////* Học Viên *//// 
-Route::group(['prefix' => 'hocvien'], function () {
+Route::group(['prefix' => 'hocvien', 'middleware' => ['custom_auth']], function () {
     //Home
     Route::group(['prefix' => 'home'], function () {
         Route::get('/', '\App\Http\Controllers\Students\HomeController@getHome');
@@ -156,4 +155,33 @@ Route::group(['prefix' => 'hocvien'], function () {
         Route::get('/loaisach/{id}', '\App\Http\Controllers\Students\LibraryController@getLoai');
         Route::get('/chitietsach/{id}', '\App\Http\Controllers\Students\LibraryController@getDetail');
     });
+});
+
+////* Admin *////
+Route::group(['prefix' => 'admin', 'middleware' => ['custom_auth']], function () {
+    Route::get('/login', '\App\Http\Controllers\LoginController@getLogin');
+    Route::post('/login', '\App\Http\Controllers\LoginController@postLogin');
+
+    Route::group(['prefix' => 'thongke'], function () {
+        Route::get('/', '\App\Http\Controllers\Admins\AdminController@ThongKe');
+        Route::get('khoa', '\App\Http\Controllers\Admins\StatisticController@getKhoa')->name('khoa');
+        Route::get('lop', '\App\Http\Controllers\Admins\StatisticController@getLop')->name('lop');
+        Route::get('mon', '\App\Http\Controllers\Admins\StatisticController@getMon')->name('mon');
+        Route::get('baigiang/{id}', '\App\Http\Controllers\Admins\StatisticController@getBaiGiang')->name('baigiang');
+        Route::get('giangvien', '\App\Http\Controllers\Admins\StatisticController@getGV')->name('giangvien');
+        Route::get('lichday', '\App\Http\Controllers\Admins\StatisticController@getLichDay')->name('lichday');
+        Route::get('lichday/chitiet', '\App\Http\Controllers\Admins\StatisticController@getSchdule')->name('chitietlich');
+    });
+
+    Route::group(['prefix' => 'taikhoan'], function () {
+        Route::get('/', '\App\Http\Controllers\Admins\AdminController@TaiKhoan');
+        Route::post('/', '\App\Http\Controllers\Admins\AdminController@postTaiKhoan');
+        Route::get('khoa/{id}', '\App\Http\Controllers\Admins\AdminController@khoaTK')->name('khoaTK');
+        Route::get('mo/{id}', '\App\Http\Controllers\Admins\AdminController@mokhoaTK')->name('mokhoaTK');
+        Route::get('delete/{id}', '\App\Http\Controllers\Admins\AdminController@getDeleteTK');
+    });
+
+    Route::get('/timkiem', '\App\Http\Controllers\Admins\AdminController@TimKiem');
+    Route::get('timkiem/ketqua', '\App\Http\Controllers\Admins\AdminController@search')->name('timkiem');
+
 });

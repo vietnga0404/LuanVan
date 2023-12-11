@@ -36,8 +36,6 @@ class AssignController extends Controller
         }
         $data['lich'] = $query->orderBy('ld_malich', 'desc')->get();
 
-        $data['lich'] = $query->orderBy('ld_malich', 'desc')->get();
-
         return view('departments.phancong.phancong', $data);
     }
     public function getGV(Request $request)
@@ -93,7 +91,11 @@ class AssignController extends Controller
     public function checkSttGV($gvId, $lichDay)
     {
         $lichs = LichDay::where('ld_gv', '=', $gvId)
-            ->where('ld_ngay', '=', $lichDay->ld_ngay)->get();
+            ->where('ld_ngay', '=', $lichDay->ld_ngay)
+            ->where('ld_buoi', '=', $lichDay->ld_buoi)
+            ->where('ld_malich', '!=', $lichDay->ld_malich)
+            ->get();
+
 
         if (count($lichs)) return false;
         return true;
@@ -153,30 +155,28 @@ class AssignController extends Controller
         // dd($data);
         return view('departments.phancong.editlich', $data);
     }
-    // public function postEditGV(Request $request)
-    // {
-    //     $data = $request->all();
-    //     $data = $request['data'];
+    public function postEditGV(Request $request)
+    {
+        $data = $request->all();
+        $data = $request['data'];
 
-    //     // dd($data);
+       //  dd($data);
 
-    //     foreach ($data as $key => $value) {
-    //         $lich = LichDay::find(['ld_malich' => $key])->first();
+        foreach ($data as $key => $value) {
+            $lich = LichDay::find(['ld_malich' => $key])->first();
 
+            $checkGV = $this->checkSttGV($value, $lich);
 
-    //         $checkGV = $this->checkSttGV($value, $lich);
+            if (!$checkGV) {
+                return back()->withInput()->with('error', 'Có giảng viên đã bị trùng lịch! Vui lòng phân công lại.');
+            }
 
-    //         if (!$checkGV) {
-    //             return back()->withInput()->with('error', 'Có giảng viên đã bị trùng lịch! Vui lòng phân công lại.');
-    //         }
+            $lich->ld_gv = $value;
+            $lich->save();
+        }
 
-    //         $lich->ld_gv = $value;
-
-    //         $lich->save();
-    //     }
-
-    //     return redirect()->intended('lanhdaokhoa/phancong');
-    // }
+        return redirect()->intended('lanhdaokhoa/phancong');
+    }
     public function getDeleteGV(Request $request)
     {
 

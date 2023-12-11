@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
     <base href="{{ asset('public/layout/')}}/">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Ban đào tạo | @yield('title') </title>
+    <title> Admin | @yield('title')</title>
     <link rel="icon" type="image/png" href="{{asset('public/layout/img/logo1.png')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/layout/css/main.css')}}">
@@ -17,6 +18,7 @@
 
 <body style="background-color: #F8F0E5;">
     <header>
+        <!-- Header desktop -->
         <div class="container-menu-desktop">
             <div class="bg-header col-xs-12">
                 <div class="col-xs-3 ">
@@ -42,105 +44,27 @@
                 <div class="container">
                     <ul class="main-menu">
                         <li>
-                            <a href="{{asset('bandaotao/home')}}">
-                                <span class="col-xs-3"><i class="glyph fa fa-home" aria-hidden="true"></i></span>
-                                <span class="col-xs-9">Trang chủ</span>
+                            <a href="{{asset('admin/thongke')}}">
+                                <span class="col-xs-3"><i class="fa fa-area-chart" aria-hidden="true"></i></span>
+                                <span class="col-xs-9">Thống kê</span>
                             </a>
                         </li> |
                         <li>
-                            <a href="{{asset('bandaotao/khoa')}}">
-                                <span class="col-xs-4"><i class="glyph fa fa-building" aria-hidden="true"></i></span>
-                                <span class="col-xs-8">Khoa</span>
-                            </a>
-                        </li> |
-                        <li>
-                            <a href="{{asset('bandaotao/lop')}}">
-                                <span class="col-xs-3"><i class="glyph fa fa-industry" aria-hidden="true"></i></span>
-                                <span class="col-xs-9">Lớp học</span>
-                            </a>
-                        </li> |
-                        <li>
-                            <a href="{{asset('bandaotao/mon')}}">
-                                <span class="col-xs-3"><i class="glyph fa fa-book" aria-hidden="true"></i></span>
-                                <span class="col-xs-9">Môn học</span>
-                            </a>
-                        </li> |
-                        <li>
-                            <a href="{{asset('bandaotao/phancong')}}">
-                                <span class="col-xs-3"><i class="glyph fa fa-calendar" aria-hidden="true"></i></span>
-                                <span class="col-xs-9">Phân công</span>
-                            </a>
-                        </li> 
-                        <!-- <li>
-                            <a href="{{asset('bandaotao/')}}">
-                                <span class="col-xs-3"><i class="glyph fa fa-id-card" aria-hidden="true"></i></span>
+                            <a href="{{asset('admin/taikhoan')}}">
+                                <span class="col-xs-3"><i class="glyph fa fa-graduation-cap" aria-hidden="true"></i></span>
                                 <span class="col-xs-9">Tài khoản</span>
                             </a>
-                        </li> -->
+                        </li> |
+                        <li>
+                            <a href="{{asset('admin/timkiem')}}">
+                                <span class="col-xs-3"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                <span class="col-xs-9">Tìm kiếm</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
-
-        <!--  -->
-        <!-- Header Mobile -->
-        <!-- <div class="wrap-header-mobile">
-            <div class="bg-header col-xs-12">
-                <div class="logo-mobile">
-                    <a href="{{asset('/')}}"><img src="img/name1.png" alt="IMG-LOGO"></a>
-                </div>
-            </div>
-           
-            <div class="wrap-icon-header flex-w flex-r-m m-r-15">
-                fregqe
-            </div>
-
-            <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-                <span class="hamburger-box">
-                    <span class="hamburger-inner"></span>
-                </span>
-            </div>
-        </div> -->
-
-        <!-- Menu Mobile -->
-        <div class="menu-mobile">
-            <div class="main-menu-m">
-                <ul class="main-menu">
-                    <li>
-                        <a href="{{asset('bandaotao/home')}}">
-                            <span class="col-xs-3"><i class="glyph fa fa-home" aria-hidden="true"></i></span>
-                            <span class="col-xs-9">Trang chủ</span>
-                        </a>
-                    </li> |
-                    <li>
-                        <a href="{{asset('bandaotao/khoa')}}">
-                            <span class="col-xs-4"><i class="glyph fa fa-building" aria-hidden="true"></i></span>
-                            <span class="col-xs-8">Khoa</span>
-                        </a>
-                    </li> |
-                    <li>
-                        <a href="{{asset('bandaotao/lop')}}">
-                            <span class="col-xs-3"><i class="glyph fa fa-industry" aria-hidden="true"></i></span>
-                            <span class="col-xs-9">Lớp học</span>
-                        </a>
-                    </li> |
-                    <li>
-                        <a href="{{asset('bandaotao/mon')}}">
-                            <span class="col-xs-3"><i class="glyph fa fa-book" aria-hidden="true"></i></span>
-                            <span class="col-xs-9">Môn học</span>
-                        </a>
-                    </li> |
-                    <li>
-                        <a href="{{asset('bandaotao/phancong')}}">
-                            <span class="col-xs-3"><i class="glyph fa fa-calendar" aria-hidden="true"></i></span>
-                            <span class="col-xs-9">Phân công giảng dạy</span>
-                        </a>
-                    </li> 
-                    
-                </ul>
-            </div>
-        </div>
-
     </header>
 
     <div class="p-t-100 p-b-140">
@@ -148,13 +72,13 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="page-header page-menu">
-                        <div class="col-md-6 page-title ">
-                            <b>Ban Đào Tạo</b>
-                        </div>
-                        <div class="col-md-6">
+                        <div class="col-lg-4 page-title ">
+                            <b>Admin</b>
+                        </div> 
+                        <div class="col-lg-8">
                             <ul class="user-menu">
                                 <a href="#" class="user" data-toggle="dropdown">
-                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> {{Auth::user()->email}}
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> {{Auth::user()->name}}
                                 </a> &nbsp;
                                 <a href="{{asset('logout')}}" class="user">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i> Thoát
@@ -178,7 +102,6 @@
             </li>
             <li>Bản quyền: Học viện Chính trị&nbsp;khu vực IV&nbsp;</li>
             <li>Số 6 Nguyễn Văn Cừ (nối dài), phường An Bình, quận Ninh Kiều, thành phố Cần Thơ</li>
-
         </ul>
     </div>
 
@@ -207,19 +130,40 @@
             }
         }
     </script>
-
-    <!-- <script>
-        // Add active class to the current button (highlight it)
-        var header = document.getElementById("myDIV");
-        var btns = header.getElementsByClassName("button");
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function() {
-                var current = document.getElementsByClassName("active");
-                current[0].className = current[0].className.replace(" active", "");
-                this.className += " active";
-            });
+    <!-- Button popup   -->
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
         }
-    </script> -->
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+
+    <script>
+        // Get the button
+        let mybutton = document.getElementById("myBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
 
     <!-- lịch -->
     <script src="js/jquery-1.11.1.min.js"></script>
@@ -246,32 +190,6 @@
         $(window).on('resize', function() {
             if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
         })
-    </script>
-
-
-    <!-- Back to top -->
-    <script>
-        // Get the button
-        let mybutton = document.getElementById("myBtn");
-
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {
-            scrollFunction()
-        };
-
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                mybutton.style.display = "block";
-            } else {
-                mybutton.style.display = "none";
-            }
-        }
-
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
     </script>
 </body>
 

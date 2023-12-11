@@ -25,12 +25,12 @@
                         <form action="" method="post">
                             @include('errors.note')
                             <div class="inputBox" style="margin-bottom: 30px;">
-                                <input type="text" required="required" name="email">
-                                <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</span>
+                                <input required type="text" required="required" name="email">
+                                <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Email </span>
                             </div>
                             <div class="inputBox" style="margin-bottom: 30px;">
-                                <input type="password" required="required" name="password">
-                                <span><i class="fa fa-key" aria-hidden="true"></i> Password</span>
+                                <input required type="password" required="required" name="password">
+                                <span><i class="fa fa-key" aria-hidden="true"></i> Password </span>
                             </div>
                             <button class="enter" style="margin-left:130px;margin-bottom:50px;width:125px"><b>Đăng nhập</b></button>
                             <div class="inputBox more">

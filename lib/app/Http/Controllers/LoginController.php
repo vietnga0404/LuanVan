@@ -22,6 +22,8 @@ class LoginController extends Controller
         if (Hash::check($request->password, $user->password)) {
             Auth::login($user);
             switch ($user->role) {
+                case 'admin':
+                    return redirect()->intended('admin/thongke');
                 case 'bandaotao':
                     return redirect()->intended('bandaotao/home');
                 case 'lanhdaokhoa':
@@ -50,6 +52,7 @@ class LoginController extends Controller
     public function handleRegister(Request $request)
     {
         $dataValidated = $request->validate([
+            'name' => 'required',
             'email' => 'required|string|email|unique:user,email',
             'password' => 'required',
             'role' => 'required',

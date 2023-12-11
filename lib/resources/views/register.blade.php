@@ -25,7 +25,7 @@
                         <form action="{{ route('register.handle') }}" method="post">
                             @include('errors.note')
                             <div class="inputBox" style="margin-bottom: 30px;">
-                                <input type="password" required="required" name="name">
+                                <input type="text" required="required" name="name">
                                 <span><i class="fa fa-user-o" aria-hidden="true"></i> Name</span>
                             </div>
                             <div class="inputBox" style="margin-bottom: 30px;">
@@ -38,7 +38,6 @@
                             </div>                            
                             <div class="inputBox" style="margin-bottom: 30px;">
                                 <select name="role">
-                                    <option value="giangvien"> Giảng viên </option>
                                     <option value="hocvien"> Học viên </option>
                                 </select>
                             </div>

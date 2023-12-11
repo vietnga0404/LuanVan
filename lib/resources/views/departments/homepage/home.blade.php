@@ -121,7 +121,7 @@
             <div class="col-xs-3">
                 <div class="panel">
                     <div class="panel-body">
-                        <form action="">
+                        <form action=" {{ route('search') }}">
                             <input type="text" name="keyword" placeholder="Từ khóa tìm kiếm..." value="{{request()->keyword}}">
                             <button type="submit" class="btn-new" style="margin-top: 10px;">Tìm kiếm</button>
                         </form>

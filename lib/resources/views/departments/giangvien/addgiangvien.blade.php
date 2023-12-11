@@ -3,7 +3,7 @@
 @section('main')
 
 <div class="p-t-100 p-b-140">
-    <div class="container"> 
+    <div class="container">
         <div class="row">
             <form action="" method="get" style="margin-bottom: 20px;margin-left:17px" autocomplete="off">
                 <div class="row">
@@ -39,7 +39,7 @@
     </div>
 </div>
 
-<div class="p-t-100 p-b-140" >
+<div class="p-t-100 p-b-140">
     <div class="container">
         @include('errors.note')
         <div class="row">
@@ -77,6 +77,15 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
+                            <div class="card-footer py-4 page-link" style="text-align:right;">
+                                <nav aria-label="...">
+                                    <ul class="pagination justify-content-start" style="margin: 0px 0px;">
+                                        {{$listgv->links("pagination::bootstrap-4")}}
+                                    </ul>
+                                </nav>
+                            </div>
+
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -98,26 +107,26 @@
                                         <div class="panel-heading"><b>Thêm giảng viên</b></div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Mã giảng viên</label>
+                                        <label>Mã giảng viên <a href="#" style="color: red;">*</a></label>
                                         <input required type="text" name="ma" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label>Tên giảng viên</label>
+                                        <label>Tên giảng viên <a href="#" style="color: red;">*</a></label>
                                         <input required type="text" name="name" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label>Giới tính</label>
+                                        <label>Giới tính <a href="#" style="color: red;">*</a></label>
                                         <select required name="gioitinh" class="form-control">
                                             <option value="Nam">Nam</option>
                                             <option value="Nữ">Nữ</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Số điện thoại</label>
+                                        <label>Số điện thoại <a href="#" style="color: red;">*</a></label>
                                         <input required type="number" name="sdt" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label>Trình độ</label>
+                                        <label>Trình độ <a href="#" style="color: red;">*</a></label>
                                         <select required name="trinhdo" class="form-control">
                                             @foreach ($listtrinhdo as $trinhdo)
                                             <option value="{{$trinhdo->td_id}}">{{$trinhdo->td_ten}}</option>
@@ -125,7 +134,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Thuộc khoa</label>
+                                        <label>Thuộc khoa <a href="#" style="color: red;">*</a></label>
                                         <select required name="thuockhoa" class="form-control">
                                             @foreach ($listkhoa as $khoa)
                                             <option value="{{$khoa->k_makhoa}}">{{$khoa->k_tenkhoa}}</option>
